@@ -97,3 +97,13 @@ println(string.uppercase())
     println("mutableShoppingList  value is ${mutableShoppingList[0]} ${mutableShoppingList[mutableShoppingList.size - 1]}")
     println(mutableShoppingList.toString())
 ```
+
+### Loop
+```kt
+// while loop
+var counter = 0
+while( counter < shoppingList.size) {
+    println("shoppingList on loop $counter is ${shoppingList[counter]}")
+    counter++
+}
+```

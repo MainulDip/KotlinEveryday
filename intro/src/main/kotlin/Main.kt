@@ -87,4 +87,11 @@ fun main() {
     println(mutableShoppingList[0])
     println("mutableShoppingList  value is ${mutableShoppingList[0]} ${mutableShoppingList[mutableShoppingList.size - 1]}")
     println(mutableShoppingList.toString())
+
+//  Loop
+    var counter = 0
+    while( counter < shoppingList.size) {
+        println("shoppingList on loop $counter is ${shoppingList[counter]}")
+        counter++
+    }
 }

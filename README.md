@@ -247,3 +247,54 @@ println(parsedNumber)
 
 ### Lambda Function
 > Lamda: Functions that are passed as parameter/args of another function
+```kt
+//    Lambda Function
+    val lambdaList = listOf("apple", "orange", "cherry")
+    val count = lambdaList.count { value ->
+//      in lambda function last line get automatic return, so no need to mention return
+        value.length == 6
+    }
+    println("Lambda function return value is $count")
+```
+> custom function
+```kt
+//  Custom Lambda Function
+    val lambdaList2 = listOf("apple", "orange", "cherry")
+    val count2 = lambdaList2.customLamFunction { value ->
+//      in lambda function last line get automatic return, so no need to mention return
+        value.length == 6
+    }
+    println("Custom-Lambda function return value is $count2")
+
+fun List<String>.customLamFunction(value: (String) -> Boolean): Int {
+    var counter = 0
+    for (string in this) {
+        if(value(string)) {
+            counter++
+        }
+    }
+    return counter
+}
+```
+
+### Generics 
+```kt
+    //  Custom Lambda Generic Function
+    val lambdaList3 = listOf("Durium", "Mango", "Banana")
+    val count3 = lambdaList2.customLamGenericsFunction { value ->
+//      in lambda function last line get automatic return, so no need to mention return
+        value.length >= 4
+    }
+    println("Custom-Lambda Generic function return value is $count3")
+
+
+fun <T> List<T>.customLamGenericsFunction(value: (T) -> Boolean): Int {
+    var counter = 0
+    for (string in this) {
+        if(value(string)) {
+            counter++
+        }
+    }
+    return counter
+}
+```

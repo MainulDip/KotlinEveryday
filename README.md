@@ -70,6 +70,18 @@ println(string.uppercase())
 //  functional style
     val conditional2 = if ( conditionVal == 2 + 1 ) 2 else "not a match"
     println("conditional2 value is $conditional2")
+
+//  when conditional, it's like switch style conditional
+    
+    val checkWhen = 4
+    when(checkWhen) {
+        in 1..2 -> println("checkWhen is between 1 and 2")
+        in 3..10 -> println("checkWhen is between 3 and 10")
+        in 11..20 -> println("checkWhen is between 11 and 20")
+        else -> {
+            println("checkWhen is not in the range above")
+        }
+    }
 ```
 ### Default value and null safety
 > ?: , ? , !!
@@ -99,11 +111,139 @@ println(string.uppercase())
 ```
 
 ### Loop
+> check: https://kotlinlang.org/docs/control-flow.html#for-loops
 ```kt
 // while loop
-var counter = 0
-while( counter < shoppingList.size) {
-    println("shoppingList on loop $counter is ${shoppingList[counter]}")
-    counter++
-}
+    var counter = 0
+    while( counter < shoppingList.size) {
+        println("immutable shoppingList on loop $counter is ${shoppingList[counter]}")
+        counter++
+    }
+
+// for loop and range
+
+    for((index, item) in mutableShoppingList.withIndex() ) {
+        println("mutable printing from for loop on shoppingList $index is $item")
+    }
+
+    for ( number in 1..100){
+        println("Outputting range in for loop wher number = $number")
+    }
 ```
+
+### Defining Calling Functions
+```kt
+fun printNumber(){
+    for(i in 1..10){
+        println("Calling function printNumber and it returns $i")
+    }
+}
+printNumber()
+
+fun checkIsEven(number: Int): Boolean{
+    return number % 2 == 0
+}
+val evenNum = 7
+val checkEven = checkIsEven(evenNum)
+println("checkEven for $evenNum is ${if(checkEven) "even" else "\"odd\""}")
+val checkEven2 = checkIsEven(number = evenNum) // adds good redability
+// Setting Function's Default Args Value
+fun defaultArgVal(number: Int = 7): Boolean { return number % 2 == 0}
+println(defaultArgVal())
+```kt
+
+### Extension Function
+```kt
+// extension function: extend an already existed type
+// call extension function like object function
+fun Int.isOdds(): Boolean {
+    return this % 2 != 0
+}
+val oddValue = 3
+println(oddValue.isOdds())
+```
+
+## Object Oriented Kotlin:
+> Define Class On It's Own File
+
+> class can be class, open class, abstract class
+```kt
+// define as abstract to restrict direct intantiation
+// to be inherited class must be open or abstract
+
+abstract class Animal (
+//    define constructors here
+    private val name: String,
+    private val legs: Int = 4
+) {
+    // init will run first when instantiated
+    init{
+        println("Hello my $name")
+    }
+
+//  use abstract to force inherited class define their own implementation
+    abstract fun makeSound()
+}
+
+// inheritance from the Animal class
+class Dog: Animal(name= "Dog") {
+//    can redefine the init function
+//    can add additional function also
+    fun bark(): String {
+//        println("Gheu")
+        return "Gheu Gheu Gheu"
+    }
+
+//  implementation of the abstract function front Animal abstract class
+    override fun makeSound() {
+        println("From Override makeSound ${bark()}")
+    }
+}
+
+class Cat: Animal(name = "Cat") {
+    fun meao () {
+        println("Meao Meao Meao Meao")
+    }
+    
+//  implementation of the abstract function front Animal abstract class
+    override fun makeSound() {
+        println("Printing From override function")
+        meao()
+    }
+}
+
+// Call from main.kt
+//  val dog = Animal(name = "Dog") // throw error as defined as abstract class
+    val dog = Dog()
+    dog.bark()
+    val cat = Cat()
+    cat.meao()
+    cat.makeSound()
+    dog.makeSound()
+```
+
+
+### Anonymous Class
+```kt
+//Anonymous class
+    val bear = object : Animal(name = "Cow") {
+        override fun makeSound() {
+            println("Calling From Anonymous class and the nos is \"Humba\"")
+        }
+    }
+    bear.makeSound()
+```
+
+### Exception Handling
+```kt
+val numberExceptionCheck = readLine() ?: "0"
+val parsedNumber = try {
+    numberExceptionCheck.toInt()
+} catch (e: Exception) {
+    7
+}
+println(parsedNumber)
+```
+
+### Lambda Function
+> Lamda: Functions that are passed as parameter/args of another function

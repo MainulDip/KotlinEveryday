@@ -91,7 +91,82 @@ fun main() {
 //  Loop
     var counter = 0
     while( counter < shoppingList.size) {
-        println("shoppingList on loop $counter is ${shoppingList[counter]}")
+        println("immutable shoppingList on loop $counter is ${shoppingList[counter]}")
         counter++
     }
+
+    for((index, item) in mutableShoppingList.withIndex() ) {
+        println("mutable printing from for loop on shoppingList $index is $item")
+    }
+
+//    for ( number in 1..100){
+//        println("Outputting range in for loop wher number = $number")
+//    }
+
+    val checkWhen = 4
+    when(checkWhen) {
+        in 1..2 -> println("checkWhen is between 1 and 2")
+        in 3..10 -> println("checkWhen is between 3 and 10")
+        in 11..20 -> println("checkWhen is between 11 and 20")
+        else -> {
+            println("checkWhen is not in the range above")
+        }
+    }
+
+    printNumber()
+
+
+    val evenNum = 7
+    val checkEven = checkIsEven(evenNum)
+    println("checkEven for $evenNum is ${if(checkEven) "even" else "\"odd\""}")
+
+    println(defaultArgVal())
+    val checkEven2 = checkIsEven(number = evenNum)
+
+    val oddValue = 3
+    println(oddValue.isOdds())
+
+//    import ../../org.exampe.Animal
+//    val dog = Animal(name = "Dog")
+    val dog = Dog()
+    dog.bark()
+    val cat = Cat()
+    cat.meao()
+    cat.makeSound()
+    dog.makeSound()
+
+    //Anonymous class
+    val bear = object : Animal(name = "Cow") {
+        override fun makeSound() {
+            println("Calling From Anonymous class and the nos is \"Humba\"")
+        }
+    }
+    bear.makeSound()
+
+    val numberExceptionCheck = readLine() ?: "0"
+    val parsedNumber = try {
+        numberExceptionCheck.toInt()
+    } catch (e: Exception) {
+        7
+    }
+    println(parsedNumber)
+
+}
+
+fun printNumber(){
+    for(i in 1..10){
+        println("Calling function printNumber and it returns $i")
+    }
+}
+
+fun checkIsEven(number: Int): Boolean{
+    return number % 2 == 0
+}
+
+fun defaultArgVal(number: Int = 7): Boolean { return number % 2 == 0}
+
+// extension function: extend an already existed type
+// call extension function like object function
+fun Int.isOdds(): Boolean {
+    return this % 2 != 0
 }

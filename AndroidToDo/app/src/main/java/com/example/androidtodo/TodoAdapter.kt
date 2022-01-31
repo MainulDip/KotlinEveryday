@@ -1,9 +1,11 @@
 package com.example.androidtodo
 
+import android.graphics.Paint.STRIKE_THRU_TEXT_FLAG
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import android.widget.TextView
 
 class TodoAdapter (
     private val todos: MutableList<Todo>
@@ -22,6 +24,9 @@ class TodoAdapter (
 
     override fun onBindViewHolder(holder: TodoViewHolder, position: Int) {
         val curTodo = todos[position]
+//        holder.itemView.apply {
+//            tvTodo
+//        }
         holder.itemView.apply {
 //            tvTodoTitle
         }

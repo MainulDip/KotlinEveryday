@@ -9,5 +9,5 @@ It's a personalized quick instructions set to jump start android development in 
 ### app/java/com.example.<appname>/MainActivity.kt
 > class MainActivity | single screen that contain multiple components/views | this is the starting point of android app
 
-
-
+### AndroidManifest.xml
+> RecycleView: when scrolling, it will only load the visible or close to be visible elements to the users. hence optimize memory. Where ListView put everythin in memory once loaded

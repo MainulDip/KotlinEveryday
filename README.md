@@ -298,3 +298,6 @@ fun <T> List<T>.customLamGenericsFunction(value: (T) -> Boolean): Int {
     return counter
 }
 ```
+
+## Data Class
+> data class ClassName( val somedata: String, val isChecked: Boolean: false )

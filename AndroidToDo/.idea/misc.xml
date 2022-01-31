@@ -3,7 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/ongoing/dockers/KotlinEveryDay/AndroidToDo/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/ongoing/dockers/KotlinEveryDay/AndroidToDo/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/ongoing/dockers/KotlinEveryDay/AndroidToDo/app/src/main/res/layout/item_todo.xml" value="0.1638655462184874" />
       </map>
     </option>
   </component>

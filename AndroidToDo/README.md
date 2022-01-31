@@ -11,3 +11,6 @@ It's a personalized quick instructions set to jump start android development in 
 
 ### AndroidManifest.xml
 > RecycleView: when scrolling, it will only load the visible or close to be visible elements to the users. hence optimize memory. Where ListView put everythin in memory once loaded
+
+
+> Search For: What is ViewHolder, Adapter, somethingview.widget , LayoutInflater

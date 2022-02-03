@@ -20,3 +20,10 @@ fun LocalDate.isTuesday(): Boolean {
     return toEpochDay().toInt() == 2
 }
 ```
+
+> List | Set | Map
+```kt
+fun main(){
+
+}
+```

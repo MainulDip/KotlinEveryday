@@ -21,7 +21,7 @@ fun LocalDate.isTuesday(): Boolean {
 }
 ```
 
-> List | Set | Map
+> Collections: List | Set | Map | Sequence // Kotlin Standerd Library
 ```kt
 fun main() {
     val list = listOf("Appele", "Banana", "Orange")

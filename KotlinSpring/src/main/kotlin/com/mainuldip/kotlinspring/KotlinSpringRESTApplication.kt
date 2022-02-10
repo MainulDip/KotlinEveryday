@@ -1,4 +1,4 @@
-package com.MainulDip.KotlinSpring
+package com.mainuldip.kotlinspring
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication

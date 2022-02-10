@@ -36,3 +36,7 @@ like port, tomcat options, login levels and custom configuration, etc.
 ### New Package:
 In Intellij IDE, package represents directory. So creating a new package will create a folder.
 
+### Generate equal(), hashCode() and toString():
+code -> generate or using
+Use alt + insert or "shift + alt + enter" to generate necessary class methods using IntelliJ IDE's
+

@@ -159,7 +159,7 @@ fun main() {
 
 //  Custom Lambda Function
     val lambdaList2 = listOf("apple", "orange", "cherry")
-    val count2 = lambdaList2.customLamFunction { value ->
+    val count2 = lambdaList2.useWithLambda { value ->
 //      in lambda function last line get automatic return, so no need to mention return
         value.length == 6
     }
@@ -176,10 +176,14 @@ fun main() {
 
 }
 
-fun List<String>.customLamFunction(value: (String) -> Boolean): Int {
+fun List<String>.useWithLambda(fn: (String) -> Boolean): Int {
+//  useWithLambda Function will receive only one parameter, which is another function (lambda)
+//  in param, fn (lambda) function's signature is defined,
+//  which will be called here but function's logic will be implemented outside in lambda expression
+//  fn function will receive one parameter, which must be String Type
     var counter = 0
-    for (string in this) {
-        if(value(string)) {
+    for (item: String in this) {
+        if(fn(item)) {
             counter++
         }
     }

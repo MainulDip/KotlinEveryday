@@ -1,12 +1,14 @@
-## Kotlin Walk through
+## Kotlin Language Tour:
+It's a quick language tour to re-connect with most of the Kotlin language syntaxes and features. When you work with multiple language everyday, it can be a good idea to have a personalized language tour. So lets start
+
 > Main.kt | kotlin program starts from this, like index.js/php
 
-### function
+### Variables and Types:
 ```kt
 fun main() {
     println("Hello World")
 
-//    Note: var and val
+//  Note: var and val
     var x: Int = 3 // 3L will be 64bit (Long)
 
     println("This value is $x")
@@ -15,7 +17,7 @@ fun main() {
     val y: Int = 7 // val is constant
     print("Hello again $y")
 
-//    types: 3 | 3L | 3.00 (double) | 3.00f (float)
+//  types: 3 | 3L | 3.00 (double) | 3.00f (float)
 
     val wholeNumber: Int = 3
     val bigNumber: Long = 3L
@@ -23,7 +25,20 @@ fun main() {
     val decimal: Float = 3.33f
     val checkBoolean: Boolean = false
     val someString: String = "hello world"
-    val singleLetter: Char  = 'a' //
+    val singleLetter: Char  = 'a'
+    val cars = arrayOf("Volvo", "BMW", "Ford", "Mazda")
+
+// loop and check
+
+    if ("Volvo" in cars) {
+        println("It exists!")
+    } else {
+    println("It does not exist.")
+    }
+
+    for (x in cars) {
+        println(x)
+    }
 }
 ```
 
@@ -106,7 +121,9 @@ println(string.uppercase())
     val mutableShoppingList = mutableListOf<String>("Mutable", "Hello World")
     mutableShoppingList.add("Good is golden")
     println(mutableShoppingList[0])
+
     println("mutableShoppingList  value is ${mutableShoppingList[0]} ${mutableShoppingList[mutableShoppingList.size - 1]}")
+
     println(mutableShoppingList.toString())
 ```
 
@@ -247,16 +264,7 @@ println(parsedNumber)
 
 ### Lambda Function
 > Lamda: Functions that are passed as parameter/args of another function
-```kt
-//    Lambda Function
-    val lambdaList = listOf("apple", "orange", "cherry")
-    val count = lambdaList.count { value ->
-//      in lambda function last line get automatic return, so no need to mention return
-        value.length == 6
-    }
-    println("Lambda function return value is $count")
-```
-> custom function
+
 ```kt
 //  Custom Lambda Function
     val lambdaList2 = listOf("apple", "orange", "cherry")
@@ -266,10 +274,14 @@ println(parsedNumber)
     }
     println("Custom-Lambda function return value is $count2")
 
-fun List<String>.customLamFunction(value: (String) -> Boolean): Int {
+fun List<String>.useWithLambda(fn: (String) -> Boolean): Int {
+//  useWithLambda Function will receive only one parameter, which is another function (lambda)
+//  in param, fn (lambda) function's signature is defined,
+//  which will be called here but function's logic will be implemented outside in lambda expression
+//  fn function will receive one parameter, which must be String Type
     var counter = 0
-    for (string in this) {
-        if(value(string)) {
+    for (item: String in this) {
+        if(fn(item)) {
             counter++
         }
     }

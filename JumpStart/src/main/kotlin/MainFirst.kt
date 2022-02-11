@@ -192,8 +192,8 @@ fun List<String>.useWithLambda(fn: (String) -> Boolean): Int {
 
 fun <T> List<T>.customLamGenericsFunction(value: (T) -> Boolean): Int {
     var counter = 0
-    for (string in this) {
-        if(value(string)) {
+    for (item in this) {
+        if(value(item)) {
             counter++
         }
     }

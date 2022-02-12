@@ -40,3 +40,16 @@ In Intellij IDE, package represents directory. So creating a new package will cr
 code -> generate or using
 Use alt + insert or "shift + alt + enter" to generate necessary class methods using IntelliJ IDE's
 
+> data class ClassName(): same as Record in java15
+> Note: kotlin data class automatically generates getter(), setter(), equal(), hashCode and toString()
+
+### Architecture: 
+Web Layer(Controllers, REST mapping)
+Service Layer(Services, business logic)
+Data Source (Data retrieval, storage)
+Data Layer (Models, serialization)
+
+> @Repository : this annotation is for repository for retrieving and storing data
+> 
+> ### creating Test Junit5:
+Using IDE: Navigate -> Test || shift + ctrl + t

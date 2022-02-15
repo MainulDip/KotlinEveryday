@@ -99,3 +99,12 @@ System.out.println(dogClass.getName());
 7. Dependency Injection:
 
 8. Java Singleton
+
+9. Java Consumer to Kotlin Consumer/Lanbda:
+```kt
+    assertThat(banks).allSatisfy(Consumer {
+            it.accountNumber.isNotEmpty() &&
+            it.trust != 0.00 &&
+            it.transactionFee != 0
+        })
+```

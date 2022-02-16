@@ -10,4 +10,7 @@ import org.springframework.stereotype.Service
 // If the been/class is not @Service or @Repository, @Component is a generic annotation for making that been for component scanning in the application context.
 class BankService (private val dataSource: BankDataSource) {
     fun getBanks(): Collection<Bank> = dataSource.retrieveBanks()
+    fun getBank(id: String = ""): Bank {
+        return dataSource.retrieveBank(id)
+    }
 }

@@ -5,4 +5,5 @@ import com.mainuldip.kotlinspring.model.Bank
 interface BankDataSource {
     fun getBanks(): Collection<Bank>
     fun retrieveBanks(): Collection<Bank>
+    fun retrieveBank(id: String): Bank
 }

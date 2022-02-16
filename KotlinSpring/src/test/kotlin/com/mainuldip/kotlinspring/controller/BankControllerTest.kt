@@ -5,11 +5,12 @@ import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
 import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.http.MediaType
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.get
 
 @SpringBootTest
-// @SpringBootTest will add this as been and setup text for entire application context. It is expensive as it will call the whole application context
+// @SpringBootTest uses for integration testing and this annotation will add this as been and setup text for entire application context. It is expensive as it will call the whole application context
 @AutoConfigureMockMvc
 internal class BankControllerTest {
 
@@ -21,9 +22,13 @@ internal class BankControllerTest {
     @Test
     fun `should return all banks` () {
 // act/when and assert/then together
-//        mockMvc.get("/api/banks")
-//            .andDo { print() }
-//            .andExpect { status { isOk() } }
+        mockMvc.get("/api/banks")
+            .andDo { print() }
+            .andExpect {
+                status { isOk() }
+                content { contentType(MediaType.APPLICATION_JSON) }
+                jsonPath("$[0].accountNumber") { value("1234")}
+            }
 
     }
 }

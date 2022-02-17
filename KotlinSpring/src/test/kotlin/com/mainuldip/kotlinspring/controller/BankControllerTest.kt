@@ -2,7 +2,6 @@ package com.mainuldip.kotlinspring.controller
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.mainuldip.kotlinspring.model.Bank
-import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
@@ -10,7 +9,6 @@ import org.junit.jupiter.api.TestInstance
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
 import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.context.Lifecycle
 import org.springframework.http.MediaType
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.get
@@ -117,6 +115,10 @@ internal class BankControllerTest @Autowired constructor(
                 .andDo { print() }
                 .andExpect {
                     status { isCreated() }
+                    content { contentType(MediaType.APPLICATION_JSON)}
+                    jsonPath("$.accountNumber") { value("1234567")}
+                    jsonPath("$.trust") { value(12.00)}
+                    jsonPath("$.transactionFee") { value(7)}
                 }
         }
     }

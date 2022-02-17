@@ -41,6 +41,8 @@ class BankController ( private val service: BankService) {
     }
 
     @PostMapping
-@ResponseStatus(HttpStatus.CREATED)
-    fun addBank(@RequestBody bank: Bank): Bank = bank //TODO
+    @ResponseStatus(HttpStatus.CREATED)
+    fun addBank(@RequestBody bank: Bank): Bank {
+        return service.addBank(bank)
+    }
 }

@@ -30,6 +30,11 @@ class BankController ( private val service: BankService) {
         return ResponseEntity(e.message, HttpStatus.NOT_FOUND)
     }
 
+    @ExceptionHandler(CloneNotSupportedException::class)
+    fun handleCloneErrors(e: CloneNotSupportedException): ResponseEntity<String> {
+        return ResponseEntity(e.message, HttpStatus.BAD_REQUEST)
+    }
+
     @GetMapping()
     //function shorter syntax, if it has one liner return only, no need to put return keyword
     fun second(): Collection<Bank> = service.getBanks()

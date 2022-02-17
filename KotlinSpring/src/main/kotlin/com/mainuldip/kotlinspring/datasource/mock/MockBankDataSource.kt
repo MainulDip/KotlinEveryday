@@ -16,7 +16,8 @@ class MockBankDataSource: BankDataSource {
     }
 
     override fun createBank(bank: Bank): Bank {
-        banks.add(bank)
+        val idAlreadyExists = banks.filter { it.accountNumber == bank.accountNumber }
+        if (idAlreadyExists.isEmpty()) banks.add(bank) else throw CloneNotSupportedException("Could not found bank account number which id is $bank")
         return bank
     }
 

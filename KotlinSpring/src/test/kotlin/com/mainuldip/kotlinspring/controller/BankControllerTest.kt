@@ -121,6 +121,27 @@ internal class BankControllerTest @Autowired constructor(
                     jsonPath("$.transactionFee") { value(7)}
                 }
         }
+
+        @Test
+        fun `should return BAD REQUEST` () {
+
+        // arrange/given
+            val invalidBank = Bank("3456", 3.0, 1)
+
+        // act/when
+            val performPost = mockMvc.post(baseUrl) {
+                contentType = MediaType.APPLICATION_JSON
+                content = objectMapper.writeValueAsString(invalidBank)
+            }
+
+        // assert/then
+            performPost
+                .andDo { print() }
+                .andExpect { status { isBadRequest() } }
+
+
+
+        }
     }
 
 }

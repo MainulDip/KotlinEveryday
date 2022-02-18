@@ -13,6 +13,7 @@ import org.springframework.http.MediaType
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.get
 import org.springframework.test.web.servlet.post
+import org.springframework.test.web.servlet.put
 
 @SpringBootTest
 // @SpringBootTest uses for integration testing and this annotation will add this as been and setup text for entire application context. It is expensive as it will call the whole application context
@@ -138,10 +139,31 @@ internal class BankControllerTest @Autowired constructor(
             performPost
                 .andDo { print() }
                 .andExpect { status { isBadRequest() } }
-
-
-
         }
     }
+
+    @Nested
+    @DisplayName("PATCH /api/banks")
+    @TestInstance(TestInstance.Lifecycle.PER_CLASS)
+    inner class PatchExistingBank {
+
+        @Test
+        fun `should update an existing bank` () {
+
+        // arrange/given
+            val accountNumber = "1234"
+
+        // act/when
+//            mockMvc.put(baseUrl, { a: Int ->
+//                contentType = MediaType.APPLICATION_JSON
+//                content = objectMapper.writeValueAsString(invalidBank)
+//            })
+
+        // assert/then
+
+
+
+        } // @Test functionName Ends
+    } // Nested class ClassName Ends
 
 }

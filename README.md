@@ -291,14 +291,25 @@ fun List<String>.useWithLambda(fn: (String) -> Boolean): Int {
 
 ### Generics 
 ```kt
+fun main() {
+
     //  Custom Lambda Generic Function
     val lambdaList3 = listOf("Durium", "Mango", "Banana")
-    val count3 = lambdaList2.customLamGenericsFunction { value ->
+    val count3 = lambdaList3.customLamGenericsFunction { value ->
 //      in lambda function last line get automatic return, so no need to mention return
         value.length >= 4
     }
     println("Custom-Lambda Generic function return value is $count3")
 
+    // apply generics without lambda
+    val count4 = lambdaList3.customLamGenericsFunction(fun (value): Boolean {
+        return value.length >= 4
+    })
+    val count5 = lambdaList3.customLamGenericsFunction(fun (value): Boolean = value.length >= 4)
+    println("Custom-Lambda Generic function return value is $count4")
+    println("Custom-Lambda Generic function return value is $count5")
+
+}
 
 fun <T> List<T>.customLamGenericsFunction(value: (T) -> Boolean): Int {
     var counter = 0

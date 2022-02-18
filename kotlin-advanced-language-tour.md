@@ -8,7 +8,10 @@ fun call(greet: String.(String) -> Unit) {
     "Hello".greet("Dolly") // can be also written this way
 }
 
+// define the function signature using lambda
 call { name ->
-    println("${this.toUpperCase()} $name")
+    println("${this.toUpperCase()} $name") // Print => HELLO Dolly
 }
+
+// this is somewhat similar with Javascript's call(), apply() or bind() method
 ```

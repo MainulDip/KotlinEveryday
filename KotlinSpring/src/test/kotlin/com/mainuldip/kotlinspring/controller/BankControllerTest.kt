@@ -153,11 +153,17 @@ internal class BankControllerTest @Autowired constructor(
         // arrange/given
             val accountNumber = "1234"
 
-        // act/when
-//            mockMvc.put(baseUrl, { a: Int ->
-//                contentType = MediaType.APPLICATION_JSON
-//                content = objectMapper.writeValueAsString(invalidBank)
-//            })
+
+
+
+
+
+            // act/when
+            mockMvc.put(urlTemplate = baseUrl, null, dsl = { ->
+                // as there is a vararg parameter in the middle, the last lambda block needs to be called by named argument if not called outside the parenthesis
+                contentType = MediaType.APPLICATION_JSON
+                content = objectMapper.writeValueAsString(accountNumber)
+            })
 
         // assert/then
 

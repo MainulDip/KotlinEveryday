@@ -95,3 +95,62 @@ contentType = MediaType.APPLICATION_JSON
 content = objectMapper.writeValueAsString(accountNumber)
 })
 ```
+
+### Inline Functions, Reflections // MyClass::class || Function references // ::isOdd
+```kt
+//properties as first-class objects
+val x = 1 // defined in the object/class scope. Not inside functions scope
+
+fun main() {
+    println(::x.get())
+    println(::x.name)
+}
+```
+
+### java/kotlin Static Method || companion object:
+```java
+class Foo {
+  public static int a() { return 1; }
+}
+
+Foo.a();
+```
+```kt
+class Foo {
+  companion object {
+     fun a() : Int = 1
+  }
+}
+Foo.a();
+// Foo.Companion.a(); // access in java code
+```
+
+
+<details>
+<summary>Static Methos Other Ways</summary>
+
+
+> @JavaStatic annotation to use as normal static method inside java and kotlin all togather
+
+```kt
+class Foo {
+  companion object {
+    @JvmStatic
+    fun a() : Int = 1;
+  }
+}
+Foo.a() // from kotlin
+Foo.a() // from java
+```
+
+> use "companion object name" signature other way of the @JavaStatic
+
+```kt
+class Foo {
+  companion object Blah {
+    fun a() : Int = 1;
+  }
+}
+```
+
+</details>

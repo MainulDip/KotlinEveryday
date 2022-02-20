@@ -4,7 +4,7 @@ It's a personalized guide and quick tour of the day to day used kotlin language 
 ### Context and Extention function
 ```kt
 fun call(greet: String.(String) -> Unit) {
-    // greet("Hello", " Dolly") // greet's 1st parameter is the context and last param is it's native parameter.
+// greet("Hello", " Dolly") // greet's 1st parameter is the context and  last param is it's native parameter.
     "Hello".greet("Dolly") // can be also written this way
 }
 
@@ -96,7 +96,19 @@ content = objectMapper.writeValueAsString(accountNumber)
 })
 ```
 
-### Inline Functions, Reflections // MyClass::class || Function references // ::isOdd
+### Inline Functions, Reflections/KClass // MyClass::class || Function references // ::isOdd
+
+> Reflection and Function Reference
+```kt
+val c = MyClass::class // most basic reflection, also objectName::class
+
+// Function Reference
+fun isOdd(x: Int) = x % 2 != 0
+val numbers = listOf(1, 2, 3)
+println(numbers.filter(::isOdd))
+// ::isOdd is a value of function type (Int) -> Boolean
+```
+
 ```kt
 //properties as first-class objects
 val x = 1 // defined in the object/class scope. Not inside functions scope

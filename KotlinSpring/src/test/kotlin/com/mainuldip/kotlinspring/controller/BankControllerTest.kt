@@ -151,21 +151,21 @@ internal class BankControllerTest @Autowired constructor(
         fun `should update an existing bank` () {
 
         // arrange/given
-            val accountNumber = "1234"
+            val updateBank = Bank("1234", 3.0, 1)
 
-
-
-
-
-
-            // act/when
-            mockMvc.put(urlTemplate = baseUrl, null, dsl = { ->
+        // act/when
+            val performPatch = mockMvc.put(urlTemplate = baseUrl, null, dsl = { ->
                 // as there is a vararg parameter in the middle, the last lambda block needs to be called by named argument if not called outside the parenthesis
                 contentType = MediaType.APPLICATION_JSON
-                content = objectMapper.writeValueAsString(accountNumber)
+                content = objectMapper.writeValueAsString(updateBank)
             })
 
         // assert/then
+            performPatch
+                .andDo { print() }
+                .andExpect {
+                    status { isOk() }
+                }
 
 
 

@@ -21,4 +21,16 @@ class MockBankDataSource: BankDataSource {
         return bank
     }
 
+    override fun patchBank(bank: Bank): Bank {
+        val requestedBank = banks.firstOrNull() { it.accountNumber == bank.accountNumber }
+        if (requestedBank != null){
+//            banks = banks.filter { it.accountNumber != bank.accountNumber } as MutableList<Bank>
+            banks.remove(requestedBank)
+            banks.add(bank)
+        } else {
+            throw CloneNotSupportedException("Could not found bank account number which id is $bank")
+        }
+        return bank
+    }
+
 }

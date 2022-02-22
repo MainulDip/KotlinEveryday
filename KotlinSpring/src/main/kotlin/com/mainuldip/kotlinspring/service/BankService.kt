@@ -15,4 +15,5 @@ class BankService (private val dataSource: BankDataSource) {
     }
 
     fun addBank(bank: Bank): Bank = dataSource.createBank(bank)
+    fun patchBank(bank: Bank): Bank = dataSource.patchBank(bank)
 }

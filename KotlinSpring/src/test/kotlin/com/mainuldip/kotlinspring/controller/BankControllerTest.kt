@@ -10,10 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.http.MediaType
-import org.springframework.test.web.servlet.MockMvc
-import org.springframework.test.web.servlet.get
-import org.springframework.test.web.servlet.post
-import org.springframework.test.web.servlet.put
+import org.springframework.test.web.servlet.*
 
 @SpringBootTest
 // @SpringBootTest uses for integration testing and this annotation will add this as been and setup text for entire application context. It is expensive as it will call the whole application context
@@ -116,10 +113,13 @@ internal class BankControllerTest @Autowired constructor(
                 .andDo { print() }
                 .andExpect {
                     status { isCreated() }
-                    content { contentType(MediaType.APPLICATION_JSON)}
-                    jsonPath("$.accountNumber") { value("1234567")}
-                    jsonPath("$.trust") { value(12.00)}
-                    jsonPath("$.transactionFee") { value(7)}
+                    content {
+                        contentType(MediaType.APPLICATION_JSON)
+                        json(objectMapper.writeValueAsString(newBank))
+                    }
+//                    jsonPath("$.accountNumber") { value("1234567")}
+//                    jsonPath("$.trust") { value(12.00)}
+//                    jsonPath("$.transactionFee") { value(7)}
                 }
         }
 
@@ -154,7 +154,7 @@ internal class BankControllerTest @Autowired constructor(
             val updateBank = Bank("1234", 3.0, 1)
 
         // act/when
-            val performPatch = mockMvc.put(urlTemplate = baseUrl, null, dsl = { ->
+            val performPatch = mockMvc.patch(urlTemplate = baseUrl, null, dsl = { ->
                 // as there is a vararg parameter in the middle, the last lambda block needs to be called by named argument if not called outside the parenthesis
                 contentType = MediaType.APPLICATION_JSON
                 content = objectMapper.writeValueAsString(updateBank)
@@ -165,6 +165,37 @@ internal class BankControllerTest @Autowired constructor(
                 .andDo { print() }
                 .andExpect {
                     status { isOk() }
+                    content {
+                        contentType(MediaType.APPLICATION_JSON)
+                        json(objectMapper.writeValueAsString(updateBank))
+                    }
+                }
+
+            mockMvc.get("$baseUrl/${updateBank.accountNumber}")
+                .andExpect {
+                    status { isOk() }
+                    content { json(objectMapper.writeValueAsString(updateBank)) }
+                }
+        } // @Test functionName Ends
+
+        @Test
+        fun `should return BAD REQUEST if no bank with given account number for updating patching ` () {
+
+            // arrange/given
+            val updateBankWrongInfo = Bank("1234567890", 3.0, 1)
+
+            // act/when
+            val performPatchWrongCheck = mockMvc.patch(urlTemplate = baseUrl, null, dsl = { ->
+                // as there is a vararg parameter in the middle, the last lambda block needs to be called by named argument if not called outside the parenthesis
+                contentType = MediaType.APPLICATION_JSON
+                content = objectMapper.writeValueAsString(updateBankWrongInfo)
+            })
+
+            // assert/then
+            performPatchWrongCheck
+                .andDo { print() }
+                .andExpect {
+                    status { isBadRequest() }
                 }
 
 

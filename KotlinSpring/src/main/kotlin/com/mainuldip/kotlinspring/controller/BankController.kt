@@ -5,6 +5,7 @@ import com.mainuldip.kotlinspring.model.Bank
 import com.mainuldip.kotlinspring.service.BankService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
+import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PatchMapping
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 // @RestController marks it as been in the application context.
 @RequestMapping("/api/banks")
+//@RequestMapping()
 class BankController ( private val service: BankService) {
 
 //    @GetMapping("second")
@@ -55,4 +57,8 @@ class BankController ( private val service: BankService) {
     @PatchMapping
     @ResponseStatus(HttpStatus.OK)
     fun patchBank(@RequestBody bank: Bank): Bank = service.patchBank(bank)
+
+    @DeleteMapping
+    @ResponseStatus(HttpStatus.OK)
+    fun deleteTheBank(@RequestBody id: String): String = service.deleteBank(id)
 }

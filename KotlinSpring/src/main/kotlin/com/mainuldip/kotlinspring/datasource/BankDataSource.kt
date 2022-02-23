@@ -8,4 +8,5 @@ interface BankDataSource {
     fun retrieveBank(id: String): Bank
     fun createBank(bank: Bank): Bank
     fun patchBank(bank: Bank): Bank
+    fun deleteBank(id: String): String
 }

@@ -33,4 +33,9 @@ class MockBankDataSource: BankDataSource {
         return bank
     }
 
+    override fun deleteBank(id: String): String {
+        println(id)
+        return id
+    }
+
 }

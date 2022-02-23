@@ -1,6 +1,7 @@
 package com.mainuldip.kotlinspring.controller
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.module.kotlin.jsonMapper
 import com.mainuldip.kotlinspring.model.Bank
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Nested
@@ -197,10 +198,36 @@ internal class BankControllerTest @Autowired constructor(
                 .andExpect {
                     status { isBadRequest() }
                 }
+        } // @Test functionName Ends
+    } // Nested class ClassName Ends
+
+    @Nested
+    @DisplayName("DELETE /api/banks/{id}")
+    @TestInstance(TestInstance.Lifecycle.PER_CLASS)
+    inner class DeleteExistingBank {
+
+        @Test
+        fun `should delete the bank with the given account id` () {
+
+        // arrange/given
+            val accountNumer = "1234"
+
+        // act/when
+            val deleteReq = mockMvc.delete("$baseUrl", dsl = {
+                contentType = MediaType.APPLICATION_JSON
+                content = jsonMapper().writeValueAsString(accountNumer)
+
+            })
+
+        // assert/then
+            deleteReq
+                .andDo { print() }
+                .andExpect {
+                    status { isOk() }
+                }
 
 
 
         } // @Test functionName Ends
     } // Nested class ClassName Ends
-
 }

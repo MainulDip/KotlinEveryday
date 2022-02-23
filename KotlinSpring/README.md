@@ -108,3 +108,10 @@ System.out.println(dogClass.getName());
             it.transactionFee != 0
         })
 ```
+
+### F>I.R.S.T Principles for Automated Test:
+_F: Fast => Test code should run fast. Fast Feedback loop, run often
+_I: Isolated => Test cases should be isolated from each other, independent and arbitrary order (No flake). Use @DirtiesContext in Spring Boot
+_R: Repeatable => Same result each time, no flaky
+_S: Self-validating => actual vs expected , arrange -> act -> assert
+_T: Timely => Test cases should be written while writing the production code or before. Write Test First the production code

@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.http.MediaType
+import org.springframework.test.annotation.DirtiesContext
 import org.springframework.test.web.servlet.*
 
 @SpringBootTest
@@ -202,6 +203,7 @@ internal class BankControllerTest @Autowired constructor(
     } // Nested class ClassName Ends
 
     @Nested
+    @DirtiesContext
     @DisplayName("DELETE /api/banks/{id}")
     @TestInstance(TestInstance.Lifecycle.PER_CLASS)
     inner class DeleteExistingBank {
@@ -210,12 +212,12 @@ internal class BankControllerTest @Autowired constructor(
         fun `should delete the bank with the given account id` () {
 
         // arrange/given
-            val accountNumer = "1234"
+            val accountNumber = "1234"
 
         // act/when
             val deleteReq = mockMvc.delete("$baseUrl", dsl = {
                 contentType = MediaType.APPLICATION_JSON
-                content = jsonMapper().writeValueAsString(accountNumer)
+                content = accountNumber
 
             })
 
@@ -225,6 +227,35 @@ internal class BankControllerTest @Autowired constructor(
                 .andExpect {
                     status { isOk() }
                 }
+
+            mockMvc.get("$baseUrl/$accountNumber")
+                .andDo { print() }
+                .andExpect {
+                    status { isNotFound() }
+                }
+        } // @Test functionName Ends
+
+        @Test
+        fun `should return Not Found if no Bank with given account number exists` () {
+
+        // arrange/given
+            val fakeAccountNumber = "zzzz"
+
+
+            // act/when
+            val deleteReq = mockMvc.delete("$baseUrl", dsl = {
+                contentType = MediaType.APPLICATION_JSON
+                content = fakeAccountNumber
+
+            })
+
+            // assert/then
+            deleteReq
+                .andDo { print() }
+                .andExpect {
+                    status { isNotFound() }
+                }
+
 
 
 

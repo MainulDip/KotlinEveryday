@@ -35,6 +35,14 @@ class MockBankDataSource: BankDataSource {
 
     override fun deleteBank(id: String): String {
         println(id)
+        val requestedBankMatch = banks.firstOrNull {
+            println("${it.accountNumber} : ${it.accountNumber::class}, ${id::class}")
+            it.accountNumber == id
+        }
+//        requestedBankMatch ?: throw CloneNotSupportedException("Could not found bank account number which id is $requestedBankMatch")
+        if (requestedBankMatch != null ) banks.remove(requestedBankMatch) else throw NoSuchElementException("Could not found bank account number which id is $requestedBankMatch")
+//        banks.remove(requestedBankMatch)
+//        println(requestedBankMatch)
         return id
     }
 

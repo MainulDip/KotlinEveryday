@@ -5,8 +5,9 @@ import com.mainuldip.kotlinspring.model.Bank
 import org.springframework.stereotype.Repository
 
 @Repository
+//@Repository annotation connects the interface class with this class and also adds this class as been to manage automatically in application context
 class MockBankDataSource: BankDataSource {
-    val banks = mutableListOf<Bank>(Bank("1234", 1.0, 3),
+    private val banks = mutableListOf<Bank>(Bank("1234", 1.0, 3),
                        Bank("2435", 2.0, 2),
                        Bank("3456", 3.0, 1))
     override fun getBanks(): Collection<Bank> = banks

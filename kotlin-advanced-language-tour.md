@@ -166,3 +166,35 @@ class Foo {
 ```
 
 </details>
+
+### Primary & secondary contructors:
+Note: if class has primary constructor, Secondary Constructor needs to delegate to the primary constructor. The compiler select which constructor to use depending on the (number) supplied parameters.
+```kt
+fun main() {    
+    val myObj = Student("First", 15, 77)
+    myObj.printMsg()
+    val myObj2 = Student("Second", 72)
+    myObj2.printMsgOnlyPrimaryConstructor()
+    // omiting first param
+    val myObj3 = Student(height = 72)
+    myObj3.printMsgOnlyPrimaryConstructor()
+}
+ 
+class Student(var name: String="Default", height: Int) {
+    val height = height
+    var age: Int = 14
+    constructor (value: String, age: Int, vb: Int): this(value, vb){
+        this.age = age
+    }
+    fun printMsg(){
+        println("Calling from Secondary Constructor => Name is $name. Age is $age. Height is $height");
+    }
+    fun printMsgOnlyPrimaryConstructor(){
+        println("Primary Constructor => Name is $name, Height is ${this.height}");
+    }
+}
+
+// Calling from Secondary Constructor => Name is First. Age is 15. Height is 77
+// Primary Constructor => Name is Second, Height is 72
+// Primary Constructor => Name is Default, Height is 72
+``` 

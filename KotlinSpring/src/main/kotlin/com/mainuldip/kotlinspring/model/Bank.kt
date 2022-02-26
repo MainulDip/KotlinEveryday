@@ -1,6 +1,17 @@
 package com.mainuldip.kotlinspring.model
 
-data class Bank(val accountNumber: String, val trust: Double, val transactionFee: Int)
+import com.fasterxml.jackson.annotation.JsonProperty
+
+data class Bank (
+    @JsonProperty("username")
+    val accountNumber: String,
+
+    @JsonProperty("email")
+    val trust: Double,
+
+    @JsonProperty("id")
+    val transactionFee: Int
+    )
 
 //class Bank {
 //    private val accountNumber: String

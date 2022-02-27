@@ -13,14 +13,20 @@ import java.io.IOException
 @Repository("network")
 class NetworkDataSource (@Autowired private val restTemplate: RestTemplate): BankDataSource {
     override fun getBanks(): Collection<Bank> {
-        val response: ResponseEntity<MutableCollection<Bank>> =  restTemplate.getForEntity("https://jsonplaceholder.typicode.com/users")
-        return response.body
+        val response: ResponseEntity<BankList> =  restTemplate.getForEntity("https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v1/accounting/od/rates_of_exchange")
+        println(response.body?.data)
+        return response.body?.data
             ?: throw IOException("Could not fetch banks from the network")
 //        54.193.311.59
     }
 
     override fun retrieveBanks(): Collection<Bank> {
-        TODO("Not yet implemented")
+        val response: ResponseEntity<BankList> =  restTemplate.getForEntity("https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v1/accounting/od/rates_of_exchange")
+//        https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v1/accounting/od/rates_of_exchange
+        val data: Collection<Bank>? = response.body?.data
+        println(data)
+        return data
+            ?: throw IOException("Could not fetch banks from the network")
     }
 
     override fun retrieveBank(id: String): Bank {

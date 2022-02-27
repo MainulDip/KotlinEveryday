@@ -3,15 +3,23 @@ package com.mainuldip.kotlinspring.model
 import com.fasterxml.jackson.annotation.JsonProperty
 
 data class Bank (
-    @JsonProperty("username")
+    @JsonProperty("country")
+//    @JsonProperty("name")
     val accountNumber: String,
 
-    @JsonProperty("email")
-    val trust: Double,
+    @JsonProperty("exchange_rate")
+//    @JsonProperty("id")
+    var trust: Double,
 
-    @JsonProperty("id")
+    @JsonProperty("record_fiscal_quarter")
+//    @JsonProperty("id")
     val transactionFee: Int
-    )
+    ){
+    init {
+        trust = trust.toDouble()
+        println("Initializing Bank")
+    }
+}
 
 //class Bank {
 //    private val accountNumber: String

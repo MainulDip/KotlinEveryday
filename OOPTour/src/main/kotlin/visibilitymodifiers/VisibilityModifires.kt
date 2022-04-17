@@ -1,3 +1,5 @@
+package visibilitymodifiers
+
 fun main(args: Array<String>) {
     println("Again Good")
 
@@ -14,9 +16,4 @@ class House constructor(room : Int, color: String, isForRent : Boolean = false )
     init {
         println("Second Init and the house is ${if (isForRent) "available" else "not available"} for rent")
     }
-
-    init {
-        println("Third init, visibility modifier implementation in details is in the specific package")
-    }
-
 }

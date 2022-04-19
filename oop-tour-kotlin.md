@@ -100,6 +100,23 @@ class Derived(p: Int) : Base(p){}
 ### Data Class
 
 ### Sealed Class
+sealed class is abstract by itself, it cannot be instantiated directly and can have abstract members. It can have one of two visibilities: protected (by default) or private.
+
+```kt
+sealed interface Error {}
+
+sealed class IOError(): Error { // direct subclass as it is also a sealed class
+    constructor() { /*...*/ } // protected by default
+    private constructor(description: String): this() { /*...*/ } // private is OK
+    // public constructor(code: Int): this() {} // Error: public and internal are not allowed
+
+}
+
+class FileReadError(val file: File): IOError() // indirect subclass
+class DatabaseError(val source: DataSource): IOError()
+
+object RuntimeError : Error
+```
 
 ### Extension Class
 

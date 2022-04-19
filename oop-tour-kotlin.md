@@ -117,6 +117,7 @@ class DatabaseError(val source: DataSource): IOError()
 
 object RuntimeError : Error
 ```
+> Direct subclasses of sealed classes and interfaces must be declared in the same package. 
 
 ### Extension Class
 

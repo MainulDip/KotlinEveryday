@@ -83,6 +83,16 @@ val f: Factory<MyClass> = MyClass
 ```
 
 ### Inheritance
+Hit on https://kotlinlang.org/docs/inheritance.html
+```kt
+class Example // Implicitly inherits from Any, and Any has three methods: equals(), hashCode(), and toString()
+```
+> Classes are final by default, To make a class inheritable, mark it with the open keyword. 
+
+```kt
+open class Base(p: Int){}
+class Derived(p: Int) : Base(p){}
+```
 
 ### Interface
 

@@ -119,7 +119,103 @@ object RuntimeError : Error
 ```
 > Direct subclasses of sealed classes and interfaces must be declared in the same package. 
 
-### Extension Class
+### Extension Function On Class/Object:
+Can extend a class with new functionality without having to inherit from the class. There are also extension properties that let you define new properties for existing classes.
+
+```kt
+val list = mutableListOf(1, 2, 3)
+list.swap(0, 2) // 'this' inside 'swap()' will hold the value of 'list'
+
+fun MutableList<Int>.swap(index1: Int, index2: Int) {
+    val tmp = this[index1] // 'this' corresponds to the list
+    this[index1] = this[index2]
+    this[index2] = tmp
+}
+
+// generic is also possible
+fun <T> MutableList<T>.swap(index1: Int, index2: Int) {
+    val tmp = this[index1] // 'this' corresponds to the list
+    this[index1] = this[index2]
+    this[index2] = tmp
+}
+```
+
+<details>
+<summary>More on Extention function</summary>
+
+```kt
+fun main(){
+    class Example {
+        fun printFunctionType() { println("Class method") }
+    }
+
+    // this will be shadowed by the original declaration
+    fun Example.printFunctionType() { println("Extension function") }
+
+    fun Example.printFunctionType(v : String) { println("Extension function $v") }
+
+    Example().printFunctionType() // Class method
+    Example().printFunctionType("With Params") // Extension function With Params
+
+
+
+    open class Shape
+    class Rectangle: Shape()
+
+    fun Shape.getName() = "Shape"
+    fun Rectangle.getName() = "Rectangle"
+
+    fun printClassName(s: Shape) {
+        println(s.getName())
+    }
+
+    printClassName(Rectangle()) // Shape
+
+    println(Rectangle().getName()) // Rectangle
+}
+
+```
+
+</details>
 
 ### Enum Class
+[Implementation Play](./OOPTour/src/main/kotlin/dataSealedEnumClasses/emumclass.kt)
+[Offficial Docs](https://kotlinlang.org/docs/enum-classes.html#anonymous-classes)
+```kt
+fun main(){
+    println(Color.RED.rgb);
+}
+
+enum class Color(val rgb: String) {
+    RED("0xFF0000"),
+    GREEN("0x00FF00"),
+    BLUE("0x0000FF")
+}
+```
+
+Implementing interfaces in emum classes
+```kt
+import java.util.function.BinaryOperator
+import java.util.function.IntBinaryOperator
+
+fun main() {
+    val a = 13
+    val b = 31
+    for (f in IntArithmetics.values()) {
+        println("$f($a, $b) = ${f.apply(a, b)}")
+    }
+}
+
+enum class IntArithmetics : BinaryOperator<Int>, IntBinaryOperator {
+    PLUS {
+        override fun apply(t: Int, u: Int): Int = t + u
+    },
+    TIMES {
+        override fun apply(t: Int, u: Int): Int = t * u
+    }; // separate the constant definitions from the member definitions with a semicolon
+    
+    // make it abstract first or if implementing from another interface then override implementation first then override again inside members (try to keep the first override meaningful)
+    override fun applyAsInt(t: Int, u: Int) = apply(t,u)
+}
+```
 ### Inline Class

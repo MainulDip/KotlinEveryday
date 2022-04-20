@@ -98,6 +98,16 @@ class Derived(p: Int) : Base(p){}
 
 
 ### Data Class
+Data Classes' main purpose is to hold data and or data structure.
+[Docs Data Class](https://kotlinlang.org/docs/data-classes.html)
+> Signature: data class User(val name: String, val age: Int)
+
+> automatically derives equals()/hashCode(), toString(), componentN() and copy() functions
+
+Requirments
+ .at least one parameter in primary constructor
+ .All primary constructor parameters need to be marked as val or var
+ .Data classes cannot be abstract, open, sealed, or inner
 
 ### Sealed Class
 sealed class is abstract by itself, it cannot be instantiated directly and can have abstract members. It can have one of two visibilities: protected (by default) or private.
@@ -120,6 +130,7 @@ object RuntimeError : Error
 > Direct subclasses of sealed classes and interfaces must be declared in the same package. 
 
 ### Extension Function On Class/Object:
+[Docs](https://kotlinlang.org/docs/extensions.html)
 Can extend a class with new functionality without having to inherit from the class. There are also extension properties that let you define new properties for existing classes.
 
 ```kt

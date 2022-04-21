@@ -110,7 +110,11 @@ Requirments
  .Data classes cannot be abstract, open, sealed, or inner
 
 ### Sealed Class
-sealed class is abstract by itself, it cannot be instantiated directly and can have abstract members. It can have one of two visibilities: protected (by default) or private.
+Unique to kotlin only, its kinda like enum with more feature (IDE suggession, Error ).sealed class is abstract by itself, it cannot be instantiated directly and can have abstract members. It can have one of two visibilities: protected (by default) or private.
+
+> Sealed vs Enum
+_ Sealed class can have <T> (Generic type) parameters, but not enum
+_ Sealed class can hold "Instance Specefic Data", not only singleton
 
 ```kt
 sealed interface Error {}

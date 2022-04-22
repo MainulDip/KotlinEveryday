@@ -26,8 +26,22 @@ abstract class WildShape : Polygon() {
 ```
 
 
-Object declarations: Singleton Pattern
+### Object | annonymous class, declarations: Singleton Pattern
+Object expressions create objects of anonymous classes. anonymous classes are also called anonymous objects because they are defined by an expression, not a name.
 ```kt
+fun main() {
+    val helloWorld = object {
+        val hello = "Hello"
+        val world = "World"
+        // object expressions extend Any, so `override` is required on `toString()`
+        override fun toString() = "$hello $world"
+    }
+    print(helloWorld)
+}
+
+/**
+*
+*/
 object DataProviderManager {
     fun registerDataProvider(provider: DataProvider) {}
 }
@@ -258,4 +272,6 @@ enum class IntArithmetics : BinaryOperator<Int>, IntBinaryOperator {
     override fun applyAsInt(t: Int, u: Int) = apply(t,u)
 }
 ```
-### Inline Class
+### Inline Class, Nested, Inners:
+
+### Generics In Out, Deligation, SAM (Single Abstract Method)

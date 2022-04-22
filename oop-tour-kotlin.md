@@ -114,6 +114,7 @@ Unique to kotlin only, its kinda like enum with more feature (IDE suggession, Er
 
 > Sealed vs Enum
 _ Sealed class can have <T> (Generic type) parameters, but not enum
+_ Sealed Class With Complex Hierarchy (Multiple Nested class/objects) is recognised by IDE. But enum with abstract class is not recogniseable/predictable by IDE, as the IDE compiler cannot get the inheritance Hierarchy. Specially working with "when" block, IDE can generate all the posible options/branches of the sealed class. Its always handy
 _ Sealed class can hold "Instance Specefic Data", not only singleton
 
 ```kt
@@ -132,6 +133,30 @@ class DatabaseError(val source: DataSource): IOError()
 object RuntimeError : Error
 ```
 > Direct subclasses of sealed classes and interfaces must be declared in the same package. 
+
+<details>
+<summary>Sealed Class Best Practice</summary>
+
+1. Define Hierarchy Using Nested Class, its easy to read
+```kt
+sealed class Gender {
+    object Male: Gender()
+    object Female: Gender()
+}
+```
+
+2. Best first case could when block. Also use generic getter to receive IDE support at its best
+```kt
+val getGender: String = when(person.gender){
+    is Person.Gender.Male -> "Male"
+    is Person.Gender.Female -> "Female"
+}
+
+val <T> T.exhaustive : T
+    get() = this
+```
+
+</details>
 
 ### Extension Function On Class/Object:
 [Docs](https://kotlinlang.org/docs/extensions.html)

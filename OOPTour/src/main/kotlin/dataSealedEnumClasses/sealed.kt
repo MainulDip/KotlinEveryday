@@ -12,7 +12,7 @@ fun main(args: Array<String>) {
     val getGender: String = when(person.gender){
         is Person.Gender.Male -> "Male"
         is Person.Gender.Female -> "Female"
-    }
+    }.exhaustive
 
     println("Person 1's gender is $getGender")
 }
@@ -28,3 +28,10 @@ data class Person(val name: String, val gender: Gender ) {
         object Female: Gender()
     }
 }
+
+/**
+ * IDE Support
+ */
+
+val <T> T.exhaustive : T
+    get() = this

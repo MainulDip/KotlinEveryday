@@ -111,7 +111,7 @@ class Derived(p: Int) : Base(p){}
 ### Interface
 
 
-### Data Class
+### Data Class (Modeling)
 Data Classes' main purpose is to hold data and or data structure.
 [Docs Data Class](https://kotlinlang.org/docs/data-classes.html)
 > Signature: data class User(val name: String, val age: Int)
@@ -123,6 +123,24 @@ Requirments
  .All primary constructor parameters need to be marked as val or var
  .Data classes cannot be abstract, open, sealed, or inner
 
+```kt
+fun main() {
+    val b = Bank("777", 12.34, 7)
+
+    println("Bank Data is \$b = $b")
+}
+
+data class Bank (
+    val accountNumber: String,
+    var trust: Double,
+    val transactionFee: Int
+){
+    init {
+        trust = trust.toDouble()
+        println("Initializing Bank")
+    }
+}
+```
 ### Sealed Class
 Unique to kotlin only, its kinda like enum with more feature (IDE suggession, Error ).sealed class is abstract by itself, it cannot be instantiated directly and can have abstract members. It can have one of two visibilities: protected (by default) or private.
 

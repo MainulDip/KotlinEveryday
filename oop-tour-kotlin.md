@@ -109,6 +109,45 @@ class Derived(p: Int) : Base(p){}
 ```
 
 ### Interface
+Interfaces in Kotlin can contain declarations of abstract methods, as well as method implementations, but interfaces cannot store a state, They can have properties, but these need to be abstract or provide accessor implementations, can implement one or more interfaces
+
+```kt
+fun main(){
+    println(Child().prop)
+    println(Child().foo())
+    println(Child().someval())
+    println(Child().somevalSec())
+    println(Child().somevalfoo())
+}
+
+interface MyInterface {
+    val prop: Int // abstract
+
+    val propertyWithImplementation: String
+        get() = "foo"
+    // val propertyWithImplementation: String = "Some Val" // not allowed
+
+    fun foo() {
+        print(prop)
+    }
+
+    fun someval(): String {
+        return "Some Value"
+    }
+
+    fun somevalSec(): Int {
+        return prop
+    }
+
+    fun somevalfoo(): String {
+        return propertyWithImplementation
+    }
+}
+
+class Child : MyInterface {
+    override val prop: Int = 29
+}
+```
 
 
 ### Data Class (Modeling)

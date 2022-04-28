@@ -330,5 +330,51 @@ enum class IntArithmetics : BinaryOperator<Int>, IntBinaryOperator {
 }
 ```
 ### Inline Class, Nested, Inners:
+Inline classes are a subset of value-based classes. They don't have an identity and can only hold values.
+```kt
+@JvmInline
+value class Width(val width: Long)
+@JvmInline
+value class Height(val height: Long)
+
+class Rect (private val w : Width, private val h: Height){
+   fun printDim(){
+       // println("w  h = $w  $h")
+       // w  h = Width(width=100)  Height(height=70)
+
+       println("w * h = ${w.hashCode() * h.hashCode()}")
+       // w * h = 7000
+   }
+}
+
+fun main() {
+    val width = Width(100L)
+    val height = Height(70L)
+
+    val shape = Rect(width, height) // IDE will force setting correct Value
+    // Rect(height, width) will throw an error because of explicitly using inline class as type
+    shape.printDim()
+}
+```
+
+> Nested and Inner Class
+```kt
+class Outer {
+    private val bar: Int = 1
+    class Nested {
+        fun foo() = 2
+        //fun baz() = bar // outer class properties not accessible in Nested Class
+    }
+
+    inner class Inner {
+        fun foo() = bar // accessible in Inner Class
+    }
+}
+
+fun main() {
+    val n = Outer.Nested().foo() // == 2
+    val i = Outer().Inner().foo() // == 1
+}
+```
 
 ### Generics In Out, Deligation, SAM (Single Abstract Method)

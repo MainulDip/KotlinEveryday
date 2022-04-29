@@ -330,7 +330,7 @@ enum class IntArithmetics : BinaryOperator<Int>, IntBinaryOperator {
 }
 ```
 ### Inline Class, Nested, Inners:
-Inline classes are a subset of value-based classes. They don't have an identity and can only hold values.
+Inline classes are a subset of value-based classes. They don't have an identity and can only hold values. Provide predictable type into IDE.
 ```kt
 @JvmInline
 value class Width(val width: Long)
@@ -378,3 +378,46 @@ fun main() {
 ```
 
 ### Generics In Out, Deligation, SAM (Single Abstract Method)
+> Deligation : alternative way of implementation inheritance.
+
+NB: Here class Derived can implement an interface Base by delegating all of its public members to a specified object.
+```kt
+interface Base {
+    fun print()
+}
+
+class BaseImpl(val x: Int) : Base {
+    override fun print() { print(x) }
+}
+
+class Derived(d: Base) : Base by d // all the methods of Base interface has been forworded to Derived class
+
+fun main() {
+    val b = BaseImpl(10)
+    Derived(b).print()
+}
+
+//The by-clause in the supertype list for Derived indicates that d will be stored internally in objects of Derived and the compiler will generate all the methods of Base that forward to d
+```
+
+> SAM : Function "Single Abstruct Method"
+
+```kt
+fun interface IntPredicate {
+   fun accept(i: Int): Boolean
+}
+
+val isEven = IntPredicate { it % 2 == 0 }
+
+// Using non-SAM way by Creating an instance of a class
+val isEvenNonSAM = object : IntPredicate {
+   override fun accept(i: Int): Boolean {
+       return i % 2 == 0
+   }
+}
+
+fun main() {
+   println("Is 7 even? - ${isEven.accept(7)}")
+   println("Is 4 even? - ${isEvenNonSAM.accept(4)}")
+}
+```

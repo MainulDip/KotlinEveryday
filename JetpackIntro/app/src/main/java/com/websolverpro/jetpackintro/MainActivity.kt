@@ -7,11 +7,8 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.Divider
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.material.*
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -42,8 +39,12 @@ class MainActivity : ComponentActivity() {
  */
 @Composable
 fun MyScreenContent(){
-    Row(modifier = Modifier.verticalScroll(rememberScrollState()).fillMaxWidth(),horizontalArrangement = Arrangement.Center, verticalAlignment = Alignment.CenterVertically) {
-        Column (modifier = Modifier.fillMaxWidth().background(Color.LightGray)) {
+    Row(modifier = Modifier
+        .verticalScroll(rememberScrollState())
+        .fillMaxWidth(),horizontalArrangement = Arrangement.Center, verticalAlignment = Alignment.CenterVertically) {
+        Column (modifier = Modifier
+            .fillMaxWidth()
+            .background(Color.LightGray)) {
             Greeting(name = "Lambda Calling")
             Divider()
             Greeting(name = "Another Calling")
@@ -83,13 +84,26 @@ fun MyApp(content: @Composable ()-> Unit){
 }
 
 @Composable
-fun Greeting(name: String, modifire: Modifier = Modifier) {
+fun Greeting(name: String, modifier: Modifier = Modifier) {
     androidx.compose.material.Surface(color = Color.LightGray) {
         Text(text = "Hello $name!", modifier = Modifier.padding(27.dp, 27.dp))
-        Text(text = "Again Hello $name!", modifier = Modifier.padding(27.dp, 47.dp), color = Color.Blue)
-
+        Text(text = "Again Hello $name!", modifier = modifier.padding(27.dp, 47.dp), color = Color.Blue)
+        Counter()
     }
+}
 
+
+/**
+ * State management
+ */
+@Composable
+fun Counter(){
+    var counter by remember {
+        mutableStateOf(value = 0)
+    }
+    Button(onClick = { counter++ }, modifier = Modifier.padding(top = 77.dp, start = 27.dp)) {
+        Text(text = "It's been clicked $counter times")
+    }
 }
 
 //@Preview(name = "font scale 1.5",fontScale = 1.5f)

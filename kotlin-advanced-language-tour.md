@@ -31,7 +31,7 @@ println("${this.toUpperCase()}") // Print => HELLO
 </details>
 
 <details>
-<summary>This: Explecit/Implecit</summary>
+<summary>This: Explecit/Implecit "this" call</summary>
 
 ```kt
 class A { // implicit label @A

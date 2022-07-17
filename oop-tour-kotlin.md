@@ -378,7 +378,7 @@ fun main() {
 ```
 
 ### Generics In Out, Deligation, SAM (Single Abstract Method)
-> Deligation : alternative way of implementation inheritance.
+> Deligation : alternative way of implementation inheritance. Only interfaces can be delegated
 
 NB: Here class Derived can implement an interface Base by delegating all of its public members to a specified object.
 ```kt
@@ -397,7 +397,7 @@ fun main() {
     Derived(b).print()
 }
 
-//The by-clause in the supertype list for Derived indicates that d will be stored internally in objects of Derived and the compiler will generate all the methods of Base that forward to d
+//The by-clause in the supertype list for "Derived" indicates that d will be stored internally in objects of "Derived" and the compiler will generate all the methods of Base that forward to d
 ```
 
 > SAM : Function "Single Abstruct Method"

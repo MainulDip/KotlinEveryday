@@ -6,7 +6,7 @@
 ```kt
 @Composable
 fun Counter(){
-    var counter by remember {
+    var counter by remember { // delegation
         mutableStateOf(value = 0)
     }
     Button(onClick = { counter++ }, modifier = Modifier.padding(top = 77.dp, start = 27.dp)) {

@@ -289,18 +289,21 @@ fun main(){
 
 </details>
 
-### Enum Class
+### Enum Class:
+Each enum constant is an object. Enum constants are separated by commas.
 [Implementation Play](./OOPTour/src/main/kotlin/dataSealedEnumClasses/emumclass.kt)
 [Offficial Docs](https://kotlinlang.org/docs/enum-classes.html#anonymous-classes)
 ```kt
-fun main(){
-    println(Color.RED.rgb);
-}
-
 enum class Color(val rgb: String) {
     RED("0xFF0000"),
     GREEN("0x00FF00"),
     BLUE("0x0000FF")
+}
+
+
+fun main() {
+    println(Color.RED) // Print -> RED
+    println(Color.RED.rgb) // Print -> 0xFF0000
 }
 ```
 
@@ -323,7 +326,7 @@ enum class IntArithmetics : BinaryOperator<Int>, IntBinaryOperator {
     },
     TIMES {
         override fun apply(t: Int, u: Int): Int = t * u
-    }; // separate the constant definitions from the member definitions with a semicolon
+    }; // separate the constant "property" definitions from the member "function" definitions with a semicolon
     
     // make it abstract first or if implementing from another interface then override implementation first then override again inside members (try to keep the first override meaningful)
     override fun applyAsInt(t: Int, u: Int) = apply(t,u)

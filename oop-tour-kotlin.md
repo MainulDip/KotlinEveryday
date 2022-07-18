@@ -304,6 +304,14 @@ enum class Color(val rgb: String) {
 fun main() {
     println(Color.RED) // Print -> RED
     println(Color.RED.rgb) // Print -> 0xFF0000
+    println(Color.valueOf("RED")) // Print -> RED
+    println(Color.valueOf("RED").rgb) // Print -> 0xFF0000
+    for (item in Color.values()){
+        println(item.rgb)
+    }
+//  print   0xFF0000
+//  print   0x00FF00
+//  print   0x0000FF
 }
 ```
 

@@ -326,4 +326,4 @@ fun <T> List<T>.customLamGenericsFunction(value: (T) -> Boolean): Int {
 > data class ClassName( val somedata: String, val isChecked: Boolean: false )
 
 
-Next: Kotlin OOP : oop-tour-kotlin.md
+Next: Kotlin OOP : oop-tour-kotlin.md and kotlin-advanced-lanuge.md

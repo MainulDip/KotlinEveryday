@@ -458,6 +458,6 @@ fun main() = runBlocking { // this: CoroutineScope
 
 Delay is a suspend function that won't block the thread, it will only suspend that coroutine for the amount of time, but Thread is free to go service a different coroutine.
 
-Thread.sleep() will block the thread and remain blocked until all the sleeps in the coroutine are over before it can go service the execution of another coroutine. Hence its Blocking
+Thread.sleep() will block the thread and remain blocked until all the sleeps in the coroutine are over before it can go service the execution of another coroutine. Hence its Blocking. See Example
 
 Link: https://stackoverflow.com/questions/61345712/what-is-the-difference-between-delay-and-thread-sleep-in-kotlin

@@ -1,7 +1,7 @@
 ## State management in kotlin (android and native)
 
 ### Singleton Pattern:
-
+Kotlin uses object as
 ### Android:
 ```kt
 @Composable

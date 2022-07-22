@@ -263,18 +263,21 @@ println(parsedNumber)
 ```
 
 ### Lambda Function
+Note: When calling there is no parenthses ()" before arrow notation "->" like defining
 > Lamda: Functions that are passed as parameter/args of another function
 
 ```kt
-//  Custom Lambda Function
+fun main(){
+    //  Custom Lambda Function
     val lambdaList2 = listOf("apple", "orange", "cherry")
     val count2 = lambdaList2.customLamFunction { value ->
 //      in lambda function last line get automatic return, so no need to mention return
         value.length == 6
     }
     println("Custom-Lambda function return value is $count2")
+}
 
-fun List<String>.useWithLambda(fn: (String) -> Boolean): Int {
+fun List<String>.customLamFunction(fn: (String) -> Boolean): Int {
 //  useWithLambda Function will receive only one parameter, which is another function (lambda)
 //  in param, fn (lambda) function's signature is defined,
 //  which will be called here but function's logic will be implemented outside in lambda expression

@@ -458,6 +458,57 @@ fun main() = runBlocking { // this: CoroutineScope
 
 Delay is a suspend function that won't block the thread, it will only suspend that coroutine for the amount of time, but Thread is free to go service a different coroutine.
 
-Thread.sleep() will block the thread and remain blocked until all the sleeps in the coroutine are over before it can go service the execution of another coroutine. Hence its Blocking. See Example
+Thread.sleep() will block the thread and remain blocked until seeping time in the coroutine are over before it can go service the execution of another coroutine. Hence its Blocking. See Example
+
+Note: Suspending a thread means that thread will "wait" doing something else in the meantime if necessary. Blocking a thread means that thread will wait doing nothing no matter what.
 
 Link: https://stackoverflow.com/questions/61345712/what-is-the-difference-between-delay-and-thread-sleep-in-kotlin
+```kt
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.newSingleThreadContext
+import kotlinx.coroutines.runBlocking
+
+fun log(message: String) {
+    println("[${Thread.currentThread().name}] : $message")
+}
+
+fun main() {
+    runBlocking {
+        val myThread = newSingleThreadContext("My Thread")
+
+        launch(myThread) {
+            (1..3).forEach {
+                log("1st launch: $it")
+                //delay(1000)
+                Thread.sleep(1000)
+            }
+        }
+
+        launch(myThread) {
+            (1..3).forEach {
+                log("2nd launch: $it")
+                //delay(1000)
+                Thread.sleep(1000)
+            }
+        }
+    }
+}
+
+// Output with delay:
+
+// [My Thread] : 1st launch: 1
+// [My Thread] : 2nd launch: 1
+// [My Thread] : 1st launch: 2
+// [My Thread] : 2nd launch: 2
+// [My Thread] : 1st launch: 3
+// [My Thread] : 2nd launch: 3
+
+// Output with Thread.sleep:
+
+// [My Thread] : 1st launch: 1
+// [My Thread] : 1st launch: 2
+// [My Thread] : 1st launch: 3
+// [My Thread] : 2nd launch: 1
+// [My Thread] : 2nd launch: 2
+// [My Thread] : 2nd launch: 3
+```

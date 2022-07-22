@@ -292,6 +292,29 @@ fun List<String>.customLamFunction(fn: (String) -> Boolean): Int {
 }
 ```
 
+### Lambda Type Declaration and Instantiation:
+```kt
+// Lambda Declaration. Note: IntArray.fold() is a built in function in Kotlin
+inline fun <R> IntArray.fold(
+    initial: R,
+    operation: (acc: R, Int) -> R
+): R
+
+// Instantiation or Implementation
+val items = listOf(1, 2, 3, 4, 5)
+
+// Lambdas are code blocks enclosed in curly braces.
+items.fold(0, { 
+    // When a lambda has parameters, they go first, followed by '->'
+    acc: Int, i: Int -> 
+    print("acc = $acc, i = $i, ") 
+    val result = acc + i
+    println("result = $result")
+    // The last expression in a lambda is considered the return value:
+    result
+})
+```
+
 ### Generics 
 ```kt
 fun main() {

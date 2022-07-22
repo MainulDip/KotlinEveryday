@@ -1,6 +1,6 @@
 ## State management in kotlin (android and native)
 
-### Singleton:
+### Singleton Pattern:
 
 ### Android:
 ```kt

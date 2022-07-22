@@ -432,3 +432,32 @@ fun main() {
    println("Is 4 even? - ${isEvenNonSAM.accept(4)}")
 }
 ```
+
+### Coroutine, Suspend Functions (Asynchronous Tasks):
+A coroutine is an instance of suspendable computation. Coroutines can be thought of as light-weight threads, but there is a number of important differences that make their real-life usage very different from threads.
+
+
+```kt
+import kotlinx.coroutines.*
+
+
+fun main() = runBlocking { // this: CoroutineScope
+    launch { // launch is a coroutine builder. It launches a new coroutine concurrently with the rest of the code, which continues to work independently
+        delay(1000L) // non-blocking delay for 1 second (default time unit is ms)
+        println("World!") // print after delay
+    }
+    println("Hello") // main coroutine continues while a previous one is delayed
+}
+
+// prints to 
+// Hello
+// World!
+```
+
+### delay() vs Thread.speep() :
+
+Delay is a suspend function that won't block the thread, it will only suspend that coroutine for the amount of time, but Thread is free to go service a different coroutine.
+
+Thread.sleep() will block the thread and remain blocked until all the sleeps in the coroutine are over before it can go service the execution of another coroutine. Hence its Blocking
+
+Link: https://stackoverflow.com/questions/61345712/what-is-the-difference-between-delay-and-thread-sleep-in-kotlin

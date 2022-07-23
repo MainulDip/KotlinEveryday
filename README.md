@@ -315,6 +315,7 @@ items.fold(0, {
 })
 ```
 
+
 ### Generics 
 ```kt
 fun main() {
@@ -353,3 +354,19 @@ fun <T> List<T>.customLamGenericsFunction(value: (T) -> Boolean): Int {
 
 
 Next: Kotlin OOP : [OOP Kotlin](oop-tour-kotlin.md) and [Advanced Kotlin](kotlin-advanced-lanuge.md)
+
+
+### Lambda without braces for member reference:
+":\:" creates a member reference or a class reference
+```kt
+fun main() {
+    fun memberFn() = println("x")
+    val lambdaFn: () -> Unit = ::memberFn // refers to memberFn(), thats why no braces for lambda
+    lambdaFn() // print "x"
+}
+
+
+// Docs Example
+    val stringPlus: (String, String) -> String = String::plus // referes to "plus" member function of the String Class
+    println(stringPlus("Hello, ", "world!")) // prints "Hello World"
+```

@@ -4,7 +4,7 @@ It's a personalized guide and quick tour of the day to day used kotlin language 
 ### Context and Extention function:
 ```kt
 fun call(greet: String.(String) -> Unit) {
-// greet("Hello", " Dolly") // greet 's 1st parameter is the context and the last is it's native parameter.
+// greet("Hello", " Dolly") // "greet" 's 1st parameter is the context and the last is it's native parameter.
     "Hello".greet("Dolly") // can be also written this way
 }
 

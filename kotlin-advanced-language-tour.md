@@ -1,7 +1,7 @@
 ## Kotlin Advanced Language Tour Overview
 It's a personalized guide and quick tour of the day to day used kotlin language advanced/non-basic syntaxes and features. Like Kotlin DSL (Builders), Context and Extention functions, HigherOrder etc.
 
-### Context and Extention function:
+### Context and Extention functions:
 ```kt
 fun call(greet: String.(String) -> Unit) {
 // greet("Hello", " Dolly") // "greet" 's 1st parameter is the context and the last is it's native parameter.

@@ -1,7 +1,7 @@
 ## Kotlin Language Tour:
 It's a quick language tour to re-connect with most of the Kotlin language syntaxes and features. When you work with multiple language everyday, it can be a good idea to have a personalized language tour. So lets start
 
-> Main.kt | kotlin program starts from this, like index.js/php
+> Main.kt | kotlin program starts from this, like index.js/php. Also main() function
 
 ### Variables and Types:
 ```kt
@@ -356,7 +356,7 @@ fun <T> List<T>.customLamGenericsFunction(value: (T) -> Boolean): Int {
 Next: Kotlin OOP : [OOP Kotlin](oop-tour-kotlin.md) and [Advanced Kotlin](kotlin-advanced-lanuge.md)
 
 
-### Lambda without braces for member reference:
+### Lambda without braces for member references:
 ":\:" creates a member reference or a class reference
 ```kt
 fun main() {

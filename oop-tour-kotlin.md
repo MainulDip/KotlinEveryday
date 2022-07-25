@@ -1,4 +1,54 @@
-## Kotlin Abstract Class
+### Module, Package and Visibility Modifires:
+Module: It's the top-most level like App. More specifically a module is a set of Kotlin files compiled together, like an IntelliJ IDEA module or a maven project or a gradle source set. See (Docs)[https://kotlinlang.org/docs/visibility-modifiers.html#modules]
+
+Packages: collect related classes, functions, and correspond roughly to directories. They allow to refer to classes (and top-level functions and fields) in the same package directly, while all other classes need to be imported, or their fully-qualified names (package.package…class) used. They're set using the package directive at the top of each file.
+
+Visibility Modifires:
+```kt
+// file name: example.kt
+package foo
+
+private fun foo() { ... } // visible inside example.kt only. For class member, private means that the member is visible inside this class only (including all its members)
+
+protected fun baz() {...} // like private modifires with subclass access. 
+
+public var bar: Int = 5 // property is visible everywhere
+    private set         // setter is visible only in example.kt
+
+internal val baz = 6    // visible inside the same module
+
+
+open class Outer {
+    private val a = 1
+    protected open val b = 2
+    internal open val c = 3
+    val d = 4  // public by default
+
+    protected class Nested {
+        public val e: Int = 5
+    }
+}
+
+class Subclass : Outer() {
+    // a is not visible
+    // b, c and d are visible
+    // Nested and e are visible
+
+    override val b = 5   // 'b' is protected
+    override val c = 7   // 'c' is internal
+}
+
+class Unrelated(o: Outer) {
+    // o.a, o.b are not visible
+    // o.c and o.d are visible (same module)
+    // Outer.Nested is not visible, and Nested::e is not visible either
+}
+```
+Docs: https://kotlinlang.org/docs/visibility-modifiers.html
+
+
+### Kotlin Abstract Class
+Docs: https://kotlinlang.org/docs/classes.html#abstract-classes
 ```kt
 abstract class Polygon {
     abstract fun draw()
@@ -28,6 +78,7 @@ abstract class WildShape : Polygon() {
 
 ### Object | annonymous class, declarations: Singleton Pattern
 Object expressions create objects of anonymous classes. anonymous classes are also called anonymous objects because they are defined by an expression, not a name.
+Docs: https://kotlinlang.org/docs/object-declarations.html
 ```kt
 fun main() {
     val helloWorld = object {
@@ -110,6 +161,8 @@ class Derived(p: Int) : Base(p){}
 
 ### Interface
 Interfaces in Kotlin can contain declarations of abstract methods, as well as method implementations, but interfaces cannot store a state, They can have properties, but these need to be abstract or provide accessor implementations, can implement one or more interfaces
+
+Docs: https://kotlinlang.org/docs/interfaces.html
 
 ```kt
 fun main(){
@@ -342,6 +395,10 @@ enum class IntArithmetics : BinaryOperator<Int>, IntBinaryOperator {
 ```
 ### Inline Class, Nested, Inners:
 Inline classes are a subset of value-based classes. They don't have an identity and can only hold values. Provide predictable type into IDE.
+
+Inline Class Docs: https://kotlinlang.org/docs/inline-classes.html
+Nested+Inner Classes docs: https://kotlinlang.org/docs/nested-classes.html
+
 ```kt
 @JvmInline
 value class Width(val width: Long)
@@ -511,4 +568,12 @@ fun main() {
 // [My Thread] : 2nd launch: 1
 // [My Thread] : 2nd launch: 2
 // [My Thread] : 2nd launch: 3
+```
+
+### Late-initialized (lateinit):
+To handle non-null properties/var that will be provided lately (through dependency injection, or in the setup method of a unit test), lateinit modifier can be used. lateint can be used on var properties declared inside the body of a class (not in the primary constructor, and only when the property does not have a custom getter or setter), as well as for top-level properties and local variables. The type of the property or variable must be non-null, and it must not be a primitive type.
+Docs : https://kotlinlang.org/docs/properties.html#checking-whether-a-lateinit-var-is-initialized
+
+```kt
+lateinit var subject: TestSubject
 ```

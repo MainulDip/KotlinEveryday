@@ -1,3 +1,6 @@
+## Object Oriented Kotlin Tour:
+For minimap see oop-minimap.kotlin.md here ()[oop-minimap.kotlin.md]
+
 ### Module, Package and Visibility Modifires:
 Module: It's the top-most level like App. More specifically a module is a set of Kotlin files compiled together, like an IntelliJ IDEA module or a maven project or a gradle source set. See (Docs)[https://kotlinlang.org/docs/visibility-modifiers.html#modules]
 

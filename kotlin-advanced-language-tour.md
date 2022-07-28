@@ -170,6 +170,27 @@ class Foo {
 ### Primary & secondary contructors:
 Note: if class has primary constructor, Secondary Constructor needs to delegate to the primary constructor. The compiler select which constructor to use depending on the (number) supplied parameters.
 ```kt
+class Constructors private constructor() {
+    init {
+        println("Init block")
+    }
+
+    constructor(i: Int): this() {
+        println("Constructor $i")
+    }
+}
+
+
+fun main() {
+//     Constructors()
+    Constructors(1)
+}
+
+// Init block
+// Constructor 1
+```
+
+```kt
 fun main() {    
     val myObj = Student("First", 15, 77)
     myObj.printMsg()

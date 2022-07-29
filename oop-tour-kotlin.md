@@ -236,13 +236,14 @@ data class Bank (
     }
 }
 ```
-### Sealed Class
-Unique to kotlin only, its kinda like enum with more feature (IDE suggession, Error ).sealed class is abstract by itself, it cannot be instantiated directly and can have abstract members. It can have one of two visibilities: protected (by default) or private.
+### Sealed Class and Interface:
+Its kinda like enum with more feature (IDE suggession, Error ).
+Saled class is abstract by itself, it cannot be instantiated directly and can have abstract members. It can have one of two visibilities: protected (by default) or private.
 
 > Sealed vs Enum
-_ Sealed class can have <T> (Generic type) parameters, but not enum
-_ Sealed Class With Complex Hierarchy (Multiple Nested class/objects) is recognised by IDE. But enum with abstract class is not recogniseable/predictable by IDE, as the IDE compiler cannot get the inheritance Hierarchy. Specially working with "when" block, IDE can generate all the posible options/branches of the sealed class. Its always handy
-_ Sealed class can hold "Instance Specefic Data", not only singleton
+- Sealed class can have <T> (Generic type) parameters, but not enum
+- Sealed Class With Complex Hierarchy (Multiple Nested class/objects) is recognised by IDE. But enum with abstract class is not recogniseable/predictable by IDE, as the IDE compiler cannot get the inheritance Hierarchy. Specially working with "when" block, IDE can generate all the posible options/branches of the sealed class. Its always handy
+- Sealed class can hold "Instance Specefic Data", not only singleton
 Docs: https://kotlinlang.org/docs/sealed-classes.html
 
 ```kt
@@ -278,7 +279,7 @@ sealed class Gender {
 val getGender: String = when(person.gender){
     is Person.Gender.Male -> "Male"
     is Person.Gender.Female -> "Female"
-}
+}.exhaustive
 
 val <T> T.exhaustive : T
     get() = this

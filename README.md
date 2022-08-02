@@ -30,6 +30,11 @@ fun main() {
     val singleLetter: Char  = 'a'
     val cars = arrayOf("Volvo", "BMW", "Ford", "Mazda")
 
+    // IntRange
+    val diceRange: IntRange = 1..6
+    val randomNumber = diceRange.random()
+    println("Random number: ${randomNumber}") // Random number: 6
+
 // loop and check
 
     if ("Volvo" in cars) {

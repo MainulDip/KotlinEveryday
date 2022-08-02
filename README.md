@@ -49,6 +49,45 @@ fun main() {
 }
 ```
 
+### when block:
+When Signature
+```kt
+when (variable) {
+    matches-value -> execute-this-code
+    matches-value -> execute-this-code
+    else -> if nothing match, execute this
+    // if else block is not given, IDE will show "exhaustive" error (it must handle all the cases possible)
+}
+```
+When Uses
+```kt
+fun main() {
+    val myFirstDice = Dice(6)
+    val rollResult = myFirstDice.roll()
+    val luckyNumber = 4
+
+    when (rollResult) {
+        luckyNumber -> println("You won!")
+        1 -> println("So sorry! You rolled a 1. Try again!")
+        2 -> println("Sadly, you rolled a 2. Try again!")
+        3 -> println("Unfortunately, you rolled a 3. Try again!")
+        5 -> println("Don't cry! You rolled a 5. Try again!")
+        6 -> println("Apologies! You rolled a 6. Try again!")
+    }
+
+    // when can also return a value
+    val drawableResource = when (diceRoll) {
+        1 -> R.drawable.dice_1
+        2 -> R.drawable.dice_2
+        3 -> R.drawable.dice_3
+        4 -> R.drawable.dice_4
+        5 -> R.drawable.dice_5
+        else -> R.drawable.dice_6
+    }
+    diceImage.setImageResource(drawableResource)
+}
+```
+
 ### Arithmetic Oparators:
 > Oparators for mathmetical operation like + | - | * | / | %
 ```kt
@@ -371,7 +410,6 @@ fun main() {
     val lambdaFn: () -> Unit = ::memberFn // refers to memberFn(), thats why no braces for lambda
     lambdaFn() // print "x"
 }
-
 
 // Docs Example
     val stringPlus: (String, String) -> String = String::plus // referes to "plus" member function of the String Class

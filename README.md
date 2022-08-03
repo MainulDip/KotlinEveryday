@@ -415,3 +415,34 @@ fun main() {
     val stringPlus: (String, String) -> String = String::plus // referes to "plus" member function of the String Class
     println(stringPlus("Hello, ", "world!")) // prints "Hello World"
 ```
+
+### with() Statement:
+```kt
+// Signature
+with (instanceName) {
+    // all operations to do with instanceName
+}
+```
+Usages:
+
+```kt
+fun main() {
+    val squareCabin = SquareCabin(6)
+
+    println("\nSquare Cabin\n============")
+    println("Capacity: ${squareCabin.capacity}")
+    println("Material: ${squareCabin.buildingMaterial}")
+    println("Has room? ${squareCabin.hasRoom()}")
+}
+
+// can rewrite this using "with(object/instance)" statement to apply context of that object
+fun main(){
+    val squareCabin = SquareCabin(7)
+    with(squareCabin) {
+    println("\nSquare Cabin\n============")
+    println("Capacity: ${capacity}")
+    println("Material: ${buildingMaterial}")
+    println("Has room? ${hasRoom()}")
+}
+}
+```

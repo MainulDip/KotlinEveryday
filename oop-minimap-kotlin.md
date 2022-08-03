@@ -88,7 +88,7 @@ fun main() {
 // Good From Secondary
 ```
 
-### Abstract Class With Non-Abstract Property:
+### Abstract Class With Non-Abstract Property, No instantiation allowed:
 ```kt
 //abstract class
 abstract class Employee(val name: String,val experience: Int) {  // Non-Abstract Properties
@@ -106,7 +106,7 @@ abstract class Employee(val name: String,val experience: Int) {  // Non-Abstract
     }
 }
 // derived class
-class Engineer(name: String,experience: Int) : Employee(name,experience) {
+class Engineer(name: String, experience: Int) : Employee(name,experience) {
     override var salary = 500000.00
     override fun dateOfBirth(date:String){
         println("Date of Birth is: $date")
@@ -124,7 +124,7 @@ fun main(args: Array<String>) {
 // Annual Salary: 500000.0
 // Date of Birth is: 02 December 1994
 ```
-### Interfaces:
+### Interfaces, No instantiation allowed:
 Interfaces cannot have constructors in Kotlin. And it cannot have non-abstract methods and properties (abstract class can have both abstract and not-abstract methods and properties). But it can have 
 - declarations of abstract methods
 - method implementations

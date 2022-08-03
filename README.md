@@ -403,7 +403,7 @@ Next: Kotlin OOP : [OOP Kotlin](oop-tour-kotlin.md) and [Advanced Kotlin](kotlin
 
 
 ### Lambda without braces for member references:
-":\:" creates a member reference or a class reference
+":\:" creates a member reference or a class reference.
 ```kt
 fun main() {
     fun memberFn() = println("x")

@@ -582,3 +582,5 @@ Docs : https://kotlinlang.org/docs/properties.html#checking-whether-a-lateinit-v
 ```kt
 lateinit var subject: TestSubject
 ```
+
+Note: The lateinit keyword is a promise that the code will initialize the variable before using it. If not, app will crash for null.

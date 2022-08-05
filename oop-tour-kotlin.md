@@ -510,7 +510,7 @@ fun main(){
     println("${e.p} and counter = ${++counter}")
 }
 ```
-
+See more in action inside OOPTour's delegate package
 
 ### Generics In Out, SAM (Single Abstract Method)
 > SAM : Function "Single Abstruct Method"

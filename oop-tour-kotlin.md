@@ -450,10 +450,14 @@ fun main() {
 }
 ```
 
-### Generics In Out, Deligation, SAM (Single Abstract Method)
+### Delegation
 > Deligation : alternative way of implementation inheritance. Only interfaces can be delegated
 
 NB: Here class Derived can implement an interface Base by delegating all of its public members to a specified object.
+
+
+Note: More specificly class Derived is implementing Base's public member print() from BaseImpl's implementation. It's not possible using just interface.
+
 ```kt
 interface Base {
     fun print()
@@ -473,6 +477,14 @@ fun main() {
 //The by-clause in the supertype list for "Derived" indicates that d will be stored internally in objects of "Derived" and the compiler will generate all the methods of Base that forward to d
 ```
 
+### Delegated Property:
+Implement interface using delegated properties once, add them to a library and reuse them later instade of implementing the interface each time manually is the use case for this (Delegated Property).
+
+Signature: val/var <property name>: <Type> by <expression>
+The get() (and set()) that correspond to the property will be delegated to its (Class) getValue() and setValue() methods. Property delegates don’t have to implement an interface, but they have to provide a getValue() function (and setValue() for vars).
+
+
+### Generics In Out, SAM (Single Abstract Method)
 > SAM : Function "Single Abstruct Method"
 
 ```kt
@@ -580,7 +592,34 @@ To handle non-null properties/var that will be provided lately (through dependen
 Docs : https://kotlinlang.org/docs/properties.html#checking-whether-a-lateinit-var-is-initialized
 
 ```kt
-lateinit var subject: TestSubject
+lateinit var subject: TestSubject // value is computed only on first access later, not here when it is initialized
 ```
 
 Note: The lateinit keyword is a promise that the code will initialize the variable before using it. If not, app will crash for null.
+
+
+### Operator functions:
+```kt
+fun main(args: Array<String>) {
+    val p1 = Point(3, -8) // first Point object
+    val p2 = Point(4, 9) // second Point object
+
+    var sum = p1.plus(p2) // same as "p1 + p2"
+
+    println("sum = (${sum.a}, ${sum.b})") // a and b are accessable as public modifire
+}
+
+class Point(val a: Int, val b: Int) {
+
+    // overloading plus "+" function
+    operator fun plus(p: Point) : Point {
+        println(a) // this is constructor's "a" value or first Point object's "a" value // prints => 3
+        println(p.a) // this is plus(p2) or passing second Point object // prints => 4
+        return Point(a + p.a, b + p.b) // returns a new Point Object // prints => sum = (7, 1)
+    }
+}
+
+// 3
+// 4
+// sum = (7, 1)
+```

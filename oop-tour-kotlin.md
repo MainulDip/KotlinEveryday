@@ -483,6 +483,34 @@ Implement interface using delegated properties once, add them to a library and r
 Signature: val/var <property name>: <Type> by <expression>
 The get() (and set()) that correspond to the property will be delegated to its (Class) getValue() and setValue() methods. Property delegates don’t have to implement an interface, but they have to provide a getValue() function (and setValue() for vars).
 
+```kt
+import kotlin.reflect.KProperty
+
+class Delegate {
+    operator fun getValue(thisRef: Any?, property: KProperty<*>): String {
+        println(property.toString()) // property p (Kotlin reflection is not available)
+        return "$thisRef, thank you for delegating '${property.name}' to me! and the value is ....run in real full featured jvm"
+    }
+
+    operator fun setValue(thisRef: Any?, property: KProperty<*>, value: String) {
+        println("$value has been assigned to '${property.name}' in $thisRef.")
+//         value = "$value World"
+    }
+}
+
+class Example {
+    var p: String by Delegate()
+}
+
+fun main(){
+    var counter = 0
+    var e = Example()
+	println("${e.p} and counter = ${++counter}")
+    e.p = "Hello World"
+    println("${e.p} and counter = ${++counter}")
+}
+```
+
 
 ### Generics In Out, SAM (Single Abstract Method)
 > SAM : Function "Single Abstruct Method"
@@ -599,23 +627,25 @@ Note: The lateinit keyword is a promise that the code will initialize the variab
 
 
 ### Operator functions:
+Operators are like +, -, /, * etc. Under the hood, expression a+b transform to a.plus(b) and same for other operators. To customize default behavour/functionality, we can override those using "operator fun <name>" signature.
+
 ```kt
 fun main(args: Array<String>) {
-    val p1 = Point(3, -8) // first Point object
-    val p2 = Point(4, 9) // second Point object
+    val cm1 = CustomMath(3, -8) // first CustomMath object
+    val cm2 = CustomMath(4, 9) // second CustomMath object
 
-    var sum = p1.plus(p2) // same as "p1 + p2"
+    var sum = cm1.plus(cm2) // same as "cm1 + cm2"
 
     println("sum = (${sum.a}, ${sum.b})") // a and b are accessable as public modifire
 }
 
-class Point(val a: Int, val b: Int) {
+class CustomMath(val a: Int, val b: Int) {
 
-    // overloading plus "+" function
-    operator fun plus(p: Point) : Point {
-        println(a) // this is constructor's "a" value or first Point object's "a" value // prints => 3
-        println(p.a) // this is plus(p2) or passing second Point object // prints => 4
-        return Point(a + p.a, b + p.b) // returns a new Point Object // prints => sum = (7, 1)
+    // overloading plus "+" operator function
+    operator fun plus(p: CustomMath) : CustomMath {
+        println(a) // this is constructor's "a" value or first CustomMath object's "a" value // prints => 3
+        println(p.a) // this is plus(cm2) or passing second CustomMath object // prints => 4
+        return CustomMath(a + p.a, b + p.b) // returns a new CustomMath Object // prints => sum = (7, 1)
     }
 }
 

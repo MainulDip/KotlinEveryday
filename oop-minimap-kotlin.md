@@ -21,7 +21,7 @@ class Person(val name: String) { // primary constructor
 class DontCreateMe private constructor () { /*...*/ } // stop public contructor with non-default visibility and empty parenthesis
 ```
 
-### open class and method, abstract inheritance, primary/secondary constructor, init block: 
+### open class and method/s, abstract inheritance, primary/secondary constructor, init block: 
 ```kt
 open class Polygon {
     open fun draw() { // overriding is optional, not required

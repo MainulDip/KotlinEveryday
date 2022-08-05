@@ -29,7 +29,7 @@ public final class SomeSingleton {
 ```kt
 @Composable
 fun Counter(){
-    var counter by remember { // delegations
+    var counter by remember { // delegations, delegated property
         mutableStateOf(value = 0)
     }
     Button(onClick = { counter++ }, modifier = Modifier.padding(top = 77.dp, start = 27.dp)) {

@@ -168,7 +168,7 @@ class Foo {
 </details>
 
 ### Primary & secondary contructors:
-Note: if class has primary constructor, Secondary Constructor needs to delegate to the primary constructor. The compiler select which constructor to use depending on the (number) supplied parameters.
+Note: if class has primary constructor, Secondary Constructor needs to be delegated to the primary constructor. The compiler select which constructor to use depending on the (number) supplied parameters.
 ```kt
 class Constructors private constructor() {
     init {

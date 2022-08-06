@@ -477,8 +477,8 @@ fun main() {
 //The by-clause in the supertype list for "Derived" indicates that d will be stored internally in objects of "Derived" and the compiler will generate all the methods of Base that forward to d
 ```
 
-### Delegated Property:
-Implement interface using delegated properties once, add them to a library and reuse them later instade of implementing the interface each time manually is the use case for this (Delegated Property).
+### Delegated Property (val/var <property name>: <Type> by <expression>):
+These are properties that inherit getter and setter from another class/interface (Delegated Class) instade of it's own get() and set() method. The by keyword indicates that the property is controlled by the provided delegate instead of its own field (get(),set()).
 
 Signature: val/var <property name>: <Type> by <expression>
 The get() (and set()) that correspond to the property will be delegated to its (Class) getValue() and setValue() methods. Property delegates don’t have to implement an interface, but they have to provide a getValue() function (and setValue() for vars).
@@ -487,15 +487,21 @@ The get() (and set()) that correspond to the property will be delegated to its (
 import kotlin.reflect.KProperty
 
 class Delegate {
+    private var value: String? = null // lateinit will not work here, as we are calling the getValue first before setValue
     operator fun getValue(thisRef: Any?, property: KProperty<*>): String {
-        println(property.toString()) // property p (Kotlin reflection is not available)
-        return "$thisRef, thank you for delegating '${property.name}' to me! and the value is ....run in real full featured jvm"
+        if (value == null ) value = "Not Yet Set"
+        // return "$thisRef, thank you for delegating '${property.name}' to me! and the value is \"$value\""
+        return "value = \"$value\"";
     }
 
     operator fun setValue(thisRef: Any?, property: KProperty<*>, value: String) {
         println("$value has been assigned to '${property.name}' in $thisRef.")
-//         value = "$value World"
+        this.value = "$value"
     }
+
+
+    // method's other than getValue() and setValue() is not accessible to delegated properties.
+    // property delegation will only be mapped with properties get() and set() methods.
 }
 
 class Example {
@@ -503,14 +509,39 @@ class Example {
 }
 
 fun main(){
-    var counter = 0
     var e = Example()
-	println("${e.p} and counter = ${++counter}")
-    e.p = "Hello World"
-    println("${e.p} and counter = ${++counter}")
+    println(e.p) // value = "Not Yet Set"
+    e.p = "Hello World" // Hello World has been assigned to 'p' in delegation.Example@.......
+    println(e.p) // value = "Hello World"
 }
 ```
 See more in action inside OOPTour's delegate package
+
+
+> Concept of delegated property with DatabaseDelegate class
+
+```kt
+class DatabaseDelegate<in R, T>(readQuery: String, writeQuery: String, id: Any) : ReadWriteDelegate<R, T> {
+    fun getValue(thisRef: R, property: KProperty<*>): T {
+        return queryForValue(readQuery, mapOf("id" to id))
+    }
+
+    fun setValue(thisRef: R, property: KProperty<*>, value: T) {
+        update(writeQuery, mapOf("id" to id, "value" to value))
+    }
+}
+
+class DatabaseUser(userId: String) {
+    var name: String by DatabaseDelegate(
+      "SELECT name FROM users WHERE userId = :id", 
+      "UPDATE users SET name = :value WHERE userId = :id",
+      userId)
+    var email: String by DatabaseDelegate(
+      "SELECT email FROM users WHERE userId = :id", 
+      "UPDATE users SET email = :value WHERE userId = :id",
+      userId)
+}
+```
 
 ### Generics In Out, SAM (Single Abstract Method)
 > SAM : Function "Single Abstruct Method"

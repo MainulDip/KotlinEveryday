@@ -10,7 +10,7 @@ Link: (oop-tour-kotlin.md)[oop-tour-kotlin.md]
 fun main() {
     println("Hello World")
 
-//  Note: var and val
+//  Note : var and val
     var x: Int = 3 // 3L will be 64bit (Long)
 
     println("This value is $x")

@@ -220,13 +220,38 @@ class Student(var name: String="Default", height: Int) {
 // Primary Constructor => Name is Default, Height is 72
 ``` 
 
-### Generics Variance (in/out) Advanced:
-- java wildcard types :
-- invariant : List<String> is not a subtype of List<Object>
-```java
-// Java
-List<String> strs = new ArrayList<String>();
-List<Object> objs = strs; // !!! A compile-time error here saves us from a runtime exception later.
-objs.add(1); // Put an Integer into a list of Strings
-String s = strs.get(0); // !!! ClassCastException: Cannot cast Integer to String
+### Generics Variance (in/out) or variance annotation:
+ - out: When type parameter is to only returned (produced/out) from members of Source<T>, and never consumed.
+```kt
+ interface Source<out T> {
+    fun nextT(): T
+}
+
+fun demo(strs: Source<String>) {
+    val objects: Source<Any> = strs // This is OK, since T is an out-parameter
+    // ...
+}
+
+fun copy(from: Array<out Any>, to: Array<Any>) { ... }
+// here the "from" parameter needs to be returned
+
+
+// For Foo<out T : TUpper>, where T is a covariant type parameter with the upper bound TUpper.
+```
+
+ - in: It makes a type parameter contravariant, meaning it can only be consumed(in) and never produced. Also Array<in String> corresponds to Java's Array<? super String>
+```kt
+
+interface Comparable<in T> {
+    operator fun compareTo(other: T): Int
+}
+
+fun demo(x: Comparable<Number>) {
+    x.compareTo(1.0) // 1.0 has type Double, which is a subtype of Number
+    // Thus, you can assign x to a variable of type Comparable<Double>
+    val y: Comparable<Double> = x // OK!
+}
+
+// can pass an array of CharSequence or an array of Object to the fill() function
+fun fill(dest: Array<in String>, value: String) { ... }
 ```

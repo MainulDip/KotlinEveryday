@@ -76,7 +76,7 @@ fun main() {
     t.draw()
     
     val s = TestingPrivateOpen(7)
-    s.draw()
+    s.draw() //
 }
 
 // Calling init block of the Test class

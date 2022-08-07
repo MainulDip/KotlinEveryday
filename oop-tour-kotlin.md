@@ -238,7 +238,7 @@ data class Bank (
 ```
 ### Sealed Class and Interface:
 Its kinda like enum with more feature (IDE suggession, Error ).
-Saled class is abstract by itself, it cannot be instantiated directly and can have abstract members. It can have one of two visibilities: protected (by default) or private.
+Saled class is abstract by itself, it cannot be instantiated directly and can have abstract members. It can have one of two visibilities: protected (by default) or private
 
 > Sealed vs Enum
 - Sealed class can have <T> (Generic type) parameters, but not enum

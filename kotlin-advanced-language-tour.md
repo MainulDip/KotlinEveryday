@@ -219,3 +219,14 @@ class Student(var name: String="Default", height: Int) {
 // Primary Constructor => Name is Second, Height is 72
 // Primary Constructor => Name is Default, Height is 72
 ``` 
+
+### Generics Variance (in/out) Advanced:
+- java wildcard types :
+- invariant : List<String> is not a subtype of List<Object>
+```java
+// Java
+List<String> strs = new ArrayList<String>();
+List<Object> objs = strs; // !!! A compile-time error here saves us from a runtime exception later.
+objs.add(1); // Put an Integer into a list of Strings
+String s = strs.get(0); // !!! ClassCastException: Cannot cast Integer to String
+```

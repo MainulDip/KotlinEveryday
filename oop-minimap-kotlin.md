@@ -4,7 +4,7 @@ Lets have a quick look of the class, open, nested, inner, inline, abstract, inte
 // class and open class :
 // https://kotlinlang.org/docs/classes.html
 
-class Person { /*...*/ } // empty public ( by default ) constructor
+class Person { /*...*/ } // empty public constructor ( by default )
 class Person(firstName: String) { /*...*/ } // single var public constructor
 class Person private constructor(firstName: String) { /*...*/ } // private constructor
 

@@ -147,7 +147,16 @@ fun main(){
 }
 ```
 ### Companion objects (inside class): Java static method + some more
+
 > If declared inside of a class, it can access its members / internals-of-the-class (such as a factory method) using only the class name as a qualifier, without instantiation like static method (But not exactly). 
+
+Note:
+- Object expressions (object: {....}) are executed (and initialized) immediately, where they are used.
+
+- Object declarations (object ObjName {...}) are initialized lazily, when accessed for the first time.
+
+- A companion object is initialized when the corresponding class is loaded (resolved) that matches the semantics of a Java static initializer.
+
 ```kt
 class MyClass {
     companion object Factory {

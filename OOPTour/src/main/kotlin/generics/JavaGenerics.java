@@ -14,7 +14,7 @@ class SomeClass implements Collection {
 
     @Override
     public void addAll(Collection items) {
-        
+
     }
 }
 

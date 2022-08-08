@@ -49,6 +49,20 @@ class Unrelated(o: Outer) {
 ```
 Docs: https://kotlinlang.org/docs/visibility-modifiers.html
 
+### val/var/"empty" in Constructor Parameter/s:
+If val/var is specified in constructor papameter, in background it also declares property inside the class. If not it is simply a parameter passed to the primary constructor, where the parameters can be accessed within the init block or to initialize other properties.
+```kt
+class User(val id: Long, email: String) {
+    val hasEmail = email.isNotBlank()    //email can be accessed here
+    init {
+        //email can be accessed here
+    }
+
+    fun getEmail(){
+        //email can't be accessed here
+    }
+}
+```
 
 ### Kotlin Abstract Class
 Docs: https://kotlinlang.org/docs/classes.html#abstract-classes
@@ -110,6 +124,27 @@ object DefaultListener : MouseAdapter() {
     override fun mouseEntered(e: MouseEvent) { ... }
 }
 // overriding methods
+```
+
+### Object with Interface:
+```kt
+interface Source<out T> {
+    fun nextT(): T
+}
+
+fun demo(strs: Source<String>): Source<Any> {
+    return strs
+}
+
+fun main(){
+    val d = demo(object : Source<String> {
+        override fun nextT(): String {
+            return "hello"
+        }
+    })
+
+    println(d.nextT())
+}
 ```
 ### Companion objects (inside class): Java static method + some more
 > If declared inside of a class, it can access its members / internals-of-the-class (such as a factory method) using only the class name as a qualifier, without instantiation like static method (But not exactly). 
@@ -214,9 +249,9 @@ Data Classes' main purpose is to hold data and or data structure.
 > automatically derives equals()/hashCode(), toString(), componentN() and copy() functions
 
 Requirments
- .at least one parameter in primary constructor
- .All primary constructor parameters need to be marked as val or var
- .Data classes cannot be abstract, open, sealed, or inner
+ - at least one parameter in primary constructor
+ - All primary constructor parameters need to be marked as val or var
+ - Data classes cannot be abstract, open, sealed, or inner
 
 ```kt
 fun main() {

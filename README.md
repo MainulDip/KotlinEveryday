@@ -210,7 +210,7 @@ val evenNum = 7
 val checkEven = checkIsEven(evenNum)
 println("checkEven for $evenNum is ${if(checkEven) "even" else "\"odd\""}")
 val checkEven2 = checkIsEven(number = evenNum) // adds good redability
-// Setting Function's Default Args Value
+// Setting Function's Default Args Value.
 fun defaultArgVal(number: Int = 7): Boolean { return number % 2 == 0}
 println(defaultArgVal())
 ```kt

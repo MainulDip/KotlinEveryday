@@ -255,3 +255,6 @@ fun demo(x: Comparable<Number>) {
 // can pass an array of CharSequence or an array of Object to the fill() function
 fun fill(dest: Array<in String>, value: String) { ... }
 ```
+
+### Star Projection (Generics):
+https://typealias.com/guides/star-projections-and-how-they-work/

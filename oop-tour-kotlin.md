@@ -64,6 +64,26 @@ class User(val id: Long, email: String) {
 }
 ```
 
+### Any, Unit, Nothing:
+- Any: Any is by default the superclass of all the classes and has 3 functions: equals, hashCode and toString.
+
+- Unit: Unit class is a singleton class, we can't extend or even create an object of it. Same as java void type. The superclass of Unit is Any
+
+- Nothing:  Nothing is non-open (final class) which can't be extended and its constructor is also private, so we can't create the object form it. This is usually used to represent the return type of function which will always throw an exception. Also superclass of Nothing is Any.
+
+
+```kt
+fun main() {
+    nothing(7,4)
+}
+
+fun nothing(x: Int, y: Int): Nothing {
+    val exception1 = Exception("For $x : throw exception is the only Nothing Type")
+    val exception2 = Exception("For $y : throw exception is the only Nothing Type")
+    if (x > y) throw exception1 else throw exception2
+}
+```
+
 ### Kotlin Abstract Class
 Docs: https://kotlinlang.org/docs/classes.html#abstract-classes
 ```kt

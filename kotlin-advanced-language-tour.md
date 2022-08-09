@@ -220,6 +220,27 @@ class Student(var name: String="Default", height: Int) {
 // Primary Constructor => Name is Default, Height is 72
 ``` 
 
+### Invariance, Covariance, Contravariance:
+- Invariance: A generic class is called invariant on the type parameter when for two different types A and B, Class<A> is neither a subtype nor a supertype of Class<B>
+
+- Covariance (subtyping relation): A generic class is called covariant on the type parameter when the following holds: Class<A> is a subtype of Class<B>
+
+
+- Contravariance (Supertype relation or reverse Covariance): Contravariance describes a relationship between two sets of types where they subtype in opposite directions (Supertype)
+```kt
+open class A
+open class B : A()
+
+class Box<in T> {
+    private val items = mutableListOf<T>()
+    fun deposit(item: T) = items.add(item)
+}
+
+//  B is a subtype of A, whereas…
+// Box<B> is a supertype of Box<A>
+// This happened because of the variance annotation "in"
+// Box<A> is applicable anywhere that the code expects Box<B>
+```
 ### Generics Variance (in/out) or variance annotation:
  - out: When type parameter is to only returned (produced/out) from members of Source<T>, and never consumed.
 ```kt
@@ -257,4 +278,7 @@ fun fill(dest: Array<in String>, value: String) { ... }
 ```
 
 ### Star Projection (Generics):
+- Function<*, String> means Function<in Nothing, String>.
+- Function<Int, *> means Function<Int, out Any?>.
+- Function<*, *> means Function<in Nothing, out Any?>.
 https://typealias.com/guides/star-projections-and-how-they-work/

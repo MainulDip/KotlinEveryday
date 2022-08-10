@@ -1,10 +1,11 @@
 ## Kotlin Advanced Language Tour Overview
 This markdow file provides mini docs for following topics:
-- Context and Extention functions
-- Kotlin Builders DSLs
-- mockmvc DSL structure
+- [Context and Extention functions](#eontext-extension)
+- [Kotlin Builders DSLs](#dsl-builders)
+- [mockmvc DSL structure](#mockmvc-dsl)
+- [Inline Functions, Reflections/KClass // MyClass::class || Function references // ::isOdd](#inline-reflection-function-reference)
 
-### Context and Extention functions
+### <a name="#eontext-extension"> Context and Extention functions </a>
 ```kotlin
 fun call(greet: String.(String) -> Unit) {
 // greet("Hello", " Dolly") // "greet"'s 1st parameter is the context and the last is it's native parameter.
@@ -78,7 +79,7 @@ A().invokePrintLine(omitThis = true) // Top-level function
 ```
 </details>
 
-### Kotlin Builders DSLs:
+### <a name="#dsl-builders"> Kotlin Builders DSLs: </a>
 ```kotlin
 fun html(init: HTML.() -> Unit): HTML {
     val html = HTML()
@@ -90,7 +91,7 @@ fun html(init: HTML.() -> Unit): HTML {
 
 
 
-### mockmvc DSL structure
+### <a name="#mockmvc-dsl"> mockmvc DSL structure </a>
 ```kotlin
 mockMvc.put(urlTemplate = baseUrl, null, dsl = { ->
 // as there is a vararg parameter in the middle, the last lambda block needs to be called by named argument if not called outside the parenthesis.
@@ -99,7 +100,7 @@ content = objectMapper.writeValueAsString(accountNumber)
 })
 ```
 
-### Inline Functions, Reflections/KClass // MyClass::class || Function references // ::isOdd
+### <a name="#inline-reflection-function-reference"> Inline Functions, Reflections/KClass // MyClass::class || Function references // ::isOdd </a>
 
 > Reflection and Function Reference
 ```kotlin

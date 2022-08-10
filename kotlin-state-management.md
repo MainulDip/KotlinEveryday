@@ -58,7 +58,7 @@ fun main() {
 }
 
 interface Source<out T> {
-    fun nextT(): T // but for "fun nextT(x: T): T" it will throw error - "Type parameter T is declared as 'out' but occurs in 'in' position in type T"
+    fun nextT(): T // for <out T> mention "fun nextT(x: T): T" it will throw error - "Type parameter T is declared as 'out' but occurs in 'in' position in type T". // Cannot return the same type
     // for "fun nextT(x: Int): T", anything other than T inside the parameter will work just fine.
 }
 

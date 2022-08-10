@@ -1,11 +1,12 @@
 ## Kotlin OOP Part 2 Overview:
 Continued From oop-tour-kotlin.md. This markdow file provides mini docs for following topics:
-- Companio Object | Static Method (Java)
-- Primary & secondary contructors
-- Invariance, Covariance, Contravariance
-- Generics Variance (in/out) or variance annotation
-- Star Projection (Generics/Foo<*>):
-### java/kotlin Static Method || companion object:
+- [Companio Object | Static Method (Java)](#companion-static)
+- [Primary & secondary contructors](#primary-secondary-constructor)
+- [Invariance, Covariance, Contravariance](#generic-variances)
+- [Generics Variance (in/out) or variance annotation](#generics-in-out)
+- [Star Projection (Generics/Foo<*>):](#star-projection)
+
+### <a name="#companion-static"> java/kotlin Static Method || companion object: </a>
 ```java
 class Foo {
   public static int a() { return 1; }
@@ -53,7 +54,7 @@ class Foo {
 
 </details>
 
-### Primary & secondary contructors:
+### <a name="#primary-secondary-constructor"> Primary & secondary contructors: </a>
 Note: if class has primary constructor, Secondary Constructor needs to be delegated to the primary constructor. The compiler select which constructor to use depending on the (number) supplied parameters.
 ```kotlin
 class Constructors private constructor() {
@@ -106,7 +107,7 @@ class Student(var name: String="Default", height: Int) {
 // Primary Constructor => Name is Default, Height is 72
 ``` 
 
-### Invariance, Covariance, Contravariance:
+### <a name="#generic-variances"> Invariance, Covariance, Contravariance: </a>
 - Invariance: A generic class is called invariant on the type parameter when for two different types A and B, Class<A> is neither a subtype nor a supertype of Class<B>
 
 - Covariance (subtyping relation): A generic class is called covariant on the type parameter when the following holds: Class<A> is a subtype of Class<B>
@@ -127,7 +128,7 @@ class Box<in T> {
 // This happened because of the variance annotation "in"
 // Box<A> is applicable anywhere that the code expects Box<B>
 ```
-### Generics Variance (in/out) or variance annotation:
+### <a name="#generics-in-out"> Generics Variance (in/out) or variance annotation: </a>
  - out: When type parameter is to only returned (produced/out) from members of Source<T>, and never consumed.
 ```kotlin
  interface Source<out T> {
@@ -163,7 +164,7 @@ fun demo(x: Comparable<Number>) {
 fun fill(dest: Array<in String>, value: String) { ... }
 ```
 
-### Star Projection (Generics):
+### <a name="#star-projection"> Star Projection (Generics): </a>
 - Function<*, String> means Function<in Nothing, String>.
 - Function<Int, *> means Function<Int, out Any?>.
 - Function<*, *> means Function<in Nothing, out Any?>.

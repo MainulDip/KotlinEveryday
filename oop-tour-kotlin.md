@@ -1,22 +1,31 @@
 ## Object Oriented Kotlin Tour:
 This markdow file provides mini docs for following topics:
-- Module, Package and Visibility Modifires:
-- val/var/"empty" in Constructor Parameter/s
-- Any, Unit, Nothing
-- Kotlin Abstract Class
-- Object | annonymous class, declarations: Singleton Pattern
-- Object with Interface
-- Companion objects (inside class): Java static method + some more
-- Inheritance
-- Interface
-- Data Class (Modeling)
-- Sealed Class and Interface:
-- Extension Function On Class/Object:
+- [Module, Package and Visibility Modifires](#mpvm)
+- [val/var/"empty" in Constructor Parameter/s](#constructorparam)
+- [Any, Unit, Nothing](#any-unit-nothing)
+- [Kotlin Abstract Class](#kotlin-abstract-class)
+- [Object | annonymous class, declarations: Singleton Pattern](#oacdsp)
+- [Object with Interface](#object-with-interface)
+- [Companion objects (inside class): Java static method + some more](#coic)
+- [Inheritance](#inheritance)
+- [Interface](#interface)
+- [Data Class (Modeling)](#data-class)
+- [Sealed Class and Interface:](#sealed-class)
+- [Extension Function On Class/Object:](#extension-function)
+- [Enum Class:](#enum-class)
+- [Inline Class, Nested, Inners:](#inline-class-nested-inner)
+- [Delegation](#delegation)
+- [Delegated Property (val/var <property name>: <Type> by - <expression>)](#delegated-property)
+- [Generics In Out, SAM (Single Abstract Method)](#generics-in-out)
+- [Coroutine, Suspend Functions (Asynchronous Tasks)](#coroutine-suspend-function)
+- [delay() vs Thread.speep()](#dely-vs-thread)
+- [Late-initialized (lateinit)](#late-init)
+- [Operator functions](#operator-function)
 
 
 For minimap see oop-minimap.kotlin.md here ()[oop-minimap.kotlin.md]
 
-### Module, Package and Visibility Modifires:
+### <a name="#mpvm"> Module, Package and Visibility Modifires: </a>
 Module: It's the top-most level like App. More specifically a module is a set of Kotlin files compiled together, like an IntelliJ IDEA module or a maven project or a gradle source set. See (Docs)[https://kotlinlang.org/docs/visibility-modifiers.html#modules]
 
 Packages: These are collection of related classes, functions, and correspond roughly to directories. They allow to refer to classes (and top-level functions and fields) in the same package directly, while all other classes need to be imported or their fully-qualified names (package.package…class) used. They're set using the package        directive at the top of each file.
@@ -64,7 +73,7 @@ class Unrelated(o: Outer) {
 ```
 Docs: https://kotlinlang.org/docs/visibility-modifiers.html
 
-### val/var/"empty" in Constructor Parameter/s:
+### <a name="#constructorparam"> val/var/"empty" in Constructor Parameter/s: </a>
 If val/var is specified in constructor papameter, in background it also declares property inside the class. If not it is simply a parameter passed to the primary constructor, where the parameters can be accessed within the init block or to initialize other properties.
 ```kotlin
 class User(val id: Long, email: String) {
@@ -79,7 +88,7 @@ class User(val id: Long, email: String) {
 }
 ```
 
-### Any, Unit, Nothing:
+### <a name="#any-unit-nothing"> Any, Unit, Nothing: </a>
 - Any: Any is by default the superclass of all the classes and has 3 functions: equals, hashCode and toString.
 
 - Unit: Unit class is a singleton class, we can't extend or even create an object of it. Same as java void type. The superclass of Unit is Any
@@ -99,7 +108,7 @@ fun nothing(x: Int, y: Int): Nothing {
 }
 ```
 
-### Kotlin Abstract Class
+### <a name="#kotlin-abstract-class"> Kotlin Abstract Class </a>
 Docs: https://kotlinlang.org/docs/classes.html#abstract-classes
 ```kotlin
 abstract class Polygon {
@@ -128,7 +137,7 @@ abstract class WildShape : Polygon() {
 ```
 
 
-### Object | annonymous class, declarations: Singleton Pattern
+### <a name="#oacdsp"> Object | annonymous class, declarations: Singleton Pattern </a>
 Object expressions create objects of anonymous classes. anonymous classes are also called anonymous objects because they are defined by an expression, not a name.
 Docs: https://kotlinlang.org/docs/object-declarations.html
 ```kotlin
@@ -161,7 +170,7 @@ object DefaultListener : MouseAdapter() {
 // overriding methods
 ```
 
-### Object with Interface:
+### <a name="#object-with-interface"> Object with Interface: </a>
 ```kotlin
 interface Source<out T> {
     fun nextT(): T
@@ -181,7 +190,7 @@ fun main(){
     println(d.nextT())
 }
 ```
-### Companion objects (inside class): Java static method + some more
+### <a name="#coic"> Companion objects (inside class): Java static method + some more </a>
 
 > If declared inside of a class, it can access its members / internals-of-the-class (such as a factory method) using only the class name as a qualifier, without instantiation like static method (But not exactly). 
 
@@ -229,7 +238,7 @@ class MyClass {
 val f: Factory<MyClass> = MyClass
 ```
 
-### Inheritance
+### <a name="#inheritance"> Inheritance </a>
 Hit on https://kotlinlang.org/docs/inheritance.html
 ```kotlin
 class Example // Implicitly inherits from Any, and Any has three methods: equals(), hashCode(), and toString()
@@ -241,7 +250,7 @@ open class Base(p: Int){}
 class Derived(p: Int) : Base(p){}
 ```
 
-### Interface
+### <a name="#interface"> Interface </a>
 Interfaces in Kotlin can contain declarations of abstract methods, as well as method implementations, but interfaces cannot store a state, They can have properties, but these need to be abstract or provide accessor implementations, can implement one or more interfaces
 
 Docs: https://kotlinlang.org/docs/interfaces.html
@@ -285,7 +294,7 @@ class Child : MyInterface {
 ```
 
 
-### Data Class (Modeling)
+### <a name="#data-class"> Data Class (Modeling) </a>
 Data Classes' main purpose is to hold data and or data structure.
 [Docs Data Class](https://kotlinlang.org/docs/data-classes.html)
 > Signature: data class User(val name: String, val age: Int)
@@ -315,7 +324,7 @@ data class Bank (
     }
 }
 ```
-### Sealed Class and Interface:
+### <a name="#sealed-class"> Sealed Class and Interface: </a>
 Its kinda like enum with more feature (IDE suggession, Error ).
 Saled class is abstract by itself, it cannot be instantiated directly and can have abstract members. It can have one of two visibilities: protected (by default) or private
 
@@ -366,7 +375,7 @@ val <T> T.exhaustive : T
 
 </details>
 
-### Extension Function On Class/Object:
+### <a name="#extension-function"> Extension Function On Class/Object: </a>
 [Docs](https://kotlinlang.org/docs/extensions.html)
 Can extend a class with new functionality without having to inherit from the class. There are also extension properties that let you define new properties for existing classes.
 
@@ -426,7 +435,7 @@ fun main(){
 
 </details>
 
-### Enum Class:
+### <a name="#enum-class"> Enum Class: </a>
 Each enum constant is an object. Enum constants are separated by commas.
 [Implementation Play](./OOPTour/src/main/kotlin/dataSealedEnumClasses/emumclass.kt)
 [Offficial Docs](https://kotlinlang.org/docs/enum-classes.html#anonymous-classes)
@@ -477,7 +486,7 @@ enum class IntArithmetics : BinaryOperator<Int>, IntBinaryOperator {
     override fun applyAsInt(t: Int, u: Int) = apply(t,u)
 }
 ```
-### Inline Class, Nested, Inners:
+### <a name="#inline-class-nested-inner"> Inline Class, Nested, Inners: </a>
 Inline classes are a subset of value-based classes. They don't have an identity and can only hold values. Provide predictable type into IDE.
 
 Inline Class Docs: https://kotlinlang.org/docs/inline-classes.html
@@ -529,7 +538,7 @@ fun main() {
 }
 ```
 
-### Delegation
+### <a name="#delegation"> Delegation </a>
 > Deligation : alternative way of implementation inheritance. Only interfaces can be delegated
 
 NB: Here class Derived can implement an interface Base by delegating all of its public members to a specified object.
@@ -556,7 +565,7 @@ fun main() {
 //The by-clause in the supertype list for "Derived" indicates that d will be stored internally in objects of "Derived" and the compiler will generate all the methods of Base that forward to d
 ```
 
-### Delegated Property (val/var <property name>: <Type> by <expression>):
+### <a name="#delegated-property"> Delegated Property (val/var <property name>: <Type> by <expression>): </a>
 These are properties that inherit getter and setter from another class/interface (Delegated Class) instade of it's own get() and set() method. The by keyword indicates that the property is controlled by the provided delegate instead of its own field (get(),set()).
 
 Signature: val/var <property name>: <Type> by <expression>
@@ -622,7 +631,7 @@ class DatabaseUser(userId: String) {
 }
 ```
 
-### Generics In Out, SAM (Single Abstract Method)
+### <a name="#generics-in-out"> Generics In Out, SAM (Single Abstract Method) </a>
 > SAM : Function "Single Abstruct Method"
 
 ```kotlin
@@ -645,7 +654,7 @@ fun main() {
 }
 ```
 
-### Coroutine, Suspend Functions (Asynchronous Tasks):
+### <a name="#coroutine-suspend-function"> Coroutine, Suspend Functions (Asynchronous Tasks): </a>
 A coroutine is an instance of suspendable computation. Coroutines can be thought of as light-weight threads, but there is a number of important differences that make their real-life usage very different from threads.
 
 
@@ -666,7 +675,7 @@ fun main() = runBlocking { // this: CoroutineScope
 // World!
 ```
 
-### delay() vs Thread.speep() :
+### <a name="#dely-vs-thread"> delay() vs Thread.speep() : </a>
 
 Delay is a suspend function that won't block the thread, it will only suspend that coroutine for the amount of time, but Thread is free to go service a different coroutine.
 
@@ -725,7 +734,7 @@ fun main() {
 // [My Thread] : 2nd launch: 3
 ```
 
-### Late-initialized (lateinit):
+### <a name="#late-init"> Late-initialized (lateinit): </a>
 To handle non-null properties/var that will be provided lately (through dependency injection, or in the setup method of a unit test), lateinit modifier can be used. lateint can be used on var properties declared inside the body of a class (not in the primary constructor, and only when the property does not have a custom getter or setter), as well as for top-level properties and local variables. The type of the property or variable must be non-null, and it must not be a primitive type.
 Docs : https://kotlinlang.org/docs/properties.html#checking-whether-a-lateinit-var-is-initialized
 
@@ -736,7 +745,7 @@ lateinit var subject: TestSubject // value is computed only on first access late
 Note: The lateinit keyword is a promise that the code will initialize the variable before using it. If not, app will crash for null.
 
 
-### Operator functions:
+### <a name="#operator-function"> Operator functions: </a>
 Operators are like +, -, /, * etc. Under the hood, expression a+b transform to a.plus(b) and same for other operators. To customize default behavour/functionality, we can override those using "operator fun <name>" signature.
 
 ```kotlin

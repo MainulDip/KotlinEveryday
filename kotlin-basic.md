@@ -3,9 +3,31 @@ It's a quick language tour to re-connect with most of the Kotlin language syntax
 Link: (oop-minimap-kotlin.md)[oop-minimap.kotlin.md]
 Link: (oop-tour-kotlin.md)[oop-tour-kotlin.md] 
 
+This markdow file provides mini docs for following topics:
+- [Variables and Types:](#variables-types)
+- [when block:](#when-block)
+- [Arithmetic Oparators:](#arithmetic-tasks)
+- [Check and Boolean](#check-boolean)
+- [String and Operations](#string)
+- [Conditionals](#conditionals)
+- [Default value and null safety](#default-value-null-safetly)
+- [List](#list)
+- [Loop](#loop)
+- [Defining Calling Functions](#def-callling-function)
+- [Extension Function](#extension-function)
+- [Anonymous Class](#anonymous-class)
+- [Exception Handling](#exception-handling)
+- [Lambda Function](#lambda-function)
+- [Lambda Type Declaration and Instantiation:](#lambda-type-instantiation)
+- [Generics ](#generics)
+- [Data Class](#data-class)
+- [Lambda without braces for member references:](#lambda-without-braces-member-references)
+- [with() Statement:](#with-statement)
+
+
 > Main.kt | kotlin program starts from this (like index.js/php). Also main() function in raw kotlin
 
-### Variables and Types:
+### <a name="variables-types"></a> Variables and Types:
 ```kotlin
 fun main() {
     println("Hello World")
@@ -49,7 +71,7 @@ fun main() {
 }
 ```
 
-### when block:
+### <a name="when-block"></a> when block:
 When Signature
 ```kotlin
 when (variable) {
@@ -88,7 +110,7 @@ fun main() {
 }
 ```
 
-### Arithmetic Oparators:
+### <a name="arithmetic-tasks"></a> Arithmetic Oparators:
 > Oparators for mathmetical operation like + | - | * | / | %
 ```kotlin
 val m = 3 * 4
@@ -101,7 +123,7 @@ val r = 10 % 3 // modulus or reminder operator
 println("The value of r after modulus operation is $r")
 ```
 
-### Check and Boolean
+### <a name="check-boolean"></a> Check and Boolean
 ```kotlin
 val amIAdult = true
 val amIProgrammer = true
@@ -110,13 +132,13 @@ println("Boolean operation for amIAdultProgrammer = $anIAdultProgrammer")
 //  Also || , == , != , !( val1 != val2 )
 ```
 
-### String and Operations
+### <a name="string"></a> String and Operations
 ```kotlin
 val string = "Use double quotes for string and single quote for Char (Single letter)"
 println(string.uppercase())
 ```
 
-### Conditionals
+### <a name="conditionals"></a> Conditionals
 ```kotlin
 //  Conditionals
     val conditionVal = 1 + 3
@@ -144,7 +166,7 @@ println(string.uppercase())
         }
     }
 ```
-### Default value and null safety
+### <a name="default-value-null-safetly"></a> Default value and null safety
 > ?: , ? , !!
 ```kotlin
 //  kotlin is null safety language
@@ -157,7 +179,7 @@ println(string.uppercase())
     println("userInput result is $inputResult")
 ```
 
-### List
+### <a name="list"></a> List
 ```kotlin
 //  Immutable List
     val shoppingList = listOf<String>("Hello", "World")
@@ -173,7 +195,7 @@ println(string.uppercase())
     println(mutableShoppingList.toString())
 ```
 
-### Loop
+### <a name="loop"></a> Loop
 > check: https://kotlinlang.org/docs/control-flow.html#for-loops
 ```kotlin
 // while loop
@@ -194,7 +216,7 @@ println(string.uppercase())
     }
 ```
 
-### Defining Calling Functions
+### <a name="def-callling-function"></a> Defining Calling Functions
 ```kotlin
 fun printNumber(){
     for(i in 1..10){
@@ -215,7 +237,7 @@ fun defaultArgVal(number: Int = 7): Boolean { return number % 2 == 0}
 println(defaultArgVal())
 ```kotlin
 
-### Extension Function
+### <a name="extension-function"></a> Extension Function
 ```kotlin
 // extension function: extend an already existed type
 // call extension function like object function
@@ -286,7 +308,7 @@ class Cat: Animal(name = "Cat") {
 ```
 
 
-### Anonymous Class
+### <a name="anonymous-class"></a> Anonymous Class
 ```kotlin
 //Anonymous class
     val bear = object : Animal(name = "Cow") {
@@ -297,7 +319,7 @@ class Cat: Animal(name = "Cat") {
     bear.makeSound()
 ```
 
-### Exception Handling
+### <a name="exception-handling"></a> Exception Handling
 ```kotlin
 val numberExceptionCheck = readLine() ?: "0"
 val parsedNumber = try {
@@ -308,7 +330,7 @@ val parsedNumber = try {
 println(parsedNumber)
 ```
 
-### Lambda Function
+### <a name="lambda-function"></a> Lambda Function
 Note: When calling there is no parenthses ()" before arrow notation "->" like defining
 > Lamda: Functions that are passed as parameter/args of another function
 
@@ -338,7 +360,7 @@ fun List<String>.customLamFunction(fn: (String) -> Boolean): Int {
 }
 ```
 
-### Lambda Type Declaration and Instantiation:
+### <a name="lambda-type-instantiation"></a> Lambda Type Declaration and Instantiation:
 ```kotlin
 // Lambda Declaration. Note: IntArray.fold() is a built in function in Kotlin
 inline fun <R> IntArray.fold(
@@ -362,7 +384,7 @@ items.fold(0, {
 ```
 
 
-### Generics 
+### <a name="generics"></a> Generics: 
 ```kotlin
 fun main() {
 
@@ -375,9 +397,7 @@ fun main() {
     println("Custom-Lambda Generic function return value is $count3")
 
     // apply generics without lambda
-    val count4 = lambdaList3.customLamGenericsFunction(fun (value): Boolean {
-        return value.length >= 4
-    })
+    // val count4 = lambdaList3.customLamGenericsFunction(fun (value: String): Boolean {  return value.length >= 4  })
     val count5 = lambdaList3.customLamGenericsFunction(fun (value): Boolean = value.length >= 4)
     println("Custom-Lambda Generic function return value is $count4")
     println("Custom-Lambda Generic function return value is $count5")
@@ -394,15 +414,13 @@ fun <T> List<T>.customLamGenericsFunction(value: (T) -> Boolean): Int {
     return counter
 }
 ```
+### <a name="data-class"></a> Data Class
 
-## Data Class
 > data class ClassName( val somedata: String, val isChecked: Boolean: false )
-
 
 Next: Kotlin OOP : [OOP Kotlin](oop-tour-kotlin.md) and [Advanced Kotlin](kotlin-advanced-lanuge.md)
 
-
-### Lambda without braces for member references:
+### <a name="lambda-without-braces-member-references"></a> Lambda without braces for member references:
 ":\:" creates a member reference or a class reference.
 ```kotlin
 fun main() {
@@ -416,7 +434,7 @@ fun main() {
     println(stringPlus("Hello, ", "world!")) // prints "Hello World"
 ```
 
-### with() Statement:
+### <a name="with-statement"></a> with() Statement:
 ```kotlin
 // Signature
 with (instanceName) {

@@ -1,7 +1,7 @@
 ## Kotlin Classes Mini Map
 Lets have a quick look of the class, open, nested, inner, inline, abstract, interface, data, sealed, enum Object and Companion Object
 ```kotlin
-// class and open class:
+// class and open class :
 // https://kotlinlang.org/docs/classes.html
 
 class Person { /*...*/ } // empty public constructor ( by default )

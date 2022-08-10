@@ -1,5 +1,5 @@
 ## Kotlin Language Tour:
-It's a quick language tour to re-connect with most of the Kotlin language syntaxes and features. When you work with multiple language everyday, it can be a good idea to have a personalized language tour. So lets start
+It's a quick language tour to re-connect with most of the Kotlin language syntaxes and features. When you work with multiple language everyday, it can be a good idea to have a personalized language tour. So lets start.......
 Link: (oop-minimap-kotlin.md)[oop-minimap.kotlin.md]
 Link: (oop-tour-kotlin.md)[oop-tour-kotlin.md] 
 

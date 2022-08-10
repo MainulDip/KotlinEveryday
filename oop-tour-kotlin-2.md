@@ -5,6 +5,7 @@ Continued From oop-tour-kotlin.md. This markdow file provides mini docs for foll
 - [Invariance, Covariance, Contravariance](#generic-variances)
 - [Generics Variance (in/out) or variance annotation](#generics-in-out)
 - [Star Projection (Generics/Foo<*>):](#star-projection)
+- [Delegated Properties (some-more):](#more-on-delegated-properties)
 
 ### <a name="companion-static"> java/kotlin Static Method || companion object: </a>
 ```java
@@ -169,3 +170,5 @@ fun fill(dest: Array<in String>, value: String) { ... }
 - Function<Int, *> means Function<Int, out Any?>.
 - Function<*, *> means Function<in Nothing, out Any?>.
 https://typealias.com/guides/star-projections-and-how-they-work/
+
+### <a name="more-on-delegated-properties"> Delegated Properties (some-more):

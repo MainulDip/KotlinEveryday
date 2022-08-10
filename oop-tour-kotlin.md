@@ -631,6 +631,8 @@ class DatabaseUser(userId: String) {
 }
 ```
 
+> More on delegated property: oop-tour-kotlin-2.md
+
 ### <a name="generics-in-out"> Generics In Out, SAM (Single Abstract Method) </a>
 > SAM : Function "Single Abstruct Method"
 

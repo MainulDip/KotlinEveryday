@@ -1,4 +1,19 @@
 ## Object Oriented Kotlin Tour:
+This markdow file provides mini docs for following topics:
+- Module, Package and Visibility Modifires:
+- val/var/"empty" in Constructor Parameter/s
+- Any, Unit, Nothing
+- Kotlin Abstract Class
+- Object | annonymous class, declarations: Singleton Pattern
+- Object with Interface
+- Companion objects (inside class): Java static method + some more
+- Inheritance
+- Interface
+- Data Class (Modeling)
+- Sealed Class and Interface:
+- Extension Function On Class/Object:
+
+
 For minimap see oop-minimap.kotlin.md here ()[oop-minimap.kotlin.md]
 
 ### Module, Package and Visibility Modifires:

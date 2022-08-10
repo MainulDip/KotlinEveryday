@@ -1,5 +1,10 @@
 ## Kotlin OOP Part 2 Overview:
-
+Continued From oop-tour-kotlin.md. This markdow file provides mini docs for following topics:
+- Companio Object | Static Method (Java)
+- Primary & secondary contructors
+- Invariance, Covariance, Contravariance
+- Generics Variance (in/out) or variance annotation
+- Star Projection (Generics/Foo<*>):
 ### java/kotlin Static Method || companion object:
 ```java
 class Foo {

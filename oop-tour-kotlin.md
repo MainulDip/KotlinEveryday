@@ -7,7 +7,7 @@ Module: It's the top-most level like App. More specifically a module is a set of
 Packages: These are collection of related classes, functions, and correspond roughly to directories. They allow to refer to classes (and top-level functions and fields) in the same package directly, while all other classes need to be imported or their fully-qualified names (package.package…class) used. They're set using the package        directive at the top of each file.
 
 Visibility Modifires:
-```kt
+```kotlin
 // file name: example.kt
 package foo
 
@@ -51,7 +51,7 @@ Docs: https://kotlinlang.org/docs/visibility-modifiers.html
 
 ### val/var/"empty" in Constructor Parameter/s:
 If val/var is specified in constructor papameter, in background it also declares property inside the class. If not it is simply a parameter passed to the primary constructor, where the parameters can be accessed within the init block or to initialize other properties.
-```kt
+```kotlin
 class User(val id: Long, email: String) {
     val hasEmail = email.isNotBlank()    //email can be accessed here
     init {
@@ -72,7 +72,7 @@ class User(val id: Long, email: String) {
 - Nothing:  Nothing is non-open (final class) which can't be extended and its constructor is also private, so we can't create the object form it. This is usually used to represent the return type of function which will always throw an exception. Also superclass of Nothing is Any.
 
 
-```kt
+```kotlin
 fun main() {
     nothing(7,4)
 }
@@ -86,7 +86,7 @@ fun nothing(x: Int, y: Int): Nothing {
 
 ### Kotlin Abstract Class
 Docs: https://kotlinlang.org/docs/classes.html#abstract-classes
-```kt
+```kotlin
 abstract class Polygon {
     abstract fun draw()
 }
@@ -116,7 +116,7 @@ abstract class WildShape : Polygon() {
 ### Object | annonymous class, declarations: Singleton Pattern
 Object expressions create objects of anonymous classes. anonymous classes are also called anonymous objects because they are defined by an expression, not a name.
 Docs: https://kotlinlang.org/docs/object-declarations.html
-```kt
+```kotlin
 fun main() {
     val helloWorld = object {
         val hello = "Hello"
@@ -147,7 +147,7 @@ object DefaultListener : MouseAdapter() {
 ```
 
 ### Object with Interface:
-```kt
+```kotlin
 interface Source<out T> {
     fun nextT(): T
 }
@@ -177,7 +177,7 @@ Note:
 
 - A companion object is initialized when the corresponding class is loaded (resolved) that matches the semantics of a Java static initializer.
 
-```kt
+```kotlin
 class MyClass {
     companion object Factory {
         fun create(): MyClass = MyClass()
@@ -216,12 +216,12 @@ val f: Factory<MyClass> = MyClass
 
 ### Inheritance
 Hit on https://kotlinlang.org/docs/inheritance.html
-```kt
+```kotlin
 class Example // Implicitly inherits from Any, and Any has three methods: equals(), hashCode(), and toString()
 ```
 > Classes are final by default, To make a class inheritable, mark it with the open keyword. 
 
-```kt
+```kotlin
 open class Base(p: Int){}
 class Derived(p: Int) : Base(p){}
 ```
@@ -231,7 +231,7 @@ Interfaces in Kotlin can contain declarations of abstract methods, as well as me
 
 Docs: https://kotlinlang.org/docs/interfaces.html
 
-```kt
+```kotlin
 fun main(){
     println(Child().prop)
     println(Child().foo())
@@ -282,7 +282,7 @@ Requirments
  - All primary constructor parameters need to be marked as val or var
  - Data classes cannot be abstract, open, sealed, or inner
 
-```kt
+```kotlin
 fun main() {
     val b = Bank("777", 12.34, 7)
 
@@ -310,7 +310,7 @@ Saled class is abstract by itself, it cannot be instantiated directly and can ha
 - Sealed class can hold "Instance Specefic Data", not only singleton
 Docs: https://kotlinlang.org/docs/sealed-classes.html
 
-```kt
+```kotlin
 sealed interface Error {}
 
 sealed class IOError(): Error { // direct subclass as it is also a sealed class
@@ -331,7 +331,7 @@ object RuntimeError : Error
 <summary>Sealed Class Best Practice</summary>
 
 1. Define Hierarchy Using Nested Class, its easy to read
-```kt
+```kotlin
 sealed class Gender {
     object Male: Gender()
     object Female: Gender()
@@ -339,7 +339,7 @@ sealed class Gender {
 ```
 
 2. Best first case could when block. Also use generic getter to receive IDE support at its best
-```kt
+```kotlin
 val getGender: String = when(person.gender){
     is Person.Gender.Male -> "Male"
     is Person.Gender.Female -> "Female"
@@ -355,7 +355,7 @@ val <T> T.exhaustive : T
 [Docs](https://kotlinlang.org/docs/extensions.html)
 Can extend a class with new functionality without having to inherit from the class. There are also extension properties that let you define new properties for existing classes.
 
-```kt
+```kotlin
 val list = mutableListOf(1, 2, 3)
 list.swap(0, 2) // 'this' inside 'swap()' will hold the value of 'list'
 
@@ -376,7 +376,7 @@ fun <T> MutableList<T>.swap(index1: Int, index2: Int) {
 <details>
 <summary>More on Extention function</summary>
 
-```kt
+```kotlin
 fun main(){
     class Example {
         fun printFunctionType() { println("Class method") }
@@ -415,7 +415,7 @@ fun main(){
 Each enum constant is an object. Enum constants are separated by commas.
 [Implementation Play](./OOPTour/src/main/kotlin/dataSealedEnumClasses/emumclass.kt)
 [Offficial Docs](https://kotlinlang.org/docs/enum-classes.html#anonymous-classes)
-```kt
+```kotlin
 enum class Color(val rgb: String) {
     RED("0xFF0000"),
     GREEN("0x00FF00"),
@@ -438,7 +438,7 @@ fun main() {
 ```
 
 Implementing interfaces in emum classes
-```kt
+```kotlin
 import java.util.function.BinaryOperator
 import java.util.function.IntBinaryOperator
 
@@ -468,7 +468,7 @@ Inline classes are a subset of value-based classes. They don't have an identity 
 Inline Class Docs: https://kotlinlang.org/docs/inline-classes.html
 Nested+Inner Classes docs: https://kotlinlang.org/docs/nested-classes.html
 
-```kt
+```kotlin
 @JvmInline
 value class Width(val width: Long)
 @JvmInline
@@ -495,7 +495,7 @@ fun main() {
 ```
 
 > Nested and Inner Class
-```kt
+```kotlin
 class Outer {
     private val bar: Int = 1
     class Nested {
@@ -522,7 +522,7 @@ NB: Here class Derived can implement an interface Base by delegating all of its 
 
 Note: More specificly class Derived is implementing Base's public member print() from BaseImpl's implementation. It's not possible using just interface.
 
-```kt
+```kotlin
 interface Base {
     fun print()
 }
@@ -547,7 +547,7 @@ These are properties that inherit getter and setter from another class/interface
 Signature: val/var <property name>: <Type> by <expression>
 The get() (and set()) that correspond to the property will be delegated to its (Class) getValue() and setValue() methods. Property delegates don’t have to implement an interface, but they have to provide a getValue() function (and setValue() for vars).
 
-```kt
+```kotlin
 import kotlin.reflect.KProperty
 
 class Delegate {
@@ -584,7 +584,7 @@ See more in action inside OOPTour's delegate package
 
 > Concept of delegated property with DatabaseDelegate class
 
-```kt
+```kotlin
 class DatabaseDelegate<in R, T>(readQuery: String, writeQuery: String, id: Any) : ReadWriteDelegate<R, T> {
     fun getValue(thisRef: R, property: KProperty<*>): T {
         return queryForValue(readQuery, mapOf("id" to id))
@@ -610,7 +610,7 @@ class DatabaseUser(userId: String) {
 ### Generics In Out, SAM (Single Abstract Method)
 > SAM : Function "Single Abstruct Method"
 
-```kt
+```kotlin
 fun interface IntPredicate {
    fun accept(i: Int): Boolean
 }
@@ -634,7 +634,7 @@ fun main() {
 A coroutine is an instance of suspendable computation. Coroutines can be thought of as light-weight threads, but there is a number of important differences that make their real-life usage very different from threads.
 
 
-```kt
+```kotlin
 import kotlinx.coroutines.*
 
 
@@ -660,7 +660,7 @@ Thread.sleep() will block the thread and remain blocked until seeping time in th
 Note: Suspending a thread means that thread will "wait" doing something else in the meantime if necessary. Blocking a thread means that thread will wait doing nothing no matter what.
 
 Link: https://stackoverflow.com/questions/61345712/what-is-the-difference-between-delay-and-thread-sleep-in-kotlin
-```kt
+```kotlin
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.newSingleThreadContext
 import kotlinx.coroutines.runBlocking
@@ -714,7 +714,7 @@ fun main() {
 To handle non-null properties/var that will be provided lately (through dependency injection, or in the setup method of a unit test), lateinit modifier can be used. lateint can be used on var properties declared inside the body of a class (not in the primary constructor, and only when the property does not have a custom getter or setter), as well as for top-level properties and local variables. The type of the property or variable must be non-null, and it must not be a primitive type.
 Docs : https://kotlinlang.org/docs/properties.html#checking-whether-a-lateinit-var-is-initialized
 
-```kt
+```kotlin
 lateinit var subject: TestSubject // value is computed only on first access later, not here when it is initialized
 ```
 
@@ -724,7 +724,7 @@ Note: The lateinit keyword is a promise that the code will initialize the variab
 ### Operator functions:
 Operators are like +, -, /, * etc. Under the hood, expression a+b transform to a.plus(b) and same for other operators. To customize default behavour/functionality, we can override those using "operator fun <name>" signature.
 
-```kt
+```kotlin
 fun main(args: Array<String>) {
     val cm1 = CustomMath(3, -8) // first CustomMath object
     val cm2 = CustomMath(4, 9) // second CustomMath object

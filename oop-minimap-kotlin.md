@@ -1,6 +1,6 @@
 ## Kotlin Classes Mini Map
 Lets have a quick look of the class, open, nested, inner, inline, abstract, interface, data, sealed, enum Object and Companion Object
-```kt
+```kotlin
 // class and open class :
 // https://kotlinlang.org/docs/classes.html
 
@@ -22,7 +22,7 @@ class DontCreateMe private constructor () { /*...*/ } // stop public contructor 
 ```
 
 ### open class and method/s, abstract inheritance, primary/secondary constructor, init block: 
-```kt
+```kotlin
 open class Polygon {
     open fun draw() { // overriding is optional, not required
         println("Draw Method Of the open Polygon class")
@@ -89,7 +89,7 @@ fun main() {
 ```
 
 ### Abstract Class With Non-Abstract Property (No instantiation allowed):
-```kt
+```kotlin
 //abstract class
 abstract class Employee(val name: String,val experience: Int) {  // Non-Abstract Properties
     // Abstract Property (Must be overridden by Subclasses)
@@ -134,7 +134,7 @@ Interfaces cannot have constructors in Kotlin. And it cannot have non-abstract m
 #### Note: If there is implementation of method or accessors in the interface, overriding is optional in derived/inherited class/interface. So for non-implemented properties and methods, it is required to override
 
 #### Note: For inhering interface, we can not use parenthesis as interface han no constructor
-```kt
+```kotlin
 interface Named {
     val name: String
     val AccessorOfName: String get() = "AccessorOfName = $name" // 
@@ -179,7 +179,7 @@ fun main() {
 ```
 
 
-```kt
+```kotlin
 
 // nested
 
@@ -204,7 +204,7 @@ fun main() {
 
 ### Primary & secondary contructors:
 Note: if class has primary constructor, Secondary Constructor needs to delegate to the primary constructor. The compiler select which constructor to use depending on the (number) supplied parameters.
-```kt
+```kotlin
 class Constructors private constructor() {
     init {
         println("Init block")
@@ -225,7 +225,7 @@ fun main() {
 // Constructor 1
 ```
 
-```kt
+```kotlin
 fun main() {    
     val myObj = Student("First", 15, 77)
     myObj.printMsg()

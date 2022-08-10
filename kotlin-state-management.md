@@ -2,7 +2,7 @@
 
 ### Singleton Pattern:
 Kotlin uses object based storage pattern to act like Singleton in Java. Kotlin object can’t have any constructor, but init blocks are allowed if some initialization code is needed.
-```kt
+```kotlin
 object SomeSingleton {
     init {
         println("init complete")
@@ -26,7 +26,7 @@ public final class SomeSingleton {
 ```
 > Some More Kotlin SingleTon
 
-```kt
+```kotlin
 fun main() {
     val srcObj = object : Source<Int> {
         var counter = 0
@@ -96,7 +96,7 @@ object DemoObject : Source<Int> {
 }
 ```
 ### Android State Management:
-```kt
+```kotlin
 @Composable
 fun Counter(){
     var counter by remember { // delegations, delegated property

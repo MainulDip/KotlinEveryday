@@ -172,3 +172,47 @@ fun fill(dest: Array<in String>, value: String) { ... }
 https://typealias.com/guides/star-projections-and-how-they-work/
 
 ### <a name="more-on-delegated-properties"> Delegated Properties (some-more):
+
+- Lazy property: 
+lazy() takes a lambda and returns an instance of Lazy<T>, which can serve as a delegate for implementing a lazy property. The first call to get() executes the lambda passed to lazy() and remembers the result. Subsequent calls to get() simply return the remembered result.
+```kotlin
+fun main() {
+    println(lazyValue) // first call will print "Hello" and "Again"
+    println(lazyValue) // second call will print only remembered get value which is -> "Again" 
+}
+
+// val will make it immutable. for var, custom setValue needs to be created.
+val lazyValue: String by lazy {
+    println("Hello")
+    "Again"
+}
+
+// Print These
+// Hello
+// Again
+// Again
+```
+If we call setter, even then it will call only the remembered value (getValu()), not anythig else
+```kotlin
+fun main() {
+    println(lazyValue)
+    println(lazyValue)
+
+    println()
+
+    lazyValue = "Something"
+    println(lazyValue) // will only print "Something" as remembered (getValue())
+}
+
+var lazyValue: String = run {
+    println("Hello")
+    "Again"
+}
+
+// Print These
+// Hello
+// Again
+// Again
+
+// Something
+```

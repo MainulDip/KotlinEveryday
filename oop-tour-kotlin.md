@@ -26,7 +26,7 @@ This markdow file provides mini docs for following topics:
 For minimap see oop-minimap.kotlin.md here ()[oop-minimap.kotlin.md]
 
 ### <a name="mpvm"> Module, Package and Visibility Modifires: </a>
-Module: It's the top-most level like App. More specifically a module is a set of Kotlin files compiled together, like an IntelliJ IDEA module or a maven project or a gradle source set. See (Docs)[https://kotlinlang.org/docs/visibility-modifiers.html#modules]
+Module: It's the top-most level like App. More specifically a module is a set of Kotlin files compiled together, like an IntelliJ IDEA module or a maven project or a gradle source set. See (Docs)[https://kotlinlang.org/docs/visibility-modifiers.html#modules] .
 
 Packages: These are collection of related classes, functions, and correspond roughly to directories. They allow to refer to classes (and top-level functions and fields) in the same package directly, while all other classes need to be imported or their fully-qualified names (package.package…class) used. They're set using the package        directive at the top of each file.
 

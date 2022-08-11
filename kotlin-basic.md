@@ -331,7 +331,7 @@ println(parsedNumber)
 ```
 
 ### <a name="lambda-function"></a> Lambda Function
-Note: When calling there is no parenthses ()" before arrow notation "->" like defining
+Note: When calling there is no parenthses ()" before arrow notation "->" like defining. Also no return statement. return@funname is allowed.
 > Lamda: Functions that are passed as parameter/args of another function
 
 ```kotlin
@@ -343,6 +343,7 @@ fun main(){
         value.length == 6
     }
     println("Custom-Lambda function return value is $count2")
+    // No "return" statement is allowed. only return@func (return@customLambdaFunction in this case) is allowed.the last line of the lambda is the automatic return statement
 }
 
 fun List<String>.customLamFunction(fn: (String) -> Boolean): Int {

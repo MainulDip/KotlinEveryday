@@ -1,4 +1,4 @@
-package ScopedFunctions
+package ScopeFunctions
 
 data class Person(var name: String, var age: Int, var city: String) {
     fun moveTo(newCity: String) { city = newCity }
@@ -7,7 +7,7 @@ data class Person(var name: String, var age: Int, var city: String) {
 
 
 fun main() {
-    // using Scoped Function "let"
+    // using Scope Function "let"
     Person("Alice", 20, "Amsterdam").let {
         println(it)
         it.moveTo("London")
@@ -17,7 +17,7 @@ fun main() {
 
     println()
 
-    // without Scoped Function "let"
+    // without Scope Function "let"
     val alice = Person("John", 21, "Canada")
     println(alice)
     alice.moveTo("Tokyo")

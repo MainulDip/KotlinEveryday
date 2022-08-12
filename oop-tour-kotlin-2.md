@@ -218,8 +218,8 @@ var lazyValue: String = run {
 // Something
 ```
 
-### Scoped Functions (let, run, with, apply, and also):
-The purpose of Scoped Functions are to execute a block of code within the context of an object.
+### Scope Functions (let, run, with, apply, and also):
+The purpose of Scope Functions are to execute a block of code within the context of an object. It do not introduce any new technical capabilities, but make the code more concise and readable.
 
 Docs: https://kotlinlang.org/docs/scope-functions.html
 
@@ -230,7 +230,7 @@ data class Person(var name: String, var age: Int, var city: String) {
 }
 
 fun main() {
-	// using Scoped Function "let"
+	// using Scope Function "let"
     Person("Alice", 20, "Amsterdam").let {
         println(it)
         it.moveTo("London")
@@ -240,12 +240,36 @@ fun main() {
     
     println()
     
-    // without Scoped Function "let"
+    // without Scope Function "let"
     val alice = Person("John", 21, "Canada")
     println(alice)
     alice.moveTo("Tokyo")
     alice.incrementAge()
     println(alice)
-
 }
+```
+> Scope Functions Mini Map:
+
+|Function|Object reference|Return value|Is extension function|
+|---|---|---|---|
+|`let`|`it`|Lambda result|Yes|
+|`run`|`this`|Lambda result|Yes|
+|`run`|-|Lambda result|No: called without the context object|
+|`with`|`this`|Lambda result|No: takes the context object as an argument.|
+|`apply`|`this`|Context object|Yes|
+|`also`|`it`|Context object|Yes|
+
+> short guide for choosing scope functions:
+
+* Executing a lambda on non-null objects: `let`
+* Introducing an expression as a variable in local scope: `let`
+* Object configuration: `apply`
+* Object configuration and computing the result: `run`
+* Running statements where an expression is required: non-extension `run`
+* Additional effects: `also`
+* Grouping function calls on an object: `with`
+
+- let:
+```kt
+
 ```

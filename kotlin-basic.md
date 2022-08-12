@@ -13,6 +13,7 @@ This markdow file provides mini docs for following topics:
 - [Default value and null safety](#default-value-null-safetly)
 - [List](#list)
 - [Loop](#loop)
+- [Map and Filter](#mapfilter)
 - [Defining Calling Functions](#def-callling-function)
 - [Extension Function](#extension-function)
 - [Anonymous Class](#anonymous-class)
@@ -214,6 +215,16 @@ println(string.uppercase())
     for ( number in 1..100){
         println("Outputting range in for loop wher number = $number")
     }
+```
+
+### <a name="mapfilter"></a> Map and Filter (Higher Order Functions):
+```kotlin
+fun main() {
+    val numbers = mutableListOf("one", "two", "three", "four", "five")
+    println(numbers.map{it.length}) // [3, 3, 5, 4, 4]
+    println(numbers.map{it.length}.filter{it > 3}) // [5, 4, 4]
+    println(numbers.filter{it != "five"}) // [one, two, three, four]
+}
 ```
 
 ### <a name="def-callling-function"></a> Defining Calling Functions

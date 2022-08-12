@@ -1,23 +1,22 @@
-package delegation
+import kotlin.properties.ReadWriteProperty
+import kotlin.reflect.KProperty
 
 fun main() {
-    println(lazyValue)
-    println(lazyValue)
+    println(lazyValue) // first call will print "Hello" and "Again"
+    println(lazyValue) // second call will print only remembered get value which is -> "Again"
 
     println()
-
-    lazyValue = "Something"
-    println(lazyValue) // will only print "Something" as remembered (getValue())
+    lazyValue = "something else"
+    println(lazyValue)
 }
 
-var lazyValue: String = run {
+// val will make it immutable. for var, custom setValue needs to be created.
+var lazyValue: String by lazy {
     println("Hello")
+
     "Again"
 }
 
-// Print These
-// Hello
-// Again
-// Again
-
-// Something
+private operator fun <T> Lazy<T>.setValue(t: T?, property: KProperty<T?>, t1: T) {
+//    TODO("Not yet implemented")
+}

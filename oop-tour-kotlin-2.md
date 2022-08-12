@@ -192,7 +192,8 @@ val lazyValue: String by lazy {
 // Again
 // Again
 ```
-If we call setter, even then it will call only the remembered value (getValu()), not anythig else
+If we call setter, it will call only the remembered value (getValu()), not anythig else, "println("Hello")" in this case
+Also see Scoped Functions at https://kotlinlang.org/docs/scope-functions.html
 ```kotlin
 fun main() {
     println(lazyValue)
@@ -205,7 +206,7 @@ fun main() {
 }
 
 var lazyValue: String = run {
-    println("Hello")
+    println("Hello") // this will be called only once
     "Again"
 }
 
@@ -215,4 +216,36 @@ var lazyValue: String = run {
 // Again
 
 // Something
+```
+
+### Scoped Functions (let, run, with, apply, and also):
+The purpose of Scoped Functions are to execute a block of code within the context of an object.
+
+Docs: https://kotlinlang.org/docs/scope-functions.html
+
+```kotlin
+data class Person(var name: String, var age: Int, var city: String) {
+    fun moveTo(newCity: String) { city = newCity }
+    fun incrementAge() { age++ }
+}
+
+fun main() {
+	// using Scoped Function "let"
+    Person("Alice", 20, "Amsterdam").let {
+        println(it)
+        it.moveTo("London")
+        it.incrementAge()
+        println(it)
+    }
+    
+    println()
+    
+    // without Scoped Function "let"
+    val alice = Person("John", 21, "Canada")
+    println(alice)
+    alice.moveTo("Tokyo")
+    alice.incrementAge()
+    println(alice)
+
+}
 ```

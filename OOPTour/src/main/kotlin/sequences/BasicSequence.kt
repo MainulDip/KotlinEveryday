@@ -2,23 +2,22 @@ package sequences
 
 fun main() {
 
-    val hexNumberRegex = run {
-        val digits = "0-9"
-        val hexDigits = "A-Fa-f"
-        val xToz = "X-Zx-z"
-        val sign = "+-"
+    // basic sequence
+    val numbers = listOf("one", "two", "three", "four")
+    val numbersSequence = numbers.asSequence()
+    println(numbersSequence.toList()) // [one, two, three, four]
 
-        // Regex("[$sign]?[$digits$hexDigits]+")
-        // Regex("[+-]?[0-9A-Fa-f]+") // same
-        Regex("[$sign]?[$digits$hexDigits$xToz]+")
-    }
+    // infinite sequence
+    // if not blocked by else, sequence is infinite
+    val oddNumbers = generateSequence(1) { it + 2 } // `it` is the previous element
+    val s5 = oddNumbers.take(5).toList()
+    println(oddNumbers.take(5).toList()) // [1, 3, 5, 7, 9]
+    println(s5.count()) // 5
+    //println(oddNumbers.count()) // error: the sequence is infinite
 
-    for (match in hexNumberRegex.findAll("+123 -FFFF !%*& 88 XYZ")) {
-        println(match.value)
-    }
+    //finite sequence
+    val oddNumbersLessThan10 = generateSequence(1) { if (it < 8) it + 2 else null }
+    println(oddNumbersLessThan10.count()) // 5
+    println(oddNumbersLessThan10) // kotlin.sequences.GeneratorSequence@.......
 
-    // Regex().findAll("$string") will return
-    println(hexNumberRegex.findAll("+123 -FFFF !%*& 88 XYZ"))
-    println(hexNumberRegex.findAll("+123 -FFFF !%*& 88 XYZ").joinToString())
-    println(hexNumberRegex.findAll("+123 -FFFF !%*& 88 XYZ").last().value)
 }

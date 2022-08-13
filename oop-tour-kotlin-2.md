@@ -387,6 +387,20 @@ fun main() {
 }
 ```
 
+- apply: The common case for apply is the object configuration. Such calls can be read as “apply the following assignments to the object.” The context object is available as a receiver (this). The return value is the configuired object itself.
+```kotlin
+data class Person(var name: String, var age: Int = 0, var city: String = "")
+
+fun main() {
+
+    val adam = Person("Adam").apply {
+        age = 32
+        city = "London"        
+    }
+    println(adam)
+
+}
+```
 ### <a name="regexsequence"></a> Regex Sequence:
 ```kotlin
 fun main() {

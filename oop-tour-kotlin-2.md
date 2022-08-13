@@ -392,15 +392,31 @@ fun main() {
 data class Person(var name: String, var age: Int = 0, var city: String = "")
 
 fun main() {
-
     val adam = Person("Adam").apply {
         age = 32
         city = "London"        
     }
     println(adam)
-
 }
 ```
+
+- also: Reat it as “and also do the following with the object.” The context object is available as an argument (it). The return value is the object itself.
+```kotlin
+fun main(){
+    val numbers = mutableListOf("one", "two", "three")
+    numbers
+        .also {
+            println("The list elements before adding new one: $it")
+            it.add("four") // add() will return boolean, but "also" will return the object
+        }.also {
+            println("After adding the number object is = $it")
+        }
+    // The list elements before adding new one: [one, two, three]
+    // After adding the number object is = [one, two, three, four]
+}
+```
+
+- takeIf and takeUnless: These functions provide embed checks of the object state in call chains. When called on an object with a predicate provided, takeIf returns this object if it matches the predicate. Otherwise, it returns null. So, takeIf is a filtering function for a single object. In turn, takeUnless returns the object if it doesn't match the predicate and null if it does. The object is available as a lambda argument (it).
 ### <a name="regexsequence"></a> Regex Sequence:
 ```kotlin
 fun main() {

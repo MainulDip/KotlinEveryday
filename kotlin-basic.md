@@ -26,7 +26,7 @@ This markdow file provides mini docs for following topics:
 - [with() Statement:](#with-statement)
 
 
-> Main.kt | kotlin program starts from this (like index.js/php). Also main() function in raw kotlin
+> Main.kt | kotlin program starts from this (like index.js/php). Also main() function in raw kotlin.
 
 ### <a name="variables-types"></a> Variables and Types:
 ```kotlin

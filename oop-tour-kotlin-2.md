@@ -311,15 +311,71 @@ fun main() {
     }
 }
 ```
-- with:
-```kt
+- with: used for grouping function call on an objects. with's return type is same as lambda.
+```kotlin
 fun main() {
 
     val numbers = mutableListOf("one", "two", "three")
-    with(numbers) {
-        println("'with' is called with argument $this")
-        println("It contains $size elements")
+    val returnedValue = with(numbers) {
+        println("'with' is called with argument $this") // 'with' is called with argument [one, two, three]
+        println("It contains $size elements") // It contains 3 elements
     }
+    // storing/returning calculated value inside helper object "val firstAndLast"
+    val firstAndLast = with(numbers) {
+        "This string will be returned : " +
+        "The first element is ${first()}," +
+                " the last element is ${this.last()}"
+    }
+    println(firstAndLast) // This string will be returned : The first element is one, the last element is three
+}
+```
+
+- run: run does the same as with but invokes as let - as an extension function of the context object (object.run{}). run can also be used without extension function.
+```kotlin
+class MultiportService(var url: String, var port: Int) {
+    fun prepareRequest(): String = "Default request"
+    fun query(request: String): String = "Result for query '$request'"
+}
+
+fun main() {
+
+    val service = MultiportService("https://example.com", 80)
+
+    val result = service.run {
+        port = 8080 // also "this.port = 8080"
+        query(prepareRequest() + " to port $port")
+    }
+    
+    // the same code written with let() function:
+    val letResult = service.let {
+        it.port = 8080
+        it.query(it.prepareRequest() + " to port ${it.port}")
+    }
+
+    println(result)
+    println(letResult)
+}
+```
+
+run without extension function:
+```kotlin
+
+```
+
+### <a name="kotlinsequence"></a> Sequences in Kotlin:
+```kotlin
+fun main() {
+
+    val oddNumbers = generateSequence(1) { it + 2 } // `it` is the previous element
+    val s5 = oddNumbers.take(5).toList()
+    println(oddNumbers.take(5).toList()) // [1, 3, 5, 7, 9]
+    println(s5.count()) // 5
+    //println(oddNumbers.count()) // error: the sequence is infinite
+    
+    // to make finite sequence
+    val oddNumbersLessThan10 = generateSequence(1) { if (it < 8) it + 2 else null }
+    println(oddNumbersLessThan10.count()) // 5
+    println(oddNumbersLessThan10) // kotlin.sequences.GeneratorSequence@.......
 
 }
 ```

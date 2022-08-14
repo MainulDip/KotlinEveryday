@@ -493,8 +493,28 @@ fun main() {
 }
 ```
 
+### Inline Functions (lambda arguments):
+https://www.baeldung.com/kotlin/crossinline-vs-noinline
+Inline functions in Kotlin help us to avoid extra memory allocations and unnecessary method invocations for each lambda expression.
+
+Using higher-order functions imposes certain runtime penalties: each function is an object, and it captures a closure. A closure is a scope of variables that can be accessed in the body of the function. Memory allocations (both for function objects and classes) and virtual calls introduce runtime overhead.
+
+But it appears that in many cases this kind of overhead can be eliminated by inlining the lambda expressions.
+
+```kotlin
+// makes all lambda parameters inline
+inline fun <T> lock(lock: Lock, body: () -> T): T { ... }
+
+// makes only first lambda inline
+inline fun foo(inlined: () -> Unit, noinline notInlined: () -> Unit) { ... }
+```
+
+
+docs: https://kotlinlang.org/docs/inline-functions.html
+
 ### Tasks:
 - complete delegated properties
 - complete scope function
 - more on scope function and docs link
 - more on regex and docs link
+- inline functions and check the JVMs compiled code

@@ -1,4 +1,5 @@
 package inlinenestedinner
+// Inline Nested Inner
 class Outer {
     private val bar: Int = 1
     class Nested {
@@ -10,7 +11,6 @@ class Outer {
         fun foo() = bar // accessible in Inner Class
     }
 }
-
 fun main() {
     val n = Outer.Nested().foo() // == 2
     val i = Outer().Inner().foo() // == 1

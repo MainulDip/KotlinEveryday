@@ -516,6 +516,60 @@ inline fun <T> lock(lock: Lock, body: () -> T): T { ... }
 inline fun foo(inlined: () -> Unit, noinline notInlined: () -> Unit) { ... }
 ```
 
+Non-inline vs Inline in JVM compiler
+```kotlin
+fun higherfunc( str : String, funCall : (String) -> Unit) {
+    funCall(str)
+}
+
+fun main(args: Array<String>) {
+    higherfunc("Testing effect of non-inline and inline functions compiled JVM code"){
+        println(it)
+    }
+}
+
+// To Java Compiled
+public final class InlineFunctionsBasicKt {
+   public static final void higherfunc(@NotNull String str, @NotNull Function1 funCall) {
+      Intrinsics.checkNotNullParameter(str, "str");
+      Intrinsics.checkNotNullParameter(funCall, "funCall");
+      funCall.invoke(str);
+   }
+
+   public static final void main(@NotNull String[] args) {
+      Intrinsics.checkNotNullParameter(args, "args");
+      higherfunc("Testing effect of non-inline and inline functions compiled JVM code", (Function1)null.INSTANCE);
+
+      // Note: Here Compiler is allocating more mamory by creating function's object, closure class and virtual calls behind the scene. But For simple cases we just need the output/return of that higherOrderFunction call only. Which is done in kotlin by adding inline before the function declaration.
+   }
+}
+
+// making kotlin inline function
+inline fun higherfunc( str : String, funCall : (String) -> Unit) {
+    funCall(str)
+}
+
+// Inline Function To Compiled Java
+public final class InlineFunctionsBasicKt {
+   public static final void higherfunc(@NotNull String str, @NotNull Function1 funCall) {
+      int $i$f$higherfunc = 0;
+      Intrinsics.checkNotNullParameter(str, "str");
+      Intrinsics.checkNotNullParameter(funCall, "funCall");
+      funCall.invoke(str);
+   }
+
+   public static final void main(@NotNull String[] args) {
+      Intrinsics.checkNotNullParameter(args, "args");
+      String str$iv = "Testing effect of non-inline and inline functions compiled JVM code";
+      int $i$f$higherfunc = false;
+      int var4 = false;
+      System.out.println(str$iv);
+
+      // Note: After making kotlin inline function, the compiler is just calculating the output/return of that function on the fly without allocating function's objectc, closour classes and virtual calls in behind. For simple task it's more optimized.
+   }
+}
+```
+
 
 docs: https://kotlinlang.org/docs/inline-functions.html
 

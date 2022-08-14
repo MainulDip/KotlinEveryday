@@ -44,7 +44,6 @@ public var bar: Int = 5 // property is visible everywhere
 
 internal val baz = 6    // visible inside the same module
 
-
 open class Outer {
     private val a = 1
     protected open val b = 2

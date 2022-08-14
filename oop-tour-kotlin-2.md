@@ -218,6 +218,31 @@ var lazyValue: String = run {
 // Something
 ```
 
+- Delegates.observable(<initial-value>) { prop, old, new -> .......}
+```kotlin
+import kotlin.properties.Delegates
+
+class User {
+    var name: String by Delegates.observable("<no name>") {
+            prop, old, new ->
+        println("prop : ${prop} || old value: $old || new value : $new")
+    }
+}
+
+fun main() {
+    val user = User()
+    println(user.name)
+    user.name = "first"
+    user.name = "second"
+    user.name = "third"
+}
+
+// <no name>
+// prop : var delegation.User.name: kotlin.String || old value: <no name> || new value : first
+// prop : var delegation.User.name: kotlin.String || old value: first || new value : second
+// prop : var delegation.User.name: kotlin.String || old value: second || new value : third
+```
+
 ### Scope Functions (let, run, with, apply, and also):
 The purpose of Scope Functions are to execute a block of code within the context of an object. It do not introduce any new technical capabilities, but make the code more concise and readable.
 

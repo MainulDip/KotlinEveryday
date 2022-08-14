@@ -219,6 +219,13 @@ var lazyValue: String = run {
 ```
 
 - Delegates.observable(<initial-value>) { prop, old, new -> .......}
+signature :
+```kotlin
+inline fun <T> observable(
+    initialValue: T,
+    crossinline onChange: (property: KProperty<*>, oldValue: T, newValue: T) -> Unit
+): ReadWriteProperty<Any?, T>
+```
 ```kotlin
 import kotlin.properties.Delegates
 

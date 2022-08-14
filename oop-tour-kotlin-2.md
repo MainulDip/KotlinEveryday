@@ -570,6 +570,8 @@ public final class InlineFunctionsBasicKt {
 }
 ```
 
+- crossinline, return and blocking return statement:
+If function is declared inline, the parameterised lambda blocks are allowed to provide "return" statement. But if crossinline is declared before the parameter of the lambda functions, it will behave like normal lambda block where "return" is not normally allowed.
 
 docs: https://kotlinlang.org/docs/inline-functions.html
 

@@ -590,7 +590,7 @@ fun foo(): String {
 
 fun baz(): String {
     return crossInlineFunction {
-//        return "Hello" // 'return' is not allowed here because
+//        return "Hello" // 'return' is not allowed here because of the crossinline declaration
         "Hello From crossInline declaration"
     }
 }
@@ -602,6 +602,15 @@ fun main() {
 ```
 
 docs: https://kotlinlang.org/docs/inline-functions.html
+
+- Reified type parameters:
+To access a type passed as a parameter, instade of using reflection to check whether a node has a certain type, simply a type to this function can be passed by declaring "<reified T>"
+```kotlin
+inline fun <reified T> functionName(): T? {
+    .......
+    return p as T?
+}
+```
 
 ### Tasks:
 - complete delegated properties

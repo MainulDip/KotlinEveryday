@@ -16,7 +16,7 @@ fun foo(): String {
 
 fun baz(): String {
     return crossInlineFunction {
-//        return "Hello" // 'return' is not allowed here
+//        return "Hello" // 'return' is not allowed here because of the crossinline declaration
         "Hello From crossInline declaration"
     }
 }

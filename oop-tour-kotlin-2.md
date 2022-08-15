@@ -618,3 +618,4 @@ inline fun <reified T> functionName(): T? {
 - more on scope function and docs link
 - more on regex and docs link
 - inline functions and check the JVMs compiled code
+- more on kotlin reified : https://medium.com/kotlin-thursdays/introduction-to-kotlin-generics-reified-generic-parameters-7643f53ba513

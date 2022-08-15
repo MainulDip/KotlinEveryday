@@ -1,20 +1,27 @@
 package inlinefunctions
 
-fun main(args: Array<String>){
-    println("Main function starts")
-    inlinedfunc({
-        println("Lambda expression 1")
-//        return // It gives compiler error because of the "crossinline" declration
-        },
-        { println("Lambda expression 2")
-            "Hello World"
-        }
-    )
-
-    println("Main function ends")
+inline fun inlineFunction(block: () -> String): String {
+    return block()
 }
 
-inline fun inlinedfunc( crossinline lmbd1: () -> Unit, lmbd2: () -> String  ) {
-    lmbd1()
-    lmbd2()
+inline fun crossInlineFunction(crossinline block: () -> String): String {
+    return block()
+}
+
+fun foo(): String {
+    return inlineFunction {
+        return "Hello" // return is allowed here because of not declaring "crossinline"
+    }
+}
+
+fun baz(): String {
+    return crossInlineFunction {
+//        return "Hello" // 'return' is not allowed here
+        "Hello From crossInline declaration"
+    }
+}
+
+fun main() {
+    println(foo())
+    println(baz())
 }

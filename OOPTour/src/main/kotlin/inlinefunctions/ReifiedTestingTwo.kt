@@ -1,7 +1,6 @@
 package inlinefunctions
 
 import java.util.*
-import kotlin.random.Random
 
 sealed class Mammal(val name: String) {
     open fun relief() {}
@@ -39,6 +38,20 @@ inline fun <reified T : Mammal> printAnimalResultFiltered(
     return list
 }
 
+inline fun <T> printAnimalResultFilteredSecond(
+    list: List<T>,
+    factCheck: T.() -> Int
+): List<T> {
+    if (list.isNotEmpty()) {
+        list
+            .forEach {
+//                println("${it.name} - ${it.javaClass.name} - ${it.factCheck()}")
+                println("$it")
+            }
+    }
+    return list
+}
+
 fun main() {
     val crewCrewCrew = listOf(
         Sloth("Jerry", false, 15),
@@ -47,5 +60,9 @@ fun main() {
     )
 
     println("\nSpecies count with list as param:")
+//    printAnimalResultFiltered<Sloth>(crewCrewCrew, Mammal::knownSpeciesCount)
     printAnimalResultFiltered<Sloth>(crewCrewCrew, Mammal::knownSpeciesCount)
+    println()
+
+    printAnimalResultFilteredSecond<Mammal>(crewCrewCrew, Mammal::knownSpeciesCount)
 }

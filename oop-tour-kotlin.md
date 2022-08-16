@@ -91,7 +91,7 @@ class User(val id: Long, email: String) {
 ### <a name="any-unit-nothing"> Any, Unit, Nothing: </a>
 - Any: Any is by default the superclass of all the classes and has 3 functions: equals, hashCode and toString
 
-- Unit: Unit class is a singleton class, we can't extend or even create an object of it. Same as java void type. The superclass of Unit is Any
+- Unit: Unit class is a singleton class, we can't extend or even create an object of it. Same as java void type. The superclass of Unit is Any.
 
 - Nothing:  Nothing is non-open (final class) which can't be extended and its constructor is also private, so we can't create the object form it. This is usually used to represent the return type of function which will always throw an exception. Also superclass of Nothing is Any.
 

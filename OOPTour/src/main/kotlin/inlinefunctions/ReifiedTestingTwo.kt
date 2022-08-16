@@ -1,10 +1,6 @@
 package inlinefunctions
 
-import java.util.*
-
-sealed class Mammal(val name: String) {
-    open fun relief() {}
-}
+sealed class Mammal(val name: String)
 
 data class Sloth(
     val slothName: String,
@@ -25,28 +21,15 @@ fun Mammal.knownSpeciesCount(): Int {
 }
 
 // reified
+// here "<reified T : Mammal>" is only necessary for the "list.filterIsInstance<T>()...." block to filter based on provided type
 inline fun <reified T : Mammal> printAnimalResultFiltered(
     list: List<Mammal>,
     factCheck: Mammal.() -> Int
 ): List<Mammal> {
     if (list.isNotEmpty()) {
-        list.filterIsInstance<T>()
+        list.filterIsInstance<T>() // To filter based on supplied type, we need to apply Generics T with <reified T : Mammal>
             .forEach {
                 println("${it.javaClass.name} - ${it.factCheck()}")
-            }
-    }
-    return list
-}
-
-inline fun <T> printAnimalResultFilteredSecond(
-    list: List<T>,
-    factCheck: T.() -> Int
-): List<T> {
-    if (list.isNotEmpty()) {
-        list
-            .forEach {
-//                println("${it.name} - ${it.javaClass.name} - ${it.factCheck()}")
-                println("$it")
             }
     }
     return list
@@ -60,9 +43,7 @@ fun main() {
     )
 
     println("\nSpecies count with list as param:")
-//    printAnimalResultFiltered<Sloth>(crewCrewCrew, Mammal::knownSpeciesCount)
-    printAnimalResultFiltered<Sloth>(crewCrewCrew, Mammal::knownSpeciesCount)
+    printAnimalResultFiltered<Panda>(crewCrewCrew, Mammal::knownSpeciesCount)
     println()
-
-    printAnimalResultFilteredSecond<Mammal>(crewCrewCrew, Mammal::knownSpeciesCount)
+    printAnimalResultFiltered<Sloth>(crewCrewCrew, Mammal::knownSpeciesCount)
 }

@@ -44,7 +44,8 @@ fun main() {
     )
 
     println("\nSpecies count with list as param:")
+    println("First: ")
     printAnimalResultFiltered<Panda>(crewCrewCrew, Mammal::knownSpeciesCount)
-    println()
+    println("Second: ")
     printAnimalResultFiltered<Sloth>(crewCrewCrew, Mammal::knownSpeciesCount)
 }

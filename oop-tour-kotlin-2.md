@@ -605,10 +605,30 @@ docs: https://kotlinlang.org/docs/inline-functions.html
 
 - Reified type parameters:
 To access a type passed as a parameter, instade of using reflection to check whether a node has a certain type, simply a type to this function can be passed by declaring "<reified T>"
+
 ```kotlin
 inline fun <reified T> functionName(): T? {
     .......
     return p as T?
+}
+```
+
+In kotlin, generigs are erased in the runtime, so no "Type" is available otherthan specific single type. By using inline function with reified, the type is passed to functions body for accessing class's methods/properties.
+
+```kotlin
+inline fun <reified T> simpleTestReified(a: Any) {
+    println()
+    if (a is T) println("\"$a\" = \"${a::class}\" and T = \"${T::class}\" are same type")
+}
+
+// IDE error: Cannot check for instance of erased type: T -> in the if (a is T) || Will suggest to make inline reified
+//fun <T : String> simpleTestReifiedS(a: Any) {
+//    println()
+//    if (a is T) println("\"$a\" = \"${a::class}\" and T = \"${T::class}\" are same type")
+//}
+
+fun main() {
+    simpleTestReified<String>("This is String")
 }
 ```
 

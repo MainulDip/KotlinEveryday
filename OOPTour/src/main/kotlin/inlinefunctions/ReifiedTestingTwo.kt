@@ -1,5 +1,6 @@
 package inlinefunctions
 
+
 sealed class Mammal(val name: String)
 
 data class Sloth(

@@ -633,7 +633,7 @@ class DatabaseUser(userId: String) {
 
 > More on delegated property: oop-tour-kotlin-2.md
 
-### <a name="generics-in-out"> Generics In Out, SAM (Single Abstract Method) </a>
+### <a name="generics-in-out"></a> Generics In Out, SAM (Single Abstract Method) 
 > SAM : Function "Single Abstruct Method"
 
 ```kotlin
@@ -678,6 +678,8 @@ fun main() = runBlocking { // this: CoroutineScope
 // Hello
 // World!
 ```
+
+See separate section for more: [coroutine-tour.md](./coroutine-tour.md)
 
 ### <a name="dely-vs-thread"> delay() vs Thread.speep() : </a>
 

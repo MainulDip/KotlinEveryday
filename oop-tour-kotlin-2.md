@@ -55,7 +55,7 @@ class Foo {
 
 </details>
 
-### <a name="primary-secondary-constructor"> Primary & secondary contructors: </a>
+### <a name="primary-secondary-constructor"></a> Primary & secondary contructors:
 Note: if class has primary constructor, Secondary Constructor needs to be delegated to the primary constructor. The compiler select which constructor to use depending on the (number) supplied parameters.
 ```kotlin
 class Constructors private constructor() {
@@ -129,7 +129,7 @@ class Box<in T> {
 // This happened because of the variance annotation "in"
 // Box<A> is applicable anywhere that the code expects Box<B>
 ```
-### <a name="generics-in-out"> Generics Variance (in/out) or variance annotation: </a>
+### <a name="generics-in-out"></a> Generics Variance (in/out) or variance annotation: 
  - out: When type parameter is to only returned (produced/out) from members of Source<T>, and never consumed.
 ```kotlin
  interface Source<out T> {

@@ -740,7 +740,7 @@ fun main() {
 // [My Thread] : 2nd launch: 3
 ```
 
-### <a name="late-init"> Late-initialized (lateinit): </a>
+### <a name="late-init"></a> Late-initialized (lateinit): 
 To handle non-null properties/var that will be provided lately (through dependency injection, or in the setup method of a unit test), lateinit modifier can be used. lateint can be used on var properties declared inside the body of a class (not in the primary constructor, and only when the property does not have a custom getter or setter), as well as for top-level properties and local variables. The type of the property or variable must be non-null, and it must not be a primitive type.
 Docs : https://kotlinlang.org/docs/properties.html#checking-whether-a-lateinit-var-is-initialized
 

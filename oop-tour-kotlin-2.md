@@ -7,7 +7,7 @@ Continued From oop-tour-kotlin.md. This markdow file provides mini docs for foll
 - [Star Projection (Generics/Foo<*>):](#star-projection)
 - [Delegated Properties (some-more):](#more-on-delegated-properties)
 
-### <a name="companion-static"> java/kotlin Static Method || companion object: </a>
+### <a name="companion-static"></a> java/kotlin Static Method || companion object:
 ```java
 class Foo {
   public static int a() { return 1; }

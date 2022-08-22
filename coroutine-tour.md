@@ -100,7 +100,14 @@ Coroutines follow a principle of structured concurrency which means that new cor
 For example, "runBlocking" establishes the corresponding scope and that is why the previous example waits until every job is finished then exits.
 
 Structured concurrency ensures that they are not lost and do not leak. An outer scope cannot complete until all its children coroutines complete. Structured concurrency also ensures that any errors in the code are properly reported and are never lost.
+
+### Scope Builder:
+Cusotom Coroutine Scope can be defined using coroutineScope, coroutineScope is an interface
+```kotlin
+interface CoroutineScope
+```
+It Defines a scope for new coroutines. Every coroutine builder (like launch, async, etc.) is an extension on CoroutineScope and inherits its coroutineContext to automatically propagate all its elements and cancellation.
 ### Coroutine Context With Dispatchers:
 
 ### Suspend Function and Coposing:
-Suspend function is a function that could be started, paused, and resume. They are only allowed to be called from a coroutine or another suspend function.
+Suspend function is a function that could be started, paused, and resume. They are only allowed to be called from a coroutine or another suspend function. Suspend functions release the underlying thread for other usages while on paused.

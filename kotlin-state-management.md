@@ -9,7 +9,7 @@ object SomeSingleton {
     }
 }
 ```
-The object will be instantiated and its init blocks will be executed lazily upon first access, in a thread-safe way. To achieve this, a Kotlin object actually relies on a Java static initialization block. The above Kotlin object will be compiled to the following equivalent Java-code :
+The object will be instantiated and its init blocks will be executed lazily upon first access, in a thread-safe way. To achieve this, a Kotlin object actually relies on a Java static initialization block. The above Kotlin object will be compiled to the following equivalent Java-code:
 ```java
 public final class SomeSingleton {
    public static final SomeSingleton INSTANCE;

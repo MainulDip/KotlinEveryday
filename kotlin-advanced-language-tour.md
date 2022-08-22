@@ -61,7 +61,7 @@ class A { // implicit label @A
 }
 ```
 
-Note: "this" can be ommited if call in a member function. But if there is a function in the outer scope, "this" necessery to call member function. Without "this" receiever top level function will be called.
+Note: "this" can be ommited if call in a member function. But if there is a function in the outer scope, "this" necessery to call member function. Without "this" receiever top level function will be called
 ```kotlin
 fun printLine() { println("Top-level function") }
 

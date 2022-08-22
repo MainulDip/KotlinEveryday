@@ -82,7 +82,7 @@ coroutines are lightweight threads. By lightweight, it means that creating corou
 expect fun <T> runBlocking(context: CoroutineContext = EmptyCoroutineContext, block: suspend CoroutineScope.() -> T): T
 ```
 
-- launch: a coroutine builder. It launches a new coroutine concurrently with the rest of the code, which continues to work independently.
+- launch: a non-blocking (concurrent) coroutine builder. It launches a new coroutine concurrently with the rest of the code, which continues to work independently.
 ```kotlin
 // Signature
 fun CoroutineScope.launch(    context: CoroutineContext = EmptyCoroutineContext,     start: CoroutineStart = CoroutineStart.DEFAULT,     block: suspend CoroutineScope.() -> Unit): Job
@@ -102,11 +102,75 @@ For example, "runBlocking" establishes the corresponding scope and that is why t
 Structured concurrency ensures that they are not lost and do not leak. An outer scope cannot complete until all its children coroutines complete. Structured concurrency also ensures that any errors in the code are properly reported and are never lost.
 
 ### Scope Builder:
-Cusotom Coroutine Scope can be defined using coroutineScope, coroutineScope is an interface
+Cusotom Coroutine Scope can be defined using coroutineScope, coroutineScope is an interface. Bloks (not thread) code execution until finished.
 ```kotlin
 interface CoroutineScope
 ```
-It Defines a scope for new coroutines. Every coroutine builder (like launch, async, etc.) is an extension on CoroutineScope and inherits its coroutineContext to automatically propagate all its elements and cancellation.
+Will reside inside of a suspend function. It Defines a scope for new coroutines. Every coroutine builder (like launch, async, etc.) is an extension on CoroutineScope and inherits its coroutineContext to automatically propagate all its elements and cancellation.
+
+CoroutineScope will be reside inside runBlocking() builder, like runBlocking, it will block code execution until finished, but release underlying thread for other uses.
+
+This "releasing thread while not in use" behavour is call "suspend".
+NB: code inside the coroutine scope will execute concurrently if not suspended.
+```kotlin
+// CoroutineScope
+fun main() {
+    runBlocking {
+        doSomething() // It will block code execution but will release underlying thread while not in use
+        doSomethingSecond() // It will be executed whenever doSomething() over it is finished.
+    }
+}
+// Output
+
+// hi: Whenever delay 1000ms suspend over it is finished
+// hi: Whenever delay 2000ms suspend over it is finished
+// hi: After Coroutine Scope and delay 1000ms suspend over it is Finished
+// Test
+
+suspend fun doSomething() {
+    coroutineScope {
+        // code inside is non-blocking, hence work concurrently
+        launch {
+            delay(2000L)
+            println("hi: Whenever delay 2000ms suspend over it is finished")
+        }
+        delay(1000L) // delay will suspend the thread until it is finished
+        println("hi: Whenever delay 1000ms suspend over it is finished")
+    } // this also block code executions until finished, but release underlying thread for other uses. Where "runBlocking" blocks the current thread.
+    delay(1000)
+    println("hi: After Coroutine Scope and delay 1000ms suspend over it is Finished")
+}
+
+suspend fun doSomethingSecond(){
+    coroutineScope {
+        launch {
+            println("Test")
+        }
+    }
+}
+```
+
+### Job:
+Conceptually, a job is a cancellable thing with a life-cycle that culminates in its completion. An execution of a job does not produce a result value. Jobs are launched solely for their side-effects.
+
+- Job Instances (Basic): most basic instances of Job interface are created like this:
+    * Coroutine job is created with launch coroutine builder. It runs a specified block of code and completes on completion of this block.
+
+    * CompletableJob is created with a Job() factory function. It is completed by calling CompletableJob.complete.
+
+### Job State:
+ * A job has the following states:
+ *
+ * | **State**                        | [isActive] | [isCompleted] | [isCancelled] |
+ * | -------------------------------- | ---------- | ------------- | ------------- |
+ * | _New_ (optional initial state)   | `false`    | `false`       | `false`       |
+ * | _Active_ (default initial state) | `true`     | `false`       | `false`       |
+ * | _Completing_ (transient state)   | `true`     | `false`       | `false`       |
+ * | _Cancelling_ (transient state)   | `false`    | `false`       | `true`        |
+ * | _Cancelled_ (final state)        | `false`    | `true`        | `true`        |
+ * | _Completed_ (final state)        | `false`    | `true`        | `false`       |
+
+https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-job/
 ### Coroutine Context With Dispatchers:
 
 ### Suspend Function and Coposing:

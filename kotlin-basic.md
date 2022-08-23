@@ -476,3 +476,18 @@ fun main(){
 }
 }
 ```
+### Lambda Destructuring:
+https://subscription.packtpub.com/book/application-development/9781787123687/5/ch05lvl1sec63/destructuring-in-lambda-expressions
+```kotlin
+data class User(val name: String, val surname: String, val phone: String) 
+ 
+val (name, surname, phone) = user 
+
+    val showUser: (User) -> Unit = { (name, surname, phone) -> 
+        println("$name $surname have phone number: $phone")  
+    } 
+
+    val user = User("Marcin", "Moskala", "+48 123 456 789") 
+    showUser(user) 
+    // Marcin Moskala have phone number: +48 123 456 789 
+```

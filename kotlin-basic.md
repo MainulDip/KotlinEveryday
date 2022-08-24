@@ -476,7 +476,7 @@ fun main(){
 }
 }
 ```
-### Lambda Destructuring:
+### Destructuring:
 https://subscription.packtpub.com/book/application-development/9781787123687/5/ch05lvl1sec63/destructuring-in-lambda-expressions
 ```kotlin
 data class User(val name: String, val surname: String, val phone: String) 

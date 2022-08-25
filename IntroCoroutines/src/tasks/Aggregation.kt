@@ -14,17 +14,11 @@ TODO: Write aggregation code.
  The corresponding test can be found in test/tasks/AggregationKtTest.kt.
  You can use 'Navigate | Test' menu action (note the shortcut) to navigate to the test.
 */
-fun List<User>.aggregate(): List<User> {
+fun List<User>.aggregate(): List<User> =
     //    this
     // groupBy returns Map<K, List<T>> where it.login as key (K) which is then captured by destructing it on map(key,value) call
     groupBy {
         println("Logging 1: $it")
         it.login }
-//        .map { (login, group) -> User(login, group.sumOf { it.contributions }) }
-//        .sortedByDescending { it.contributions }
-//        .map { println("Logging 2: $it") }
-        .map { (k,v) -> println("Logging 2 Key: $k and Value : $v") }
-
-
-    return this
-}
+        .map { (login, group) -> User(login, group.sumOf { it.contributions }) }
+        .sortedByDescending { it.contributions }

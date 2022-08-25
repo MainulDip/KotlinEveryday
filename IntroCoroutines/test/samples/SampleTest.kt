@@ -7,7 +7,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Test
 
-@UseExperimental(ExperimentalCoroutinesApi::class)
+@OptIn(ExperimentalCoroutinesApi::class)
 class SampleTest {
     @Test
     fun testDelayInSuspend() = runBlockingTest {
@@ -22,7 +22,7 @@ class SampleTest {
 
     suspend fun foo() {
         delay(1000) // auto-advances without delay
-        println("foo")       // executes eagerly when foo() is called
+        println("foo and bar")       // executes eagerly when foo() is called
     }
 
     @Test
@@ -39,7 +39,7 @@ class SampleTest {
     suspend fun bar() = coroutineScope {
         launch {
             delay(1000) // auto-advances without delay
-            println("bar")       // executes eagerly when bar() is called
+            println("bar test")       // executes eagerly when bar() is called
         }
     }
 }

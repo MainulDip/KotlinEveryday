@@ -173,5 +173,5 @@ Conceptually, a job is a cancellable thing with a life-cycle that culminates in 
 https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-job/
 ### Coroutine Context With Dispatchers:
 
-### Suspend Function and Coposing:
+### Suspend Function and Composing:
 Suspend function is a function that could be started, paused, and resume. They are only allowed to be called from a coroutine or another suspend function. Suspend functions release the underlying thread for other usages while on paused.

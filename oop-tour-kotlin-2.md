@@ -301,8 +301,9 @@ fun main() {
 * Additional effects: `also`
 * Grouping function calls on an object: `with`
 
-- let:
-```kt
+###  let:
+
+```kotlin
 package ScopeFunctions
 
 fun main() {
@@ -613,7 +614,7 @@ inline fun <reified T> functionName(): T? {
 }
 ```
 
-In kotlin, generigs are erased in the runtime, so no "Type" is available otherthan specific single type. By using inline function with reified, the type is passed to functions body for accessing class's methods/properties.
+In kotlin, generics are erased in the runtime, so no "Type" is available otherthan specific single type. By using inline function with reified, the type is passed to functions body for accessing class's methods/properties.
 
 ```kotlin
 inline fun <reified T> simpleTestReified(a: Any) {

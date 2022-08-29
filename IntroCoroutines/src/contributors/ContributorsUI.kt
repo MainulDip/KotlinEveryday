@@ -54,7 +54,7 @@ class ContributorsUI : JFrame("GitHub Contributors"), Contributors {
             }
             addWide(loadingStatus)
         }
-        // Initialize actions
+        // Initialize actions, call the init method inherited from Contributors.kt
         init()
     }
 

@@ -99,7 +99,7 @@ object DemoObject : Source<Int> {
 ```kotlin
 @Composable
 fun Counter(){
-    var counter by remember { // delegations, delegated property
+    var counter by remember { // delegations / delegated property
         mutableStateOf(value = 0)
     }
     Button(onClick = { counter++ }, modifier = Modifier.padding(top = 77.dp, start = 27.dp)) {

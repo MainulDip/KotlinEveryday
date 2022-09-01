@@ -129,7 +129,7 @@ Interfaces cannot have constructors in Kotlin. And it cannot have non-abstract m
 - declarations of abstract methods.
 - method implementations
 - abstract properties
-- properties which provide accessor implementations
+- properties which provide accessor implementations.
 
 #### Note: If there is implementation of method or accessors in the interface, overriding is optional in derived/inherited class/interface. So for non-implemented properties and methods, it is required to override
 

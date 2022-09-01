@@ -1,6 +1,8 @@
 package tasks
 
 import contributors.*
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.runBlocking
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -12,15 +14,23 @@ fun loadContributorsCallbacks(service: GitHubService, req: RequestData, updateRe
         logRepos(req, responseRepos)
         val repos = responseRepos.bodyList()
         val allUsers = mutableListOf<User>()
-        for (repo in repos) {
-            service.getRepoContributorsCall(req.org, repo.name).onResponse { responseUsers ->
-                logUsers(repo, responseUsers)
-                val users = responseUsers.bodyList()
-                allUsers += users
+        runBlocking {
+            for ((index, repo) in repos.withIndex()) {
+                service.getRepoContributorsCall(req.org, repo.name).onResponse { responseUsers ->
+                    logUsers(repo, responseUsers)
+                    val users = responseUsers.bodyList()
+                    allUsers += users
+//                updateResults(allUsers.aggregate())
+                }
+
             }
+            delay(10000)
         }
+
+
         // TODO: Why this code doesn't work? How to fix that?
-        updateResults(allUsers.aggregate())
+        println("Hello")
+        updateResults(allUsers.aggregate() as List<User>)
     }
 }
 

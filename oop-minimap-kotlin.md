@@ -128,7 +128,7 @@ fun main(args: Array<String>) {
 Interfaces cannot have constructors in Kotlin. And it cannot have non-abstract methods and properties (abstract class can have both abstract and not-abstract methods and properties). But it can have 
 - declarations of abstract methods
 - method implementations.
-- abstract properties
+- abstract properties.
 - properties which provide accessor implementations.
 
 #### Note: If there is implementation of method or accessors in the interface, overriding is optional in derived/inherited class/interface. So for non-implemented properties and methods, it is required to override

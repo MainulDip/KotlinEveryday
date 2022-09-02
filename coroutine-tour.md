@@ -158,7 +158,7 @@ Conceptually, a job is a cancellable thing with a life-cycle that culminates in 
 
     * CompletableJob is created with a Job() factory function. It is completed by calling CompletableJob.complete.
 
-### Job State :
+### Job State:
  * A job has the following states:
  *
  * | **State**                        | [isActive] | [isCompleted] | [isCancelled] |

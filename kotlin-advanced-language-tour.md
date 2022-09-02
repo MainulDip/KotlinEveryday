@@ -44,7 +44,7 @@ class A { // implicit label @A
             val a = this@A // A's this
             val b = this@B // B's this
 
-            val c = this // foo()'s receiver, an Int
+            val c = this // foo()'s receiver, an Int.
             val c1 = this@foo // foo()'s receiver, an Int
 
             val funLit = lambda@ fun String.() {

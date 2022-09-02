@@ -723,7 +723,7 @@ Delay is a suspend function that won't block the thread, it will only suspend th
 
 Thread.sleep() will block the thread and remain blocked until seeping time in the coroutine are over before it can go service the execution of another coroutine. Hence its Blocking. See Example
 
-Note: Suspending a thread means that thread will "wait" doing something else in the meantime if necessary. Blocking a thread means that thread will wait doing nothing no matter what.
+Note: Suspending a thread means that thread will "wait" doing something else in the meantime if necessary. Blocking a thread means that thread will wait doing nothing no matter what
 
 Link: https://stackoverflow.com/questions/61345712/what-is-the-difference-between-delay-and-thread-sleep-in-kotlin
 ```kotlin

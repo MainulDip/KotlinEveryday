@@ -574,7 +574,7 @@ public final class InlineFunctionsBasicKt {
 - crossinline, return and blocking return statement:
 If function is declared inline, the parameterised lambda blocks are allowed to provide "return" statement. But if crossinline is declared before the parameter of the lambda functions, it will behave like normal lambda block where "return" is not normally allowed.
 
-with crossinline keyword, we are telling the compiler, "give me an error, if I accidentally use a non-local return inside the nested functions or local objects."
+with crossinline keyword, we are telling the compiler, "give me an error, if I accidentally use a non-local return inside the nested functions or local objects"
 
 ```kotlin
 inline fun inlineFunction(block: () -> String): String {

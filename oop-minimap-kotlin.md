@@ -127,7 +127,7 @@ fun main(args: Array<String>) {
 ### Interfaces, No instantiation allowed:
 Interfaces cannot have constructors in Kotlin. And it cannot have non-abstract methods and properties (abstract class can have both abstract and not-abstract methods and properties). But it can have 
 - declarations of abstract methods.
-- method implementations
+- method implementations.
 - abstract properties
 - properties which provide accessor implementations.
 

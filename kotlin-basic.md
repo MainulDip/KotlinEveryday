@@ -24,6 +24,7 @@ This markdow file provides mini docs for following topics:
 - [Data Class](#data-class)
 - [Lambda without braces for member references:](#lambda-without-braces-member-references)
 - [with() Statement:](#with-statement)
+- [Lable return@ | Local vs Non-Local Returns](#lable-return-local-vs-nonlocal)
 
 
 > Main.kt | kotlin program starts from this (like index.js/php). Also main() function in raw kotlin.
@@ -511,4 +512,49 @@ fun <T> List<DUser>.arrange(): Map<T, List<DUser>> =
     }
 
 // {First User=[DUser(name=First User, age=21, group=a), DUser(name=First User, age=21, group=b)], Second User=[DUser(name=Second User, age=22, group=b)], Third User=[DUser(name=Third User, age=23, group=c)]}
+```
+
+### Lable returns@ and | Local vs Non-Local Returns:
+
+```kotlin
+fun bar() {
+    listOf(1, 2, 3, 4, 5).forEach sth@{ // sth@ is labled
+        if (it == 3) {
+            println("skip this and run rest"); 
+            return@sth // local return to sth@ (foreach)
+        }  
+        println(it)
+    }
+    println("this point reachable because of labled return (local)")
+}
+
+fun foo() {
+    listOf(1, 2, 3, 4, 5).forEach {
+        if (it == 3) {
+            println("skip the whole loop because of the non-local return underneth");
+            return // non-local return directly to the caller of foo()
+        }
+        println(it)
+    }
+    println("this point is unreachable because of non-local return")
+}
+
+
+fun main() {
+    println("Non-Local Return:")
+    foo()
+    println("\nLocal Return using lable@ (sth@):")
+    bar()
+}
+
+// Non-Local Return:
+// 1
+// 2
+// skip the whole loop because of the non-local return underneth
+
+// Local Return using lable@ (sth@):
+// 1
+// 2
+// skip this and run rest
+// 4
 ```

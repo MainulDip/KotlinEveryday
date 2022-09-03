@@ -576,35 +576,24 @@ If function is declared inline, the parameterised lambda blocks are allowed to p
 
 with crossinline keyword, we are telling the compiler, "give me an error, if I accidentally use a non-local return inside the nested functions or local objects"
 
+Also, When the lambda parameter in an inline function is passed to another non-inline function context like this, we can’t use non-local returns.
+
 ```kotlin
-inline fun inlineFunction(block: () -> String): String {
-    return block()
+inline fun foos(crossinline g: () -> Unit) {
+    bar { g() } // crossinlie or noinline is necessary if inline functions callback parameter is passed inside non-inline function's callback
 }
 
-inline fun crossInlineFunction(crossinline block: () -> String): String {
-    return block()
+fun bar(f: () -> Unit) {
+    f()
 }
 
-fun foo(): String {
-    return inlineFunction {
-        return "Hello" // return is allowed here because of not declaring "crossinline"
+fun main(){
+    foos {
+        println("Simple Cross-inline")
+//         return // non-local return is not allowed
     }
-}
-
-fun baz(): String {
-    return crossInlineFunction {
-//        return "Hello" // 'return' is not allowed here because of the crossinline declaration
-        // return@crossInlineFunction "Something" // is allowed because of labled-return (local)
-        "Hello From crossInline declaration"
-    }
-}
-
-fun main() {
-    println(foo())
-    println(baz())
 }
 ```
-
 docs: https://kotlinlang.org/docs/inline-functions.html
 
 - Reified type parameters:

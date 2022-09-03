@@ -20,17 +20,20 @@ fun loadContributorsCallbacks(service: GitHubService, req: RequestData, updateRe
                     logUsers(repo, responseUsers)
                     val users = responseUsers.bodyList()
                     allUsers += users
-//                updateResults(allUsers.aggregate())
+//                    if (index == repos.lastIndex) {
+                        updateResults(allUsers.aggregate())
+//                    }
+
                 }
 
             }
-            delay(10000)
+//            delay(10000) // works partially
         }
 
 
         // TODO: Why this code doesn't work? How to fix that?
-        println("Hello")
-        updateResults(allUsers.aggregate() as List<User>)
+//        println("Hello")
+//        updateResults(allUsers.aggregate() as List<User>)
     }
 }
 

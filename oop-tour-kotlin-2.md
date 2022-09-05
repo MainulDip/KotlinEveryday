@@ -713,7 +713,7 @@ fun main() {
 ```
 
 ### Tasks:
-- complete delegated properties
+- complete delegated properties.
 - complete scope function
 - more on scope function and docs link
 - more on regex and docs link

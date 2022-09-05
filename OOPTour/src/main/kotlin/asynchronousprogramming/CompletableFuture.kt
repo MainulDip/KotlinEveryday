@@ -1,5 +1,7 @@
 package asynchronousprogramming
 
+import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
+import com.fasterxml.jackson.module.kotlin.readValue
 import java.net.URI
 import java.net.http.HttpClient
 import java.net.http.HttpRequest
@@ -7,14 +9,20 @@ import java.net.http.HttpResponse
 import java.util.concurrent.CompletableFuture
 
 class CompletableFutureClient {
-    val jdkHttpClient: HttpClient = HttpClient.newHttpClient()
+    private val jdkHttpClient: HttpClient = HttpClient.newHttpClient()
+    private val jMapper = jacksonObjectMapper()
 
-    fun fetchMostRecentOrderId(): CompletableFuture<String> {
-        return jdkHttpClient.sendAsync(
+    fun fetchMostRecentOrderId(): String {
+        val requestFuture: CompletableFuture<String> = jdkHttpClient.sendAsync(
             HttpRequest.newBuilder(URI.create("https://httpbin.org/uuid"))
                 .GET()
                 .build(), HttpResponse.BodyHandlers.ofString()
         ).thenApply { it.body() }
+
+        val response = requestFuture.get()
+        val resStr = jMapper.readValue<Order>(response)
+
+        return resStr.uuid
     }
 
     fun fetchDeliveryCost(orderId: String): CompletableFuture<String> {
@@ -41,4 +49,15 @@ class CompletableFutureClient {
 fun delayedOperationRequest(operation: String, orderId: String): String {
     val randomInt = (0..10).random()
     return "$operation of order '$orderId': $randomInt"
+}
+
+
+data class Order(val uuid: String)
+
+fun main() {
+    val cfc: CompletableFutureClient = CompletableFutureClient();
+    val remoteOrder = cfc.fetchMostRecentOrderId()
+//    val jsonResult = jacksonObjectMapper().readValue<jsonObj>(remoteReq.fetchMostRecentOrderId().get())
+//    println(remoteReq.fetchMostRecentOrderId().get())
+    println("Fetched Id as uuid: $remoteOrder")
 }

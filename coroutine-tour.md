@@ -175,3 +175,6 @@ https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.co
 
 ### Suspend Function and Composing :
 Suspend function is a function that could be started, paused, and resume. They are only allowed to be called from a coroutine or another suspend function. Suspend functions release the underlying thread for other usages while on paused.
+
+### Suspend Function vs Concurrency:
+Suspending functions doesn't provide concurrency by default.

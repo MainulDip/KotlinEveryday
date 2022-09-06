@@ -9,18 +9,9 @@ suspend fun loadContributorsSuspend(service: GitHubService, req: RequestData): L
         .also { logRepos(req, it) }
         .bodyList()
 
-    val allUsers = mutableListOf<User>()
-    val countDownLatch = CountDownLatch(repos.size)
-    for ((index, repo) in repos.withIndex()) {
-        service.getRepoContributorsCall(req.org, repo.name).onResponse { responseUsers ->
-            logUsers(repo, responseUsers)
-            val users = responseUsers.bodyList()
-            allUsers += users
-            countDownLatch.countDown()
-        }
-
-    }
-
-    countDownLatch.await()
-    return allUsers
+    return repos.flatMap { repo ->
+        service.getRepoContributors(req.org, repo.name)
+            .also { logUsers(repo, it) }
+            .bodyList()
+    }.aggregate()
 }

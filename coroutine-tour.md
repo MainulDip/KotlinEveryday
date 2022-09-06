@@ -178,3 +178,6 @@ Suspend function is a function that could be started, paused, and resume. They a
 
 ### Suspend Function vs Concurrency:
 Suspending functions doesn't provide concurrency by default.
+
+### async/await vs launch Coroutine:
+async starts a new coroutine and returns a Deferred (like Future or Promise) object.

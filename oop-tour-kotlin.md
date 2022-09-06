@@ -251,7 +251,9 @@ class Derived(p: Int) : Base(p){}
 ```
 
 ### <a name="interface"> Interface </a>
-Interfaces in Kotlin can contain declarations of abstract methods, as well as method implementations, but interfaces cannot store a state, They can have properties, but these need to be abstract or provide accessor implementations, can implement one or more interfaces
+Interfaces in Kotlin can contain declarations of abstract methods, as well as method implementations, but interfaces cannot store a state, They can have properties, but these need to be abstract or provide accessor implementations, can implement one or more interfaces. 
+
+Interface in Kotlin doesn't have constructor (java has and when called from kotlin it is converted using Single Abstract Method). Sometimes we need to define an anonymous object implementing the interface.
 
 Docs: https://kotlinlang.org/docs/interfaces.html
 

@@ -7,6 +7,9 @@ import java.net.http.HttpClient
 import java.net.http.HttpRequest
 import java.net.http.HttpResponse
 import java.util.concurrent.CompletableFuture
+import java.util.concurrent.Executor
+import java.util.concurrent.ExecutorService
+import java.util.concurrent.Executors
 
 class CompletableFutureClient {
     private val jdkHttpClient: HttpClient = HttpClient.newHttpClient()
@@ -21,6 +24,10 @@ class CompletableFutureClient {
 
         val response = requestFuture.get()
         val resStr = jMapper.readValue<Order>(response)
+
+        for (i in 1..1000000) {
+            println("Printing 1000 times")
+        }
 
         return resStr.uuid
     }
@@ -56,8 +63,17 @@ data class Order(val uuid: String)
 
 fun main() {
     val cfc: CompletableFutureClient = CompletableFutureClient();
-    val remoteOrder = cfc.fetchMostRecentOrderId()
+    var remoteOrder: String = ""
 //    val jsonResult = jacksonObjectMapper().readValue<jsonObj>(remoteReq.fetchMostRecentOrderId().get())
 //    println(remoteReq.fetchMostRecentOrderId().get())
-    println("Fetched Id as uuid: $remoteOrder")
+    val executorService: ExecutorService = Executors.newFixedThreadPool(1)
+    executorService.execute{
+        remoteOrder = cfc.fetchMostRecentOrderId()
+        println("Fetched Id as uuid: $remoteOrder")
+        executorService.shutdown()
+        if (!executorService.isTerminated) println("Fetched uuid: $remoteOrder")
+    }
+
+    println("publishing")
+
 }

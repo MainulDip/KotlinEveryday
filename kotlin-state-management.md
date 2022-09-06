@@ -74,7 +74,7 @@ interface TestCompare<in T> {
 
 fun demo2(x: TestCompare<Number>): String {
     x.testCompareTo(1.0) // 1.0 has type Double, which is a subtype of Number
-    // Thus, you can assign x to a variable of type Comparable<Double>
+    // Thus, you can assign x to a variable of type :Comparable<Double>
     val y: TestCompare<Double> = x // OK!
     return "Test compare"
 }

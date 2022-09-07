@@ -83,6 +83,14 @@ interface Contributors: CoroutineScope {
                     val users = loadContributorsConcurrent(service, req)
                     updateResults(users, startTime)
                 }.setUpCancellation()
+//                launch {
+//                    val users: Deferred<List<User>> = async {
+//                        loadContributorsConcurrent(service, req)
+//                    }
+//                    users.await()
+//                    updateResults(users as List<User>, startTime)
+//                }
+
             }
             NOT_CANCELLABLE -> { // Performing requests in a non-cancellable way
                 launch {

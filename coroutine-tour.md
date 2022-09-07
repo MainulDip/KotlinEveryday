@@ -180,19 +180,13 @@ Suspend function is a function that could be started, paused, and resume. They a
 Suspending functions doesn't provide concurrency by default.
 
 ### async/await vs launch Coroutine:
-async starts a new coroutine and returns a Deferred object when completed. Deferred is like Future or Promise. await() can be called on the Deferred instance from async call.
+async starts a new coroutine and returns a Deferred object when completed. Deferred is like Future or Promise. await() can be called on the Deferred instance from async call. If there is a list of deferred objects, it's possible to call awaitAll() to await the results of all of them.
 
 The main difference between async and launch is that launch is used to start a computation that isn't expected to return a specific result. launch returns Job, representing the coroutine. It is possible to wait until it completes by calling Job.join().
 
 Deferred is a generic type that extends Job. An async call can return a Deferred<Int> or Deferred<CustomType> depending on what the lambda returns.
 
 ```kotlin
-import kotlinx.coroutines.Deferred
-import kotlinx.coroutines.async
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.runBlocking
-
-
 fun main() = runBlocking {
     val deferred: Deferred<Int> = async {
         loadData()
@@ -207,5 +201,20 @@ suspend fun loadData(): Int {
     delay(1000L)
     println("loaded!")
     return 42
+}
+```
+- awaitAll()
+```kotlin
+
+fun main() = runBlocking {
+    val deferreds: List<Deferred<Int>> = (1..3).map {
+        async {
+            delay(1000L * it)
+            println("Loading $it")
+            it
+        }
+    }
+    val sum = deferreds.awaitAll().sum()
+    println("$sum")
 }
 ```

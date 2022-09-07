@@ -187,12 +187,19 @@ The main difference between async and launch is that launch is used to start a c
 Deferred is a generic type that extends Job. An async call can return a Deferred<Int> or Deferred<CustomType> depending on what the lambda returns.
 
 ```kotlin
+import kotlinx.coroutines.Deferred
+import kotlinx.coroutines.async
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.runBlocking
+
+
 fun main() = runBlocking {
     val deferred: Deferred<Int> = async {
         loadData()
     }
     println("waiting...")
     println(deferred.await())
+    println("After Completion, Exiting MainFun")
 }
 
 suspend fun loadData(): Int {

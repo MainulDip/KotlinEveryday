@@ -114,7 +114,7 @@ class Student(var name: String="Default", height: Int) {
 - Covariance (subtyping relation): A generic class is called covariant on the type parameter when the following holds: Class<A> is a subtype of Class<B>
 
 
-- Contravariance (Supertype relation or reverse Covariance): Contravariance describes a relationship between two sets of types where they subtype in opposite directions (Supertype).
+- Contravariance (Supertype relation or reverse Covariance): Contravariance describes a relationship between two sets of types where they subtype in opposite directions (Supertype)
 ```kotlin
 open class A
 open class B : A()

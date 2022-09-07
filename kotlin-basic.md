@@ -558,3 +558,9 @@ fun main() {
 // skip this and run rest
 // 4
 ```
+
+### Iterable.flatten():
+Returns a single list of all elements from all collections in the given collection.
+```kotlin
+public fun <T> Iterable<Iterable<T>>.flatten(): List<T>
+```

@@ -176,9 +176,6 @@ https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.co
 ### Suspend Function and Composing :
 Suspend function is a function that could be started, paused, and resume. They are only allowed to be called from a coroutine or another suspend function. Suspend functions release the underlying thread for other usages while on paused.
 
-### Suspend Function vs Concurrency:
-Suspending functions doesn't provide concurrency by default.
-
 ### async/await vs launch Coroutine:
 async starts a new coroutine and returns a Deferred object when completed. Deferred is like Future or Promise. await() can be called on the Deferred instance from async call. If there is a list of deferred objects, it's possible to call awaitAll() to await the results of all of them.
 
@@ -218,3 +215,17 @@ fun main() = runBlocking {
     println("$sum")
 }
 ```
+
+### Concurrency:
+Suspending functions doesn't provide concurrency by default. If context parameter of the CoroutineScope.launch() or CoroutineScope.async() is not defined, the suspend function will run on main UI thread. To use different thread use the Dispatchers.Default context
+```kotlin
+async(context = Dispatchers.Default) { }
+launch(context = Dispatchers.Default) { }
+```
+
+### Dispatchers:
+Dispatchers class groups various implementations of CoroutineDispatcher. CoroutineDispatcher's implementation tree is something like AbstractCoroutineContextElement <-  CoroutineContext.Element <- CoroutineContext.
+
+- CoroutineDispatcher determines what thread or threads the corresponding coroutine should be run on. If not specified one as an argument, async/launch will use the dispatcher from the outer scope. Also if outer scope's CoroutineDispatcher/context was not defined, it will use main thread.
+
+- Dispatchers.Default represents a shared pool of threads on JVM. This pool provides a means for parallel execution. It consists of as many threads as CPU cores available, but it still has two threads if there's only one core.

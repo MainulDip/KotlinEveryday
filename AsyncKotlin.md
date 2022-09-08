@@ -7,4 +7,4 @@ https://hackernoon.com/asynchronous-programming-techniques-with-kotlin-fg9l3wjn
 https://www.baeldung.com/java-asynchronous-programming
 
 ### Shared mutable state and concurrency:
-https://kotlinlang.org/docs/shared-mutable-state-and-concurrency.html .
+https://kotlinlang.org/docs/shared-mutable-state-and-concurrency.html

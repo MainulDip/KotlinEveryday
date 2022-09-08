@@ -161,7 +161,7 @@ fun demo(x: Comparable<Number>) {
     val y: Comparable<Double> = x // OK!
 }
 
-// can pass an array of CharSequence or an array of Object to the fill() function
+// can pass an array of CharSequence or an array of object to the fill() function
 fun fill(dest: Array<in String>, value: String) { ... }
 ```
 

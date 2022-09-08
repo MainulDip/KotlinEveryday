@@ -5,9 +5,6 @@ import kotlin.coroutines.CoroutineContext
 
 interface WithoutRunBlockingCoroutine: CoroutineScope {
 
-//    override val coroutineContext: CoroutineContext
-//        get() = Dispatchers.Default
-
     suspend fun runCoroutine()
 }
 
@@ -22,24 +19,35 @@ class WRBTest(override val coroutineContext: CoroutineContext = Dispatchers.Defa
 }
 
 class SecondTestWithoutRunBlockingAndInterface(): CoroutineScope {
+
     override val coroutineContext: CoroutineContext
         get() = Dispatchers.Default
 
     init {
-        val jobS = launch {
-            println("Second Test Without RunBlocking from single class")
+        val job = launch {
+            println("This will not print if the caller \"main\" function is not suspend")
         }
 
-        jobS.job
+        job.job
         println("Hi")
     }
+}
 
-//    suspend fun joinJob(job: Job){
-//        job.join()
-//    }
+@OptIn(DelicateCoroutinesApi::class)
+class ThirdTestWithoutRunBlockingAndInterface {
+
+    init {
+        val job = GlobalScope.launch {
+            println("Without Implementing CoroutineScope Interface, annotation is suggested by IDE")
+        }
+
+        job.job
+        println("Hi")
+    }
 }
 
 suspend fun main() {
-//    WRBTest().runCoroutine()
-    SecondTestWithoutRunBlockingAndInterface()
+    WRBTest().runCoroutine()
+    SecondTestWithoutRunBlockingAndInterface() // construction will call init
+    ThirdTestWithoutRunBlockingAndInterface()
 }

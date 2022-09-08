@@ -8,6 +8,8 @@ plugins {
 group = "me.mainu"
 version = "1.0-SNAPSHOT"
 
+val coroutines_version = "1.6.4"
+
 repositories {
     mavenCentral()
 }
@@ -15,7 +17,10 @@ repositories {
 dependencies {
     testImplementation(kotlin("test"))
     implementation("org.jetbrains.kotlin:kotlin-reflect:1.6.10")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version")
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:$coroutines_version")
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-slf4j:$coroutines_version")
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-debug:$coroutines_version")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.13.+")
 }
 

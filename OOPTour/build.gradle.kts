@@ -15,6 +15,8 @@ repositories {
 }
 
 dependencies {
+    implementation("junit:junit:4.13.1")
+    implementation("org.junit.jupiter:junit-jupiter:5.8.1")
     testImplementation(kotlin("test"))
     implementation("org.jetbrains.kotlin:kotlin-reflect:1.6.10")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version")

@@ -101,4 +101,4 @@ fun loadContributors() {
 }
 ```
 
-- createGitHubService method call returns all the other functionality from GithubService.kt.
+- createGitHubService method call returns all the other functionality from GithubService.kt

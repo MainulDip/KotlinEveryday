@@ -22,10 +22,17 @@ dependencies {
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-slf4j:$coroutines_version")
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-debug:$coroutines_version")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.13.+")
+
+    testImplementation(platform("org.junit:junit-bom:5.9.0"))
+    testImplementation("org.junit.jupiter:junit-jupiter")
 }
 
 tasks.test {
     useJUnitPlatform()
+
+    testLogging {
+        events("passed", "skipped", "failed")
+    }
 }
 
 tasks.withType<KotlinCompile> {

@@ -176,7 +176,7 @@ https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.co
 ### Suspend Function and Composing :
 Suspend function is a function that could be started, paused, and resume. They are only allowed to be called from a coroutine or another suspend function. Suspend functions release the underlying thread for other usages while on paused.
 
-### async/await vs launch Coroutine:
+### async/await vs launch Coroutine | Deferred<T>/Job:
 async starts a new coroutine and returns a Deferred object when completed. Deferred is like Future or Promise. await() can be called on the Deferred instance from async call. If there is a list of deferred objects, it's possible to call awaitAll() to await the results of all of them.
 
 The main difference between async and launch is that launch is used to start a computation that isn't expected to return a specific result. launch returns Job, representing the coroutine. It is possible to wait until it completes by calling Job.join().

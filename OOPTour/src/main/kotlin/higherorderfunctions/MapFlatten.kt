@@ -1,9 +1,9 @@
-package datastructure
+package higherorderfunctions
 
 data class Order(val lines: List<OrderLine>)
 data class OrderLine(val name: String, val price: Int)
 
-fun mapTester(){
+fun mapFlattenTester(){
     val order : Order = Order(
         lines = listOf(OrderLine("Tomato", 2), OrderLine("Garlic", 3), OrderLine("Chives", 2))
     )
@@ -17,12 +17,12 @@ fun mapTester(){
 
 
     // List Data customization
-    val modifiedOrder = order.lines.map {(name, price)-> OrderLine("Mod$name", price + 7) }
+    val modifiedOrder = order.lines.map {(name, price) -> OrderLine("Mod$name", price) }
     println(modifiedOrder)
 
 }
 
-fun flatMapTesting(){
+fun mapFalttenTesting(){
     val orders: List<Order> = listOf(
         Order(lines = listOf(OrderLine("Garlic", 1), OrderLine("Chives", 2))),
         Order(lines = listOf(OrderLine("Tomato", 1), OrderLine("Garlic", 2))),
@@ -35,7 +35,7 @@ fun flatMapTesting(){
     val mapOrder = orders.map { it.lines.map { it.name }}
     println(mapOrder) // [[Garlic, Chives], [Tomato, Garlic], [Potato, Chives]]
     println(mapOrder.flatten())
-    // here flatten() is working because now mapOrder is no longer the data type Orders/OrderLines, it's now only List<List<String>
+    // here flatten() is working because now val - mapOrder is no longer the data type Orders/OrderLines, it's now only List<List<String>
 
     val flatMapOrder = orders.flatMap { it.lines.map { it.name } }
     println(flatMapOrder) // [Garlic, Chives, Tomato, Garlic, Potato, Chives]
@@ -57,11 +57,11 @@ fun flatMapTesting(){
     println(makeFlattenNotWorking.flatten())
 
     val deepList2 = listOf(listOf(1), listOf(2, 3, listOf("44","77", 7)), listOf(4, 7, 6))
-//    println(deepList2.flatten())
+    println(deepList2.flatten())
 }
 
 
 fun main() {
-//    mapTester()
-    flatMapTesting()
+    mapFlattenTester()
+    mapFalttenTesting()
 }

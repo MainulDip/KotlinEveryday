@@ -1,15 +1,13 @@
 package higherorderfunctions
 
-import org.junit.jupiter.api.Test
 
-
-class Order(val lines: List<OrderLine>)
-class OrderLine(val name: String, val price: Int) {
+class OrderN(val lines: List<OrderLineN>)
+class OrderLineN(val name: String, val price: Int) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
 
-        other as OrderLine
+        other as OrderLineN
 
         if (name != other.name) return false
         if (price != other.price) return false
@@ -24,7 +22,7 @@ class OrderLine(val name: String, val price: Int) {
     }
 
     override fun toString(): String {
-        return "OrderLine(name='$name', price=$price)"
+        return "OrderLineN(name='$name', price=$price)"
     }
 
     operator fun component1(): Any {
@@ -39,8 +37,8 @@ class OrderLine(val name: String, val price: Int) {
 }
 
 fun mapTester(){
-    val order : Order = Order(
-        lines = listOf(OrderLine("Tomato", 2), OrderLine("Garlic", 3), OrderLine("Chives", 2))
+    val order : OrderN = OrderN(
+        lines = listOf(OrderLineN("Tomato", 2), OrderLineN("Garlic", 3), OrderLineN("Chives", 2))
     )
 
     val names = order.lines.map { it.name }
@@ -50,10 +48,10 @@ fun mapTester(){
 }
 
 fun flatMapTesting(){
-    val orders: List<Order> = listOf(
-        Order(lines = listOf(OrderLine("Garlic", 1), OrderLine("Chives", 2))),
-        Order(lines = listOf(OrderLine("Tomato", 1), OrderLine("Garlic", 2))),
-        Order(lines = listOf(OrderLine("Potato", 1), OrderLine("Chives", 2))),
+    val orders: List<OrderN> = listOf(
+        OrderN(lines = listOf(OrderLineN("Garlic", 1), OrderLineN("Chives", 2))),
+        OrderN(lines = listOf(OrderLineN("Tomato", 1), OrderLineN("Garlic", 2))),
+        OrderN(lines = listOf(OrderLineN("Potato", 1), OrderLineN("Chives", 2))),
     )
 
 //    val mapOrder = orders.map { it.lines.map { OrderLine(it.name, it.price ) } }

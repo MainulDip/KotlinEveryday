@@ -1,6 +1,7 @@
-package datastructure
+package destructuring
 
 class Order(val lines: List<OrderLine>)
+
 class OrderLine(val name: String, val price: Int) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -40,10 +41,11 @@ fun mapTester(){
         lines = listOf(OrderLine("Tomato", 2), OrderLine("Garlic", 3), OrderLine("Chives", 2))
     )
 
-    val names = order.lines.map { it.name }
+    val namesprice = order.lines.map { (name, price) -> "$name : $price" }
+    println(namesprice)
 //    val namesDestructing = order.lines.map { (name, price) -> name  }
     val totalPrice = order.lines.map { it.price }.sum()
-    println("names: $names && totalPrice: $totalPrice") // names: [Tomato, Garlic, Chives] && totalPrice: 7
+//    println("names: $names && totalPrice: $totalPrice") // names: [Tomato, Garlic, Chives] && totalPrice: 7
 }
 
 fun flatMapTesting(){

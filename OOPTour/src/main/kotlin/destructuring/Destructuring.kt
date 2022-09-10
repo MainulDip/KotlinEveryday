@@ -1,6 +1,7 @@
 package destructuring
 
-
+// destructuring works with data class, at it cas "operator fun componentN" built in.
+// To apply destructuring with regular class, have to override componentN operator function
 data class DUser(val name: String, val age: Int, val group: String)
 
 var dUserList: List<DUser> = mutableListOf(DUser("First User", 21, "a"), DUser("Second User", 22, "b"),DUser("Third User", 23, "c"), DUser("First User", 21, "b"))

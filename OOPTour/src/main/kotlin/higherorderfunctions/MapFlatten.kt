@@ -27,9 +27,6 @@ fun mapFalttenTesting(){
         Order(lines = listOf(OrderLine("Potato", 1), OrderLine("Chives", 2))),
     )
 
-//    val mapOrder = orders.map { it.lines.map { OrderLine(it.name, it.price ) } }
-//    println(mapOrder.map { it.map { listOf(it.name, it.price) } })
-
     val mapOrder = orders.map { it.lines.map { it.name }}
     println(mapOrder) // [[Garlic, Chives], [Tomato, Garlic], [Potato, Chives]]
     println(mapOrder.flatten())
@@ -42,7 +39,16 @@ fun mapFalttenTesting(){
     println("flatMapOrderList")
     println(flatMapOrderList) // [[Garlic, 1], [Chives, 2], [Tomato, 1], [Garlic, 2], [Potato, 1], [Chives, 2]]
     println(flatMapOrderList.flatten()) // [Garlic, 1, Chives, 2, Tomato, 1, Garlic, 2, Potato, 1, Chives, 2]
+}
 
+
+fun main() {
+    mapFlattenTester()
+    mapFalttenTesting()
+}
+
+// flatten uses
+fun useCaseFlatten(){
     val someArray = arrayOf(
         arrayOf(1),
         arrayOf(2, 3),
@@ -61,10 +67,4 @@ fun mapFalttenTesting(){
 
     val deepList2 = listOf(listOf(1), listOf(2, 3, listOf("44","77", 7)), listOf(4, 7, 6))
     println(deepList2.flatten())
-}
-
-
-fun main() {
-    mapFlattenTester()
-    mapFalttenTesting()
 }

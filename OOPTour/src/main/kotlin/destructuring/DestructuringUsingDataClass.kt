@@ -1,5 +1,7 @@
 package destructuring
 
+// Destructuring using data class is simple because it provides componentN function by default
+
 // destructuring works with data class, at it cas "operator fun componentN" built in.
 // To apply destructuring with regular class, have to override componentN operator function
 data class DUser(val name: String, val age: Int, val group: String)

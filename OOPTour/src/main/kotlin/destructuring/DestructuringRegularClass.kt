@@ -1,5 +1,7 @@
 package destructuring
 
+// Destructuring on regular classes need to provide operator function componentN
+
 class Order(val lines: List<OrderLine>)
 
 class OrderLine(val name: String, val price: Int) {

@@ -108,7 +108,7 @@ class Student(var name: String="Default", height: Int) {
 // Primary Constructor => Name is Default, Height is 72
 ``` 
 
-### <a name="generic-variances"> Invariance, Covariance, Contravariance: </a>
+### <a name="generic-variances"> Invariance, Covariance, Contravariance:</a>
 - Invariance: A generic class is called invariant on the type parameter when for two different types A and B, Class<A> is neither a subtype nor a supertype of Class<B>
 
 - Covariance (subtyping relation): A generic class is called covariant on the type parameter when the following holds: Class<A> is a subtype of Class<B>

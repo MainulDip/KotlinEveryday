@@ -8,18 +8,16 @@ fun mapFlattenTester(){
         lines = listOf(OrderLine("Tomato", 2), OrderLine("Garlic", 3), OrderLine("Chives", 2))
     )
 
-    val names = order.lines.map { it.name }
-    val totalPrice = order.lines.map { it.price }.sum()
-    println("names: $names && totalPrice: $totalPrice") // names: [Tomato, Garlic, Chives] && totalPrice: 7
+    val orderLines = order.lines.map { (name, price) -> listOf(name, price) }
+    println(orderLines) // [[Tomato, 2], [Garlic, 3], [Chives, 2]]
+    println(orderLines.flatten()) // [Tomato, 2, Garlic, 3, Chives, 2]
 
-    val nameAndPriceDestructing = order.lines.map { (name, price) -> { "$name and $price" }  }
-    println(nameAndPriceDestructing)
-
-
-    // List Data customization
-    val modifiedOrder = order.lines.map {(name, price) -> OrderLine("Mod$name", price) }
-    println(modifiedOrder)
-
+    // List Data modified
+    val modifiedOrders = order.lines.map {(name, price) -> OrderLine("Mod$name", price + 7) }
+    println(modifiedOrders)
+    val flattenModifiedOrders = modifiedOrders.map { listOf(it.name, it.price) }
+    println(flattenModifiedOrders) // [[ModTomato, 9], [ModGarlic, 10], [ModChives, 9]]
+    println(flattenModifiedOrders.flatten()) // [ModTomato, 9, ModGarlic, 10, ModChives, 9]
 }
 
 fun mapFalttenTesting(){
@@ -39,6 +37,11 @@ fun mapFalttenTesting(){
 
     val flatMapOrder = orders.flatMap { it.lines.map { it.name } }
     println(flatMapOrder) // [Garlic, Chives, Tomato, Garlic, Potato, Chives]
+
+    val flatMapOrderList = orders.flatMap { it.lines.map { listOf(it.name, it.price) } }
+    println("flatMapOrderList")
+    println(flatMapOrderList) // [[Garlic, 1], [Chives, 2], [Tomato, 1], [Garlic, 2], [Potato, 1], [Chives, 2]]
+    println(flatMapOrderList.flatten()) // [Garlic, 1, Chives, 2, Tomato, 1, Garlic, 2, Potato, 1, Chives, 2]
 
     val someArray = arrayOf(
         arrayOf(1),

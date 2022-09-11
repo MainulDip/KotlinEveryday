@@ -229,3 +229,16 @@ Dispatchers class groups various implementations of CoroutineDispatcher. Corouti
 - CoroutineDispatcher determines what thread or threads the corresponding coroutine should be run on. If not specified one as an argument, async/launch will use the dispatcher from the outer scope. Also if outer scope's CoroutineDispatcher/context was not defined, it will use main thread.
 
 - Dispatchers.Default represents a shared pool of threads on JVM. This pool provides a means for parallel execution. It consists of as many threads as CPU cores available, but it still has two threads if there's only one core.
+
+### Structured concurrency:
+This is The mechanism providing the structure of the coroutines by defining the scope (CoroutineScope) and parent-child relationships between different coroutines. New coroutines usually need to be started inside a scope. The implicit scope is the CoroutineScope for launch, async, or runBlocking. launch and async are declared as extensions to CoroutineScope, so an implicit or explicit receiver must always be passed when you call them.
+
+The nested coroutine (started by launch or await) can be considered as a child of the outer coroutine (started by runBlocking). This "parent-child" relationship works through scopes; the child coroutine is started from the scope corresponding to the parent coroutine.
+
+It's possible to create a new scope without starting a new coroutine using coroutineScope function, which automatically becomes a child of the outer scope that this suspend function is called from.
+
+
+### Global Scope:
+To create a new coroutine from the global scope, GlobalScope.async or GlobalScope.launch can be used. This will create a top-level "independent" coroutine. The coroutines started from the global scope are all independent; their lifetime is limited only by the lifetime of the whole application. It's possible to store a reference to the coroutine started from the global scope and wait for its completion or cancel it explicitly, but it won't happen automatically as it would with a structured one.
+
+### Cancellation of Coroutine:

@@ -224,7 +224,7 @@ launch(context = Dispatchers.Default) { }
 ```
 
 ### Dispatchers:
-Dispatchers class groups various implementations of CoroutineDispatcher. CoroutineDispatcher's implementation tree is something like AbstractCoroutineContextElement <-  CoroutineContext.Element <- CoroutineContext.
+Dispatchers class groups various implementations of CoroutineDispatcher. CoroutineDispatcher's implementation tree is something like AbstractCoroutineContextElement <-  CoroutineContext.Element <- CoroutineContext
 
 - CoroutineDispatcher determines what thread or threads the corresponding coroutine should be run on. If not specified one as an argument, async/launch will use the dispatcher from the outer scope. Also if outer scope's CoroutineDispatcher/context was not defined, it will use main thread.
 

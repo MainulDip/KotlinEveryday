@@ -242,3 +242,8 @@ It's possible to create a new scope without starting a new coroutine using corou
 To create a new coroutine from the global scope, GlobalScope.async or GlobalScope.launch can be used. This will create a top-level "independent" coroutine. The coroutines started from the global scope are all independent; their lifetime is limited only by the lifetime of the whole application. It's possible to store a reference to the coroutine started from the global scope and wait for its completion or cancel it explicitly, but it won't happen automatically as it would with a structured one.
 
 ### Cancellation of Coroutine:
+
+### Channels (communication between multiple coroutines):
+Channels are communication primitives that allow passing data between different coroutines.
+
+A coroutine that sends (produces) information is often called a producer, and a coroutine that receives (consumes) information is called a consumer. Several coroutines can send information to the same channel, and several coroutines can receive data from it.

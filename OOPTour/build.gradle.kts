@@ -27,18 +27,25 @@ dependencies {
 
     testImplementation(platform("org.junit:junit-bom:5.9.0"))
     testImplementation("org.junit.jupiter:junit-jupiter")
+
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4")
 }
 
 tasks.test {
     useJUnitPlatform()
 
-    testLogging {
-        events("passed", "skipped", "failed")
-    }
+//    testLogging {
+//        events("passed", "skipped", "failed")
+//    }
 }
 
 tasks.withType<KotlinCompile> {
     kotlinOptions.jvmTarget = "1.8"
+}
+
+tasks.withType<Test> {
+    useJUnitPlatform()
+    jvmArgs =  mutableListOf("--enable-preview")
 }
 
 application {

@@ -247,3 +247,33 @@ To create a new coroutine from the global scope, GlobalScope.async or GlobalScop
 Channels are communication primitives that allow passing data between different coroutines.
 
 A coroutine that sends (produces) information is often called a producer, and a coroutine that receives (consumes) information is called a consumer. Several coroutines can send information to the same channel, and several coroutines can receive data from it.
+
+Channel is represented with three different interfaces: SendChannel, ReceiveChannel, and Channel that extends the first two. You usually create a channel and give it to producers as a SendChannel instance so that only they can send it to it. You give a channel to consumers as a ReceiveChannel instance so that only they can receive from it. Both send and receive methods are declared as suspend.
+
+```kotlin
+interface SendChannel<in E> {
+    suspend fun send(element: E)
+    fun close(): Boolean
+}
+
+interface ReceiveChannel<out E> {
+    suspend fun receive(): E
+}
+
+interface Channel<E> : SendChannel<E>, ReceiveChannel<E>
+```
+
+The producer can close a channel to indicate that no more elements are coming.
+
+
+### Channels Types:
+- Unlimited: Channels with no buffered size, the send call will never suspend
+- Buffered: When the channel is full, the next `send` call on it suspends until more free space appears.
+- Rendezvous: send call will be suspended untill recieve call.
+- Conflated: send call will overwrite previous call and receive call will get the latest element always
+```kotlin
+val rendezvousChannel = Channel<String>() // By default, a "Rendezvous" channel is created.
+val bufferedChannel = Channel<String>(10)
+val conflatedChannel = Channel<String>(CONFLATED)
+val unlimitedChannel = Channel<String>(UNLIMITED)
+```

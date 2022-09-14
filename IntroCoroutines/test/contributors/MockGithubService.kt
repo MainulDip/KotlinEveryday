@@ -14,15 +14,14 @@ object MockGithubService : GitHubService {
         return Calls.response(reposMap.getValue(repo).users)
     }
 
-    override suspend fun getOrgRepos(org: String): Response<List<Repo>> {
-        return Calls.response(repos) as Response<List<Repo>>
-    }
+//    override suspend fun getOrgRepos(org: String): Response<List<Repo>> {
+//        return Calls.response(repos)
+//    }
+//
+//    override suspend fun getRepoContributors(owner: String, repo: String): Response<List<User>> {
+//        return Calls.response(reposMap.getValue(repo).users) as Response<List<User>>
+//    }
 
-    override suspend fun getRepoContributors(owner: String, repo: String): Response<List<User>> {
-        return Calls.response(reposMap.getValue(repo).users) as Response<List<User>>
-    }
-
-/*
     // Uncomment the following implementations after adding these methods to GitHubService:
 
     override suspend fun getOrgRepos(org: String): Response<List<Repo>> {
@@ -35,5 +34,4 @@ object MockGithubService : GitHubService {
         delay(testRepo.delay)
         return Response.success(testRepo.users)
     }
-*/
 }

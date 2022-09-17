@@ -488,7 +488,7 @@ enum class IntArithmetics : BinaryOperator<Int>, IntBinaryOperator {
     override fun applyAsInt(t: Int, u: Int) = apply(t,u)
 }
 ```
-### <a name="inline-class-nested-inner"> Inline Class, Nested, Inners:</a>
+### <a name="inline-class-nested-inner">Inline Class, Nested, Inners:</a>
 Inline classes are a subset of value-based classes. They don't have an identity and can only hold values. Provide predictable type into IDE.
 
 Inline Class Docs : https://kotlinlang.org/docs/inline-classes.html.

@@ -444,7 +444,7 @@ fun main() {
     lambdaFn() // print "x"
 }
 
-//  Docs Examples:
+//  Docs Examples
     val stringPlus: (String, String) -> String = String::plus // referes to "plus" member function of the String Class
     println(stringPlus("Hello, ", "world!")) // prints "Hello World"
 ```

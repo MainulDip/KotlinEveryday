@@ -271,6 +271,8 @@ The producer can close a channel to indicate that no more elements are coming.
 - Buffered: When the channel is full, the next `send` call on it suspends until more free space appears.
 - Rendezvous: send call will be suspended untill recieve call.
 - Conflated: send call will overwrite previous call and receive call will get the latest element always
+
+NB: Rendezvour means -> a meeting at an agreed time and place, typically between two people
 ```kotlin
 val rendezvousChannel = Channel<String>() // By default, a "Rendezvous" channel is created.
 val bufferedChannel = Channel<String>(10)
@@ -330,4 +332,52 @@ fun log(message: Any?) {
 // [main] A1 and A2 Sending done
 // [main] B1 Sending done
 // [main] Received Logging: A2
+```
+
+
+### Coroutine Cancelation of execution:
+To get complete control, coroutine provide cancelation of it. All the suspending functions in kotlinx.coroutines are cancellable.
+
+Ex: the program will only iterate few times instade of 1000 times, because it will be cancled after 1300ms.
+```kotlin
+import kotlinx.coroutines.*
+
+fun main() = runBlocking {
+    val job = launch {
+        repeat(1000) { i ->
+            println("job: I'm sleeping $i ...")
+            delay(500L) // this makes the loop suspend for 500ms, in this time the thread gets some time to cancle the computation and call the canclable call
+        }
+    }
+    delay(1300L) // delay a bit
+    println("main: I'm tired of waiting!")
+    job.cancel() // cancels the job
+    job.join() // waits for job's completion
+    println("main: Now I can quit.")
+}
+```
+
+All the suspending functions in kotlinx.coroutines are cancellable. They check for cancellation of coroutine and throw CancellationException when cancelled. However, if a coroutine is working in a computation and does not check for cancellation, then it cannot be cancelled.
+```kotlin
+fun main() = runBlocking {
+    val startTime = System.currentTimeMillis()
+    val job = launch(Dispatchers.Default) {
+        var nextPrintTime = startTime
+        var i = 0
+        while (i < 5) { // computation loop, just wastes CPU
+            // print a message twice a second
+            if (System.currentTimeMillis() >= nextPrintTime) {
+            // this line force not to exit while loop by blockiing i++ in  consitionals
+                println("job: I'm sleeping ${i++} ...")
+                nextPrintTime += 500L
+                // delay(500L) // this makes the loop suspend for 500ms, in this time the thread gets some time to cancle the computation and call the canclable call
+            }
+        }
+    }
+    delay(1300L) // delay a bit
+    println("main: I'm tired of waiting!")
+    job.cancel() // cancels the job and waits for its completion
+    job.join()
+    println("main: Now I can quit.")    
+}
 ```

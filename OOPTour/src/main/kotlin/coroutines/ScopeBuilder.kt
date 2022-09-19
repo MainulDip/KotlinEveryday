@@ -1,14 +1,12 @@
 package coroutines
 
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.*
 
 fun main() {
     runBlocking {
         doSomething() // It will block code execution but will release underlying thread while not in use
         doSomethingSecond() // It will be executed whenever doSomething() over it is finished.
+        otherWay()
     }
 }
 // Output
@@ -38,4 +36,16 @@ suspend fun doSomethingSecond(){
             println("Test")
         }
     }
+}
+
+suspend fun otherWay(){
+    var cs = CoroutineScope(Dispatchers.Default)
+    var job = cs.launch {
+        delay(1000L)
+        println("Good")
+    }
+    job.join()
+
+    println("It is done")
+
 }

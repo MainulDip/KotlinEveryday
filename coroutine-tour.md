@@ -237,6 +237,55 @@ The nested coroutine (started by launch or await) can be considered as a child o
 
 It's possible to create a new scope without starting a new coroutine using coroutineScope function, which automatically becomes a child of the outer scope that this suspend function is called from.
 
+```kotlin
+fun main() {
+    runBlocking {
+        doSomething() // It will block code execution but will release underlying thread while not in use
+        doSomethingSecond() // It will be executed whenever doSomething() over it is finished.
+        otherWay()
+    }
+}
+
+suspend fun doSomethingSecond(){
+    coroutineScope {
+        launch {
+            println("Test")
+        }
+    }
+}
+
+suspend fun otherWay(){
+    var cs = CoroutineScope(Dispatchers.Default)
+    var job = cs.launch {
+        delay(1000L)
+        println("Good")
+    }
+    job.join()
+    println("It is done")
+}
+
+suspend fun doSomething() {
+    coroutineScope {
+        // code inside is non-blocking, hence work concurrently
+        launch {
+            delay(2000L)
+            println("hi: Whenever delay 2000ms suspend over it is finished")
+        }
+        delay(1000L) // delay will suspend the thread until it is finished
+        println("hi: Whenever delay 1000ms suspend over it is finished")
+    } // this also block code executions until finished, but release underlying thread for other uses. Where "runBlocking" blocks the current thread.
+    delay(1000)
+    println("hi: After Coroutine Scope and delay 1000ms suspend over it is Finished")
+}
+
+// Output
+
+// hi: Whenever delay 1000ms suspend over it is finished
+// hi: Whenever delay 2000ms suspend over it is finished
+// hi: After Coroutine Scope and delay 1000ms suspend over it is Finished
+// Test
+```
+
 
 ### Global Scope:
 To create a new coroutine from the global scope, GlobalScope.async or GlobalScope.launch can be used. This will create a top-level "independent" coroutine. The coroutines started from the global scope are all independent; their lifetime is limited only by the lifetime of the whole application. It's possible to store a reference to the coroutine started from the global scope and wait for its completion or cancel it explicitly, but it won't happen automatically as it would with a structured one.
@@ -356,7 +405,7 @@ fun main() = runBlocking {
     println("main: Now I can quit.")
 }
 ```
-
+### Computation and cancellation:
 All the suspending functions in kotlinx.coroutines are cancellable. They check for cancellation of coroutine and throw CancellationException when cancelled. However, if a coroutine is working in a computation and does not check for cancellation, then it cannot be cancelled.
 ```kotlin
 fun main() = runBlocking {

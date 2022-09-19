@@ -291,7 +291,25 @@ suspend fun doSomething() {
 To create a new coroutine from the global scope, GlobalScope.async or GlobalScope.launch can be used. This will create a top-level "independent" coroutine. The coroutines started from the global scope are all independent; their lifetime is limited only by the lifetime of the whole application. It's possible to store a reference to the coroutine started from the global scope and wait for its completion or cancel it explicitly, but it won't happen automatically as it would with a structured one.
 
 ### Cancellation of Coroutine:
-
+https://kotlinlang.org/docs/cancellation-and-timeouts.html#making-computation-code-cancellable
+```kotlin
+val startTime = System.currentTimeMillis()
+val job = launch(Dispatchers.Default) {
+    var nextPrintTime = startTime
+    var i = 0
+    while (isActive) { // cancellable computation loop
+        // print a message twice a second
+        if (System.currentTimeMillis() >= nextPrintTime) {
+            println("job: I'm sleeping ${i++} ...")
+            nextPrintTime += 500L
+        }
+    }
+}
+delay(1300L) // delay a bit
+println("main: I'm tired of waiting!")
+job.cancelAndJoin() // cancels the job and waits for its completion
+println("main: Now I can quit.")
+```
 ### Channels (communication between multiple coroutines):
 Channels are communication primitives that allow passing data between different coroutines.
 

@@ -425,6 +425,8 @@ fun main() = runBlocking {
 ```
 ### Computation and cancellation:
 All the suspending functions in kotlinx.coroutines are cancellable. They check for cancellation of coroutine and throw CancellationException when cancelled. However, if a coroutine is working in a computation and does not check for cancellation, then it cannot be cancelled.
+
+Below, when a thread is busy in computation, it cannot be canelled. But if there is any suspending activity while on computation, then it can be canclled.
 ```kotlin
 fun main() = runBlocking {
     val startTime = System.currentTimeMillis()
@@ -448,3 +450,23 @@ fun main() = runBlocking {
     println("main: Now I can quit.")    
 }
 ```
+
+* isActive : isActive is an extension property available inside the coroutine via the CoroutineScope object. it can be used to make any computation code cancellable.
+```kotlin
+while (isActive) {} // cancellable computation loop 
+job.cancelAndJoin() // cancels the job and waits for its completion
+```
+
+### coroutine try/catch | try/finally | try/finally withContext(NonCancellable):
+
+* try/catch: will throw error if coroutine is cancelled
+```kotlin
+```
+
+* try/finally: will not throw error if cancelled while on computation
+```kotlin
+```
+
+* try/finallay withContext(NonCancellable): if cancellation is called, try block will cancle but withContext(NonCancellable) block inside finally cannot be cancelled.
+
+### Coroutine Timeout and Asynchronous timeout:

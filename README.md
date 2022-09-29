@@ -3,7 +3,7 @@ It's a quick language tour to re-connect with most of the Kotlin language syntax
 Link: (oop-minimap-kotlin.md)[oop-minimap.kotlin.md]
 Link: (oop-tour-kotlin.md)[oop-tour-kotlin.md].
 
-> Main.kt | kotlin program starts from this (like index.js/php). Also main() function in raw kotlin.
+> Main.kt | kotlin program starts from this (like index.js/php). Also main() function in raw kotlin
 
 ### Variables and Types:
 ```kotlin

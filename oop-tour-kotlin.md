@@ -489,7 +489,7 @@ enum class IntArithmetics : BinaryOperator<Int>, IntBinaryOperator {
 }
 ```
 ### <a name="inline-class-nested-inner">Inline Class, Nested, Inners:</a>
-Inline classes are a subset of value-based classes. They don't have an identity and can only hold values. Provide predictable type into IDE.
+Inline classes are a subset of value-based classes. They don't have an identity and can only hold values. Provide predictable type into IDEs
 
 Inline Class Docs : https://kotlinlang.org/docs/inline-classes.html.
 Nested+Inner Classes docs: https://kotlinlang.org/docs/nested-classes.html

@@ -489,4 +489,51 @@ println("main: Now I can quit.")
 
 ### Coroutine Timeout and Asynchronous timeout:
 
-### solve function returning CoroutineScope:
+### suspending coroutine vs non-suspending coroutine (launch, async):
+when a suspending function is called, it blocks code execution until finished. In the below code, the 1st defined withTimeout (which is a suspend function) will finished first becaiuse of the suspending nature. After the 1st finished it will call launch (at 2nd) and withTimeout (at 3rd place), after calling the suspending withTimeout at 3rd place, it will again block the code execution further. Between the 2nd and 3rd, it will print which will complete first. Only after completing 3rd suspending the code below will start to executing. launch is a non-suspending coroutine builder, hence it doesn't block and allow to execute withTimeout. 
+```kotlin
+suspend fun testDualWithTimeoutInsideParentCoroutineScope() = coroutineScope {
+    // 1st
+    withTimeout(3300L) {
+            delay(3200L)
+            println("3200L Delay suspending coroutine at 1st")
+    }
+
+    // 2nd
+    launch {
+        delay(1000L)
+        println("from launch 1000L at 2nd")
+    }
+
+    // 3rd
+    withTimeout(2000L){
+        delay(1900L)
+        println("1900L Delay suspending coroutine at 3rd")
+    }
+
+    // 4th
+    launch {
+        delay(400L)
+        println("from launch 400 at 4th")
+    }
+
+    // 5th
+    withTimeout(700L) {
+            delay(200L)
+            println("200L Delay suspending coroutine at 5th")
+    }
+}
+
+fun main() {
+    runBlocking {
+        testDualWithTimeoutInsideParentCoroutineScope()
+    }
+}
+
+// prints
+// 3200L Delay suspending coroutine at 1st
+// from launch 1000L at 2nd
+// 1900L Delay suspending coroutine at 3rd
+// 200L Delay suspending coroutine at 5th
+// from launch 400 at 4th
+```

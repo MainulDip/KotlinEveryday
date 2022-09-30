@@ -487,7 +487,33 @@ job.cancelAndJoin() // cancels the job and waits for its completion
 println("main: Now I can quit.")
 ```
 
-### Coroutine Timeout and Asynchronous timeout:
+### Coroutine Timeout (withTimeout and withTimeoutOrNull):
+withTimeout will throw TimeoutCancellationException if computation is not finished within the time frame. So we need to handle the exception using try catch block. Also we can use withTimeoutOrNull, which will not throw error, rather return null if computation is not completed.
+```kotlin
+// withTimeoutOrNull will never throw exception, if computatin is cancelled, it will return null 
+val result1 = withTimeoutOrNull(1300L) {
+            repeat(7) { i ->
+                delay(500L)
+                println("I'm sleeping $i ... A")
+            }
+        }
+        println(result1)
+
+// but
+    try {
+        val result2 = withTimeout(1300L) {
+            repeat(7) { i ->
+                delay(500L)
+                println("I'm sleeping $i ... A")
+            }
+        }
+        println(result2)
+    } catch (e: TimeoutCancellationException) {
+        println(e)
+    } finally {
+        println("printing after catch block finally")
+    }
+```
 
 ### suspending coroutine vs non-suspending coroutine (launch, async):
 when a suspending function is called, it blocks code execution until finished. In the below code, the 1st defined withTimeout (which is a suspend function) will finished first becaiuse of the suspending nature. After the 1st finished it will call launch (at 2nd) and withTimeout (at 3rd place), after calling the suspending withTimeout at 3rd place, it will again block the code execution further. Between the 2nd and 3rd, it will print which will complete first. Only after completing 3rd suspending the code below will start to executing. launch is a non-suspending coroutine builder, hence it doesn't block and allow to execute withTimeout. 

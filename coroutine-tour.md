@@ -491,6 +491,9 @@ println("main: Now I can quit.")
 
 ### suspending coroutine vs non-suspending coroutine (launch, async):
 when a suspending function is called, it blocks code execution until finished. In the below code, the 1st defined withTimeout (which is a suspend function) will finished first becaiuse of the suspending nature. After the 1st finished it will call launch (at 2nd) and withTimeout (at 3rd place), after calling the suspending withTimeout at 3rd place, it will again block the code execution further. Between the 2nd and 3rd, it will print which will complete first. Only after completing 3rd suspending the code below will start to executing. launch is a non-suspending coroutine builder, hence it doesn't block and allow to execute withTimeout. 
+
+
+after relesing/finishing 3rd suspending function, the 4th and 5th are executed concurrently. And as the 5th finishes first between them, it pritn first and 4th after it. 
 * in action : [Suspending-vs-NonSuspending](./OOPTour/src/main/kotlin/coroutines/Suspending-vs-NonSuspending.kt)
 ```kotlin
 suspend fun testDualWithTimeoutInsideParentCoroutineScope() = coroutineScope {

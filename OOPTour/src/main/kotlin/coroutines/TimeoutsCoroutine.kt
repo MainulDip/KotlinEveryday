@@ -4,10 +4,8 @@ import kotlinx.coroutines.*
 
 fun main() {
     runBlocking {
-//        println(testWithTimeout())
-//        println(testDualWithTimeout())
-
-//        testLaunch()
+        println(testWithTimeout())
+        println(testDualWithTimeout())
     }
 }
 
@@ -33,7 +31,7 @@ suspend fun testDualWithTimeout() {
 //I'm sleeping 0 ... B
 
 
-
+// just curiosity to return a CoroutineScope, maybe not logical anyway
 suspend fun testWithTimeout () : CoroutineScope {
         val a = withTimeout(1300L) {
             repeat(1) { i ->

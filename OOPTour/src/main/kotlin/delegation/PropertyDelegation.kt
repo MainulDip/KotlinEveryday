@@ -21,7 +21,8 @@ class Delegate {
 }
 
 class Example {
-    var p: String by Delegate()
+//    var p: String by Delegate()
+    var p by Delegate()
 }
 
 fun main(){

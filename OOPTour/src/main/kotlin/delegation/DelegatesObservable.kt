@@ -2,19 +2,12 @@ package delegation
 
 import kotlin.properties.Delegates
 
-class User {
-    var name: String by Delegates.observable("<no name>") {
-            prop, old, new ->
-        println("prop : ${prop} || old value: $old || new value : $new")
-    }
+fun dl() {
+    var value: String? = null
+    lazyValue
 }
 
 fun main() {
-    val user = User()
-    println(user.name)
-    user.name = "first"
-    user.name = "second"
-    user.name = "third"
 }
 
 // <no name>

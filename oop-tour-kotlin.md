@@ -790,7 +790,7 @@ lateinit var subject: TestSubject // value is computed only on first access late
 Note: The lateinit keyword is a promise that the code will initialize the variable before using it. If not, app will crash for null.
 
 
-### <a name="operator-function"> Operator functions: </a>
+### <a name="operator-function"> Operator functions:</a>
 Operators are like +, -, /, * etc. Under the hood, expression a+b transform to a.plus(b) and same for other operators. To customize default behavour/functionality, we can override those using "operator fun <name>" signature.
 
 ```kotlin

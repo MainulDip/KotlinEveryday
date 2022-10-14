@@ -1,8 +1,8 @@
 ## Overview:
-This section is for personalized advanced Kotlin language docs and exammple. It's a personal Note.
+This section is for personalized advanced Kotlin language docs and exammple. It's a personal Note
 
 > Exception Function:
-```kt
+```kotlin
 import java.time.LocalDate
 
 fun main() {
@@ -22,7 +22,7 @@ fun LocalDate.isTuesday(): Boolean {
 ```
 
 > Collections: List | Set | Map | Sequence // Kotlin Standerd Library
-```kt
+```kotlin
 fun main() {
     val list = listOf("Appele", "Banana", "Orange")
     println("list: list of $list and first item is ${list[0]}")

@@ -3,6 +3,12 @@ It's a quick language tour to re-connect with most of the Kotlin language syntax
 Link: (oop-minimap-kotlin.md)[oop-minimap.kotlin.md]
 Link: (oop-tour-kotlin.md)[oop-tour-kotlin.md]
 
+### Intellij IDE shortcut:
+* alt + j : find and select the next occurrence of the word
+* shift + alt + enter : generate code
+* ctrl + p : 
+* ctrl + space :
+
 > Main.kt | kotlin program starts from this (like index.js/php). Also main() function in raw kotlin.
 
 ### Variables and Types:

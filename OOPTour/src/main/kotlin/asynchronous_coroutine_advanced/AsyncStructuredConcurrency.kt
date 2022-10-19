@@ -17,11 +17,11 @@ suspend fun concurrentSum(): Int = coroutineScope {
 }
 
 suspend fun childSuspendOne(): Int {
-    delay(1000L) // pretend we are doing something useful here
+    delay(1000L) // pretend we are doing some computation or fetching data
     return 13
 }
 
 suspend fun childSuspendTwo(): Int {
-    delay(1000L) // pretend we are doing something useful here, too
+    delay(1000L) // pretend we are doing some computation or fetching data
     return 29
 }

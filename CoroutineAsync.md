@@ -1,8 +1,14 @@
-package asynchronous_coroutine_advanced
+## Asynchronous Programming Kotlin:
+Everything that apply to Java also works here.
+https://kotlinlang.org/docs/async-programming.html#futures-promises-and-others
 
-import kotlinx.coroutines.*
-import kotlin.system.measureTimeMillis
+https://hackernoon.com/asynchronous-programming-techniques-with-kotlin-fg9l3wjn
 
+https://www.baeldung.com/java-asynchronous-programming .
+
+### Sequential vs Concurrent vs Lazy Coroutines:
+async and launch are concurrent, where regrular suspending functions are sequentials unless applied threading or channel mechanism.
+```kotlin
 fun main() = runBlocking<Unit> {
     /**
      * Sequential by Default: suspend function will complete one after another
@@ -62,4 +68,27 @@ suspend fun taskTwo(): Int {
     delay(1000L) // pretend we are doing something useful here, too
     return 29
 }
+```
 
+* Result
+```txt
+Sequential Coroutine -------------------- 
+
+On Sequential: The answer is 42
+On Sequential: Completed in 2051 ms
+
+Concurrent Coroutine -------------------- 
+
+On Concurrent: The answer is 42
+On Concurrent: Completed in 1023 ms
+
+Lazy Coroutine -------------------- 
+
+On Concurrent Lazy: The answer is 42
+On Concurrent Lazy: Completed in 1017 ms
+
+Process finished with exit code 0
+```
+
+### Shared mutable state and concurrency
+https://kotlinlang.org/docs/shared-mutable-state-and-concurrency.html.......

@@ -441,7 +441,7 @@ fun <T> List<T>.customLamGenericsFunction(value: (T) -> Boolean): Int {
 Next: Kotlin OOP : [OOP Kotlin](oop-tour-kotlin.md) and [Advanced Kotlin](kotlin-advanced-lanuge.md)
 
 ### <a name="lambda-without-braces-member-references"></a> Lambda without braces for member references:
-":\:" creates a member reference or a class reference.
+":\:" creates a member reference or a class reference
 ```kotlin
 fun main() {
     fun memberFn() = println("x")

@@ -73,6 +73,11 @@ fun main() {
 }
 ```
 
+### Expression vs Statement:
+* Expression: In Kotlin, an expression may be used as a statement or used as an expression depending on the context. As all expressions are valid statements, standalone expressions may be used as single statements or inside code blocks. Expression usually returns result (at least Unit). https://kotlinlang.org/spec/statements.html
+
+* Statement: As all expressions are valid statements. In java any line ends with semicolon is a statement. Statements usually don't returns, it assaigns ( val somethis = 77 | class SomeClass{} ) 
+
 ### <a name="when-block"></a> when block:
 When Signature
 ```kotlin

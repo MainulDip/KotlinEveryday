@@ -24,7 +24,7 @@ public final class SomeSingleton {
    }
 }
 ```
-> Some More Kotlin SingleTon
+> Some More Kotlin SingleTon:
 
 ```kotlin
 fun main() {

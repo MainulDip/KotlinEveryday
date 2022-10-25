@@ -374,6 +374,40 @@ val getGender: String = when(person.gender){
 val <T> T.exhaustive : T
     get() = this
 ```
+3. Using inside when block as "expression" (returns) helps IDE to generate all the possible cases using "add remaining branches"
+```kotlin
+fun main(args: Array<String>) {
+
+    val person = Person("Hello", Person.Gender.Male)
+
+    /**
+    * When calling as expression (not as statement)
+    * a coed block is usually counted as an expression when it returns something
+    * if used as expression, we don't need the exhaustive extension function for IDE support to cover every possible cases */
+
+    val getGenderExpression = genderExpression(person.gender)
+    println("getGenderExpression : $getGenderExpression")
+
+}
+
+/**
+ * using when block with sealed class as an expression
+ * use "add remaining branches" form IDE suggestion to generate all the possible cases */
+
+fun genderExpression (gender: Person.Gender): String = when(gender) {
+    Person.Gender.Female -> "Male"
+    Person.Gender.Male -> "Female"
+    // is Person.Gender.Male -> "Female" // "is" is implicit here
+}
+
+
+data class Person(val name: String, val gender: Gender ) {
+    sealed class Gender {
+        object Male: Gender()
+        object Female: Gender()
+    }
+}
+```
 
 </details>
 

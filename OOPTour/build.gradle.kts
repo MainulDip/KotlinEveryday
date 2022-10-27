@@ -1,7 +1,8 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    kotlin("jvm") version "1.6.10"
+    kotlin("jvm") version "1.7.20"
+    kotlin("plugin.serialization") version "1.7.20"
     application
 }
 
@@ -29,6 +30,9 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter")
 
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4")
+
+    // Serialization/Data Storage
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1")
 }
 
 tasks.test {

@@ -366,6 +366,7 @@ items.fold(0, {
     result
 })
 ```
+Super Note: https://blog.logrocket.com/a-complete-guide-to-kotlin-lambda-expressions/
 
 
 ### Generics 

@@ -471,7 +471,7 @@ fun main(){
 
 </details>
 
-### <a name="enum-class"> Enum Class: </a>
+### <a name="enum-class"> Enum Class </a>
 Each enum constant is an object. Enum constants are separated by commas.
 [Implementation Play](./OOPTour/src/main/kotlin/dataSealedEnumClasses/emumclass.kt)
 [Offficial Docs](https://kotlinlang.org/docs/enum-classes.html#anonymous-classes).

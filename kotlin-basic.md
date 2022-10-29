@@ -404,7 +404,7 @@ items.fold(0, {
 ```
 
 
-### <a name="generics"></a> Generics: 
+### <a name="generics"></a> Generics
 ```kotlin
 fun main() {
 

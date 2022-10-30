@@ -1,2 +1,2 @@
 SomeText Data
-Appending Text With New Line
+Appending Text With New Line 

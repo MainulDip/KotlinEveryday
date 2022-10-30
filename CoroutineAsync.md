@@ -90,5 +90,5 @@ On Concurrent Lazy: Completed in 1017 ms
 Process finished with exit code 0
 ```
 
-### Shared mutable state and concurrency
+### Shared mutable state and concurrency:
 https://kotlinlang.org/docs/shared-mutable-state-and-concurrency.html.............

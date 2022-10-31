@@ -33,6 +33,8 @@ dependencies {
 
     // Serialization/Data Storage
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1")
+    // protobuf
+    implementation("com.google.protobuf:protobuf-java:3.21.9")
 }
 
 tasks.test {

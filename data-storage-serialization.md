@@ -13,3 +13,4 @@ Serialization is the process of converting data used by an application to a form
 * CRUD Directory and Text Files | Create, Read, Update, Delete
 * CRUD with JSON Serialization | Create, Read, Update, Delete
 * CRUD Protocol Buffers
+* protoc -I="." --java_out="." --kotlin_out="." ./addressbook.proto

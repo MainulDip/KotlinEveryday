@@ -851,3 +851,19 @@ class CustomMath(val a: Int, val b: Int) {
 // 4
 // sum = (7, 1)
 ```
+
+### indexing operator [] and get call:
+```kotlin
+class MyClass {
+    operator fun get(key: Any) = "method 1!"
+    fun get(key: String) = "method 2!"
+}
+
+fun main(args: Array<String>) {
+    val o = MyClass()
+    println(o[23]) //"method 1!"
+    println(o["23"]) //"method 1!"
+    println(o.get(23)) //"method 1!"
+    println(o.get("23")) // "method 2!"
+}
+```

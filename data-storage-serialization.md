@@ -18,5 +18,5 @@ Serialization is the process of converting data used by an application to a form
 
 * protoc --java_out="main/java/" --kotlin_out="/main/kotlin/" ./addressbook.proto
 
-* protoc --java_out="./main/java/" --kotlin_out="./main/kotlin/" ./protobuf/contactsbook.proto
+* protoc --java_out="./main/java/" --kotlin_out="./main/kotlin/" ./protobuf/contactsbook.proto.......
 

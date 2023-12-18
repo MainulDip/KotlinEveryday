@@ -74,7 +74,7 @@ class Unrelated(o: Outer) {
 Docs: https://kotlinlang.org/docs/visibility-modifiers.html
 
 ### <a name="constructorparam"> val/var/"empty" in Constructor Parameter/s: </a>
-If val/var is specified in constructor papameter, in background it also declares property inside the class. If not it is simply a parameter passed to the primary constructor, where the parameters can be accessed within the init block or to initialize other properties
+If val/var is specified in constructor parameter, in background it also declares property inside the class. If not it is simply a parameter passed to the primary constructor, where the parameters can be accessed within the init block or to initialize other properties
 ```kotlin
 class User(val id: Long, email: String) {
     val hasEmail = email.isNotBlank()    //email can be accessed here
@@ -356,7 +356,7 @@ object RuntimeError : Error
 <details>
 <summary>Sealed Class Best Practice</summary>
 
-1. Define Hierarchy Using Nested Class, its easy to read
+1. Define Hierarchy () Using Nested Class, its easy to read, also 
 ```kotlin
 sealed class Gender {
     object Male: Gender()
@@ -366,6 +366,15 @@ sealed class Gender {
 
 2. Best first case could when block. Also use generic getter to receive IDE support at its best
 ```kotlin
+/**
+* using `when` as expression. In this case IDE do not auto suggest all the possibilities.
+* adding extension `T.exhaustive` will help IDE to auto suggest
+* `expression` -> When a block of code returns value
+* `statement` does not return value, rather do side effect/s (like modifying variable/s). 
+* as a whole, most of the things are `statement`. Inside statement, there can be `expression` or can't
+* here the when block returns a value, thats why its an expression
+* But as a whole (including assignment operation), its a statement 
+*/
 val getGender: String = when(person.gender){
     is Person.Gender.Male -> "Male"
     is Person.Gender.Female -> "Female"

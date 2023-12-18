@@ -88,7 +88,7 @@ fun main() {
 // Good From Secondary
 ```
 
-### Abstract Class With Non-Abstract Property (No instantiation allowed):
+### Abstract Class With Non-Abstract Property (instantiation allowed):
 ```kotlin
 //abstract class
 abstract class Employee(val name: String,val experience: Int) {  // Non-Abstract Properties

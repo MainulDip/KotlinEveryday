@@ -9,7 +9,7 @@ Link: (oop-tour-kotlin.md)[oop-tour-kotlin.md]
 * ctrl + p : 
 * ctrl + space :
 
-> Main.kt | kotlin program starts from this (like index.js/php). Also main() function in raw kotlin.
+> Main.kt | kotlin program starts from this (like index.js/php). Also main() function in raw kotlin
 
 ### Variables and Types:
 ```kotlin

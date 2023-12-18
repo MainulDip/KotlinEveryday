@@ -5,7 +5,7 @@ This markdow file provides mini docs for following topics:
 - [mockmvc DSL structure](#mockmvc-dsl)
 - [Inline Functions, Reflections/KClass // MyClass::class || Function references // ::isOdd](#inline-reflection-function-reference)
 
-### <a name="eontext-extension"></a> Context and Extention functions 
+### <a name="context-extension"></a> Context and Extention functions 
 ```kotlin
 fun call(greet: String.(String) -> Unit) {
 // greet("Hello", " Dolly") // "greet"'s 1st parameter is the context and the last is it's native parameter.
@@ -35,17 +35,31 @@ println("${this.toUpperCase()}") // Print => HELLO
 </details>
 
 <details>
-<summary>This: Explecit/Implecit "this" call</summary>
+<summary>This: Explicit/Implicit "this" call</summary>
 
 ```kotlin
+fun main() {
+    
+    A().B().run {
+        println(12.foo())
+    }
+    
+}
+
 class A { // implicit label @A
+    /**
+    * Note: inner class is less used than nested class, as nested class doesn't require parent class to instantiate
+    * But inner class can access parent/outer class' members
+    */
     inner class B { // implicit label @B
         fun Int.foo() { // implicit label @foo
             val a = this@A // A's this
             val b = this@B // B's this
+            println("${a::class.simpleName} and ${b::class.simpleName}")
 
             val c = this // foo()'s receiver, an Int.
             val c1 = this@foo // foo()'s receiver, an Int
+            println("${c::class.simpleName} : $c and ${c1::class.simpleName} : $c1")  // 12 both case
 
             val funLit = lambda@ fun String.() {
                 val d = this // funLit's receiver
@@ -61,7 +75,7 @@ class A { // implicit label @A
 }
 ```
 
-Note: "this" can be ommited if call in a member function. But if there is a function in the outer scope, "this" necessery to call member function. Without "this" receiever top level function will be called.
+Note: "this" can be omitted if called in a member function. But if there is a function in the outer scope, "this" is necessary to call member function. Without "this" receiver, top level function will be called.
 ```kotlin
 fun printLine() { println("Top-level function") }
 

@@ -481,10 +481,16 @@ fun main(){
 </details>
 
 ### <a name="enum-class"> Enum Class </a>
-Each enum constant is an object. Enum constants are separated by commas.
+Each enum constant is an object (an instance of the surrounding enum class). Enum constants are separated by commas.
 [Implementation Play](./OOPTour/src/main/kotlin/dataSealedEnumClasses/emumclass.kt)
 [Offficial Docs](https://kotlinlang.org/docs/enum-classes.html#anonymous-classes).
 ```kotlin
+/**
+* as each enum constants is an instance of the Enum Itself,
+* the constructor of the Enum is passed down to those member enum constants. those constants cannot be changed once defined from outside
+ * Note: the `constant`s are immutable
+ * and the purpose of enum class is to define a collection of type-safe (safe to type) values
+*/
 enum class Color(val rgb: String) {
     RED("0xFF0000"),
     GREEN("0x00FF00"),
@@ -531,6 +537,45 @@ enum class IntArithmetics : BinaryOperator<Int>, IntBinaryOperator {
     override fun applyAsInt(t: Int, u: Int) = apply(t,u)
 }
 ```
+* Enum ordinal and entries
+
+```kotlin
+/**
+ * Enum ordinal is the Enum's constant's position on the Enum
+ * As any enum constants are instances of the surrounding Enum class
+ * to declare a method and call it by enum.constant.method() we need to make it abstract
+ * then the method needs to be overridden
+ */
+
+enum class IntArithmetics  {
+    PLUS { // PLUS is an anonymous enum Constant class (or anonymous class constant)
+        override fun sth(t: Int, u: Int): Int = t + u
+    },
+    TIMES { // Same as PLUS, its an instances of the surrounding Enum class
+        override fun sth(t: Int, u: Int): Int = t * u
+    };
+
+    abstract fun sth(t: Int, u: Int): Int
+}
+
+fun main() {
+    println("${IntArithmetics.PLUS.ordinal}, ${IntArithmetics.TIMES.ordinal}") // 0, 1
+    println(IntArithmetics.entries) // [PLUS, TIMES]
+
+    val a = 13
+    val b = 31
+
+    println(IntArithmetics.PLUS.sth(a,b)) // 44
+    println(IntArithmetics.TIMES.sth(a,b)) // 403
+
+    for (f in IntArithmetics.entries) {
+        println("$f($a, $b) = ${f.sth(a,b)}")
+    }
+    // PLUS(13, 31) = 44
+    // TIMES(13, 31) = 403
+}
+```
+
 ### <a name="inline-class-nested-inner">Inline Class, Nested, Inners:</a>
 Inline classes are a subset of value-based classes. They don't have an identity and can only hold values. Provide predictable type into IDEs
 
@@ -679,8 +724,8 @@ class DatabaseUser(userId: String) {
 
 > More on delegated property: oop-tour-kotlin-2.md
 
-### <a name="generics-in-out"></a> Generics In Out, SAM (Single Abstract Method) 
-> SAM : Function "Single Abstruct Method"
+### <a name="generics-in-out"></a> Generics In Out, SAM (Single Abstract Method) :
+> SAM : Function "Single Abstract Method"
 
 ```kotlin
 fun interface IntPredicate {
@@ -763,7 +808,7 @@ fun main() {
 
 See separate section for more: [coroutine-tour.md](./coroutine-tour.md)
 
-### <a name="dely-vs-thread"> delay() vs Thread.speep() : </a>
+### <a name="dely-vs-thread"> delay() vs Thread.sleep() : </a>
 
 Delay is a suspend function that won't block the thread, it will only suspend that coroutine for the amount of time, but Thread is free to go service a different coroutine.
 

@@ -120,7 +120,7 @@ fun main() {
     diceImage.setImageResource(drawableResource)
 }
 ```
-### <a name="arithmetic-tasks"></a> Arithmetic Operators
+### <a name="arithmetic-tasks"></a> Arithmetic Operators:
 > Oparators for mathmetical operation like + | - | * | / | %
 ```kotlin
 val m = 3 * 4

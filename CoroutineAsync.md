@@ -6,7 +6,7 @@ https://hackernoon.com/asynchronous-programming-techniques-with-kotlin-fg9l3wjn
 
 https://www.baeldung.com/java-asynchronous-programming .
 
-### Sequential vs Concurrent vs Lazy Coroutines:
+### Sequential vs Concurrent vs Lazy Coroutines
 async and launch are concurrent, where regrular suspending functions are sequentials unless applied threading or channel mechanism.
 ```kotlin
 fun main() = runBlocking<Unit> {

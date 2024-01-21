@@ -34,7 +34,7 @@ class Processing: LatestNewsUiState() {
 }
 
 fun asChecking(y: Any){
-    val str: String? = y as String? // it's nullable (either null or string), but if casting fails (Int to String), it will throw a runtime exception
+    // val str: String? = y as String? // it's nullable (either null or string), but if casting fails (Int to String), it will throw a runtime exception
     val str2: String? = y as? String // same, but if casting fails, null will be assigned, no runtime error will happen, hence `as? is safe cast`
     println("$str $str2")
 }

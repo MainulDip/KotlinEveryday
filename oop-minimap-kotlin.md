@@ -124,7 +124,7 @@ fun main(args: Array<String>) {
 // Annual Salary: 500000.0
 // Date of Birth is: 02 December 1994
 ```
-### Interfaces, No instantiation allowed:
+### Interfaces, No instantiation allowed
 Interfaces cannot have constructors in Kotlin. And it cannot have non-abstract methods and properties (abstract class can have both abstract and not-abstract methods and properties). But it can have 
 - declarations of abstract methods
 - method implementations.

@@ -171,7 +171,7 @@ fun fill(dest: Array<in String>, value: String) { ... }
 - Function<*, *> means Function<in Nothing, out Any?>.
 https://typealias.com/guides/star-projections-and-how-they-work/
 
-### <a name="more-on-delegated-properties"> Delegated Properties (some-more):
+### <a name="more-on-delegated-properties"> Delegated Properties (some-more)
 
 - Lazy property: 
 lazy() takes a lambda and returns an instance of Lazy<T>, which can serve as a delegate for implementing a lazy property. The first call to get() executes the lambda passed to lazy() and remembers the result. Subsequent calls to get() simply return the remembered result.

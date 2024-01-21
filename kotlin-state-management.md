@@ -1,6 +1,6 @@
 ## State management in kotlin (android and native)
 
-### Singleton Pattern:
+### Singleton Pattern
 Kotlin uses object based storage pattern to act like Singleton in Java. Kotlin object can’t have any constructor, but "init" blocks are allowed, if some initialization code is necessary on the fly.
 ```kotlin
 object SomeSingleton {

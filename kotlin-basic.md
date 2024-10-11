@@ -209,6 +209,7 @@ println(string.uppercase())
 > check: https://kotlinlang.org/docs/control-flow.html#for-loops
 ```kotlin
 // while loop
+    val shoppingList = listOf<String>("Hello", "World");
     var counter = 0
     while( counter < shoppingList.size) {
         println("immutable shoppingList on loop $counter is ${shoppingList[counter]}")

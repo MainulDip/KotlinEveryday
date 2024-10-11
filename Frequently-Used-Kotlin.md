@@ -26,7 +26,7 @@ fun asChecking(y: Any){
 ### invoke with Class/Obj/Functions instance:
 `invoke` is a operator function of a class/obj/function. In class/obj we can override it and implement custom code in it. So when it will be called on its instance, the overridden block will be run.
 
-With functions instance, it provide a syntactic sugar for calling a `Nullable` function like `fn?.invoke(param1,param2)`. Otherwise let{} should be used like `fn?.let{it(param1, param2)}`
+With functions instance, it provide a syntactic sugar for calling a `Nullable` function like `fn?.invoke(param1,param2)`. Otherwise let{} should be used like `fn?.let{it(param1, param2)}`.
 
 <details>
 

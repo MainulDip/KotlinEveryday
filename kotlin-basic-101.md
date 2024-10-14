@@ -384,6 +384,23 @@ fun List<String>.customLamFunction(fn: (String) -> Boolean): Int {
 }
 ```
 
+### Destructuring:
+https://subscription.packtpub.com/book/application-development/9781787123687/5/ch05lvl1sec63/destructuring-in-lambda-expressions
+```kotlin
+data class User(val name: String, val surname: String, val phone: String) 
+ 
+val (name, surname, phone) = user 
+
+    val showUser: (User) -> Unit = { (name, surname, phone) -> 
+        println("$name $surname have phone number: $phone")  
+    } 
+
+    val user = User("Marcin", "Moskala", "+48 123 456 789") 
+    showUser(user) 
+    // Marcin Moskala have phone number: +48 123 456 789 
+```
+
+
 ### <a name="lambda-type-instantiation"></a> Lambda Type Declaration and Instantiation:
 ```kotlin
 // Lambda Declaration. Note: IntArray.fold() is a built in function in Kotlin
@@ -445,7 +462,7 @@ fun <T> List<T>.customLamGenericsFunction(value: (T) -> Boolean): Int {
 Next: Kotlin OOP : [OOP Kotlin](oop-tour-kotlin.md) and [Advanced Kotlin](kotlin-advanced-lanuge.md)
 
 ### <a name="lambda-without-braces-member-references"></a> Lambda without braces for member references:
-":\:" creates a member reference or a class reference
+"::" creates a member reference or a class reference
 ```kotlin
 fun main() {
     fun memberFn() = println("x")
@@ -488,22 +505,6 @@ fun main(){
 }
 }
 ```
-### Destructuring:
-https://subscription.packtpub.com/book/application-development/9781787123687/5/ch05lvl1sec63/destructuring-in-lambda-expressions
-```kotlin
-data class User(val name: String, val surname: String, val phone: String) 
- 
-val (name, surname, phone) = user 
-
-    val showUser: (User) -> Unit = { (name, surname, phone) -> 
-        println("$name $surname have phone number: $phone")  
-    } 
-
-    val user = User("Marcin", "Moskala", "+48 123 456 789") 
-    showUser(user) 
-    // Marcin Moskala have phone number: +48 123 456 789 
-```
-
 
 ### List groupBy:
 ```kotlin

@@ -4,7 +4,7 @@ Continued From oop-tour-kotlin.md. This markdow file provides mini docs for foll
 - [Primary & secondary contructors](#primary-secondary-constructor)
 - [Invariance, Covariance, Contravariance](#generic-variances)
 - [Generics Variance (in/out) or variance annotation](#generics-in-out)
-- [Star Projection (Generics/Foo<*>):](#star-projection)
+- [Star Projection (Generics/Foo<*>):](#star-projection).
 - [Delegated Properties (some-more):](#more-on-delegated-properties)
 
 ### <a name="companion-static"></a> java/kotlin Static Method || companion object:

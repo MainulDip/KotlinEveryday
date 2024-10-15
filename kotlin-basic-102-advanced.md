@@ -37,6 +37,48 @@ fun main() {
 }
 ```
 
+### Function Reference Type and Capturing Value:
+1st way, it's simply by using ::fun referencing. 
+```kotlin
+fun makeIncrementr(amount: Int): () -> Unit {
+    var runningTotal = 0;
+    fun incrementer(): Unit {
+        runningTotal += amount;
+        println(runningTotal);
+    }
+    return ::incrementer;
+    // return { increment() } // will also work as it's returning lambda function
+}
+
+fun main() {
+    val incrementByTen = makeIncrementr(10);
+    incrementByTen(); // print 10
+    incrementByTen(); // print 20
+}
+```
+
+When the returning function has parameter
+```kotlin
+fun makeIncrementr(amount: Int): (Int) -> Unit {
+    var runningTotal = 0;
+    // instead of returning after. the function can be returned itself. But that function needs to be anonymous
+    // return fun (sInt: Int): Unit {...}
+    return fun (sInt: Int): Unit {
+        runningTotal += amount;
+        println(runningTotal);
+        println(sInt);
+    }
+    // return ::incrementer; // will work and neat way
+	// return {v -> incrementer(v)} // lambda way needs to pass arg
+}
+
+fun main() {
+    val incrementByTen = makeIncrementr(10);
+    incrementByTen(30); // print 10 & 30
+    incrementByTen(40); // print 20 & 40
+}
+```
+
 ### <a name="context-extension"></a> Context and Extension functions  
 ```kotlin
 fun call(greet: String.(String) -> Unit) {

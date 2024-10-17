@@ -11,7 +11,7 @@ First, we'll look at how to implement the logic in a blocking way: easy to read 
 
 - ContributorUI inherits JFrame and Contributor interface.
 - While initializing ContributorUI, the init block calls the init method inherited from Contributors.kt
-- Contributors interfaces init function/method (not init{} block) calls the abstract methods addLoadListener, addOnWindowClosingListener, etc (which are defined by overriding inside inherited class ContributorUI).
+- Contributors interfaces init function/method (not init{} block) calls the abstract methods addLoadListener, addOnWindowClosingListener, etc (which are defined by overriding inside inherited class ContributorUI)...
 ```kotlin
 fun init() {
         // Start a new loading on 'load' click

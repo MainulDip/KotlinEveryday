@@ -748,15 +748,13 @@ fun main() {
 ```
 
 ### <a name="coroutine-suspend-function"> Coroutine, Suspend Functions (Asynchronous Tasks): </a>
-A coroutine is an instance of suspendable computation. It is conceptually similar to a thread, in the sense that it takes a block of code to run that works concurrently with the rest of the code. However, a coroutine is not bound to any particular thread. It may suspend its execution in one thread and resume in another one.
-
-Coroutines can be thought of as light-weight threads, but there is a number of important differences that make their real-life usage very different from threads
-
+A coroutine is an instance of suspendable computation. It is conceptually similar to a thread (virtual), in the sense that it takes a block of code to run that works concurrently with the rest of the code. However, a coroutine is not bound to any particular physical thread. It may suspend its execution in one thread and resume in another one.
 
 ```kotlin
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
+// import kotlinx.coroutines.delay
+// import kotlinx.coroutines.launch
+// import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.*
 
 fun main() {
 
@@ -764,11 +762,20 @@ fun main() {
     
     runBlocking { // this: CoroutineScope
         launch { // launch is a coroutine builder. It launches a new coroutine concurrently with the rest of the code, which continues to work independently
-            delay(1000L) // non-blocking delay for 1 second (default time unit is ms)
-            println("World!") // prints after delay
+            delay(10L) // block launch-scope for 1 second (default time unit is ms). But doesn't block runBlockingScope
+            println("World 1") // prints after delay
         }
-        println("Hello") // main coroutine continues while a previous one is delayed
+        launch {
+            delay(0L)
+            println("World 2")
+        }
+        // delay(10L)
+        println("Hello") // runs first as nothing is blockng it's way
     }
+
+    // Hello
+    // World 2
+    // World 1
 
     // Second runBlocking will start executing after finishing First
 
@@ -812,7 +819,7 @@ See separate section for more: [coroutine-tour.md](./coroutine-tour.md)
 
 Delay is a suspend function that won't block the thread, it will only suspend that coroutine for the amount of time, but Thread is free to go service a different coroutine.
 
-Thread.sleep() will block the thread and remain blocked until seeping time in the coroutine are over before it can go service the execution of another coroutine. Hence its Blocking. See Example.
+Thread.sleep() will block the thread and remain blocked until seeping time.
 
 Note: Suspending a thread means that thread will "wait" doing something else in the meantime if necessary. Blocking a thread means that thread will wait doing nothing no matter what
 
@@ -868,7 +875,11 @@ fun main() {
 ```
 
 ### <a name="late-init"></a> Late-initialized (lateinit): 
-To handle non-null properties/var that will be provided lately (through dependency injection, or in the setup method of a unit test), lateinit modifier can be used. lateint can be used on var properties declared inside the body of a class (not in the primary constructor, and only when the property does not have a custom getter or setter), as well as for top-level properties and local variables. The type of the property or variable must be non-null, and it must not be a primitive type.
+Used To handle non-null properties/var that will be provided lately (through dependency injection, or in the setup method of a unit test). As if we're telling the compiler to ignore null check and we're promising to populate the field before calling. So in runtime it will be fine
+
+These are used on var properties declared inside class body as well as for top-level (outside class) properties and local variables. But not in the primary constructor, and only when the property does not have a custom getter or setter. 
+
+The type of the property or variable must be non-null, and it must not be a primitive type.
 Docs : https://kotlinlang.org/docs/properties.html#checking-whether-a-lateinit-var-is-initialized
 
 ```kotlin
@@ -909,15 +920,18 @@ class CustomMath(val a: Int, val b: Int) {
 ### indexing operator [] and get call:
 ```kotlin
 class MyClass {
-    operator fun get(key: Any) = "method 1!"
-    fun get(key: String) = "method 2!"
+    operator fun get(key: Int) = "method 1!"
+    operator fun get(key: String) = "method 2!"
+    fun get(key: Any) = "Anything Else!"
 }
 
 fun main(args: Array<String>) {
-    val o = MyClass()
-    println(o[23]) //"method 1!"
-    println(o["23"]) //"method 1!"
-    println(o.get(23)) //"method 1!"
-    println(o.get("23")) // "method 2!"
+    val myClass = MyClass()
+    println(myClass[23]) //"method 1!"
+    println(myClass["23"]) //"method 2!"
+    println(myClass.get(23)) //"method 1!"
+    println(myClass.get(100L)) // Anything Else!
 }
 ```
+
+### Dig deeper into kotlin union types (using sealed class or else)

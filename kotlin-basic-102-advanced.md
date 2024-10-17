@@ -293,7 +293,7 @@ fun main() {
 ```
 
 ## Higher Order Functions Survival Docs:
-It's a mini personalised doc for some of the kotlin's higher order functions.
+It's a mini personalised doc for some of the kotlin's higher order functions...
 
 ### map vs flatMap:
 ```kotlin

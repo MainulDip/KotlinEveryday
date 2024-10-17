@@ -120,6 +120,14 @@ fun main() {
     diceImage.setImageResource(drawableResource)
 }
 ```
+
+### Single-expression function:
+When the function body consists of a single expression, the curly braces can be omitted and the body specified after an `=` symbol
+```kotlin
+fun double(x: Int): Int = x * 2
+fun doubleO(x: Int) = x * 2 
+```
+
 ### <a name="arithmetic-tasks"></a> Arithmetic Operators:
 > Oparators for mathmetical operation like + | - | * | / | %
 ```kotlin

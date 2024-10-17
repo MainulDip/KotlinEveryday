@@ -27,10 +27,10 @@ Foo.a();
 
 
 <details>
-<summary>Static Methos Other Ways</summary>
+<summary>Static Methods Other Ways</summary>
 
 
-> @JavaStatic annotation to use as normal static method inside java and kotlin all togather
+> @JavaStatic annotation to use as normal static method inside java and kotlin all together
 
 ```kotlin
 class Foo {

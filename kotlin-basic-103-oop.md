@@ -30,7 +30,7 @@ Module: It's the top-most level like App. More specifically a module is a set of
 
 Packages: These are collection of related classes, functions, and correspond roughly to directories. They allow to refer to classes (and top-level functions and fields) in the same package directly, while all other classes need to be imported or their fully-qualified names (package.package…class) used. They're set using the package directive at the top of each file
 
-Visibility Modifires:
+Visibility Modifiers:
 ```kotlin
 // file name: example.kt
 package foo

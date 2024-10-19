@@ -80,7 +80,7 @@ fun main() {
 ### Expression vs Statement:
 * Expression: In Kotlin, an expression may be used as a statement or used as an expression depending on the context. As all expressions are valid statements, standalone expressions may be used as single statements or inside code blocks. Expression usually returns result (at least Unit). https://kotlinlang.org/spec/statements.html
 
-* Statement: As all expressions are valid statements. In java any line ends with semicolon is a statement. Statements usually don't returns, it assaigns ( val somethis = 77 | class SomeClass{} ) 
+* Statement: As all expressions are valid statements. In java any line ends with semicolon is a statement. Statements usually don't returns, it assigns ( val somethis = 77 | class SomeClass{} ) 
 
 ### <a name="when-block"></a> when block:
 When Signature
@@ -231,7 +231,7 @@ println(string.uppercase())
     }
 
     for ( number in 1..100){
-        println("Outputting range in for loop wher number = $number")
+        println("Outputting range in for loop where number = $number")
     }
 ```
 
@@ -260,7 +260,7 @@ fun checkIsEven(number: Int): Boolean{
 val evenNum = 7
 val checkEven = checkIsEven(evenNum)
 println("checkEven for $evenNum is ${if(checkEven) "even" else "\"odd\""}")
-val checkEven2 = checkIsEven(number = evenNum) // adds good redability
+val checkEven2 = checkIsEven(number = evenNum) // adds good readability
 // Setting Function's Default Args Value.
 fun defaultArgVal(number: Int = 7): Boolean { return number % 2 == 0}
 println(defaultArgVal())
@@ -362,7 +362,7 @@ println(parsedNumber)
 ### <a name="lambda-function"></a> Lambda Function
 The main principal is to pass value/s to the lambda parameter/s and use as callback later utilizing the passed parameter/s.
  
-Note: When calling there is no parenthses ()" before arrow notation "->" like defining. Also no return statement. return@funname is allowed. When calling "()" can be used as destructured syntax.
+Note: When calling there is no parentheses ()" before arrow notation "->" like defining. Also no return statement. return@funname is allowed. When calling "()" can be used as destructured syntax.
 > Lamda: Functions that are passed as parameter/args of another function
 
 ```kotlin
@@ -393,7 +393,7 @@ fun List<String>.customLamFunction(fn: (String) -> Boolean): Int {
 ```
 
 ### Destructuring:
-https://subscription.packtpub.com/book/application-development/9781787123687/5/ch05lvl1sec63/destructuring-in-lambda-expressions
+https://subscription.packtpub.com/book/application-development/9781787123687/5/ch05lvl1sec63/destructuring-in-lambda-expressions.
 ```kotlin
 data class User(val name: String, val surname: String, val phone: String) 
  

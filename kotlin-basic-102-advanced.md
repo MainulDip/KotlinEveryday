@@ -38,7 +38,7 @@ fun main() {
 ```
 
 ### Function Reference Type and Capturing Value:
-1st way, it's simply by using ::fun referencing. 
+1st way, it's simply by using ::fun referencing... 
 ```kotlin
 fun makeIncrementr(amount: Int): () -> Unit {
     var runningTotal = 0;

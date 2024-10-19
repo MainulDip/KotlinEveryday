@@ -39,3 +39,30 @@ fun main() {
 
 ### Sealed class and Interface:
 https://kotlinlang.org/docs/sealed-classes.html
+
+### Value Based Usages:
+For kotlin, all primitive types are value based. For classes, Only data class support out-of-the box `dataClass.copy()`
+
+```kotlin
+data class RefTesting (var singleProp: String = "Default");
+// data class will provide the copy function
+
+fun main() {
+    val r1 = RefTesting();
+    println(r1.singleProp) // Default
+    
+    val r2 = r1;
+    println(r2.singleProp); // Default
+    
+    // testing reference based behaviour
+    r2.singleProp = "Something else";
+    println(r2.singleProp); // Something else
+    println(r1.singleProp); // Something else
+    
+    // making class behave like value base behaviour
+    val r3 = r1.copy();
+    r3.singleProp = "Separeted value";
+    println("r3.singleProp = ${r3.singleProp}"); // r3.singleProp = Separeted value
+    println("r1.singleProp = ${r1.singleProp}"); // r1.singleProp = Something else
+}
+````

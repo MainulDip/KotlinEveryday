@@ -109,28 +109,47 @@ class Student(var name: String="Default", height: Int) {
 ``` 
 
 ### <a name="generic-variances"> Invariance, Covariance, Contravariance:</a>
-- Invariance: A generic class is called invariant on the type parameter when for two different types A and B, Class<A> is neither a subtype nor a supertype of Class<B>
+- Invariance: A generic class is called invariant on the type parameter when it is expecting the exact type. Not `in T` or Not `out R`
 
-- Covariance (subtyping relation): A generic class is called covariant on the type parameter when the following holds: Class<A> is a subtype of Class<B>
+- Covariance (subtyping relation): a generic class is called covariant on the type parameter when it accept the exact class or it's subtype. Denotes by `out T`
 
-
-- Contravariance (Supertype relation or reverse Covariance): Contravariance describes a relationship between two sets of types where they subtype in opposite directions (Supertype)
 ```kotlin
-open class A
-open class B : A()
+// Covariance example
+open class Animal
+class Dog : Animal()
 
-class Box<in T> {
-    private val items = mutableListOf<T>()
-    fun deposit(item: T) = items.add(item)
+class AcceptedAnimal<out T>
+// accept the exact class or it's subtype
+
+fun main() {
+    var animal: AcceptedAnimal<Animal> = AcceptedAnimal()
+    var dog: AcceptedAnimal<Dog> = AcceptedAnimal()
+
+    // dog = animal // assignment fails as <out Dog> will not accept it's supertype    
+    animal = dog; // works as <out Animal> accepts Animal's subclass
 }
-
-//  B is a subtype of A, whereas…
-// Box<B> is a supertype of Box<A>
-// This happened because of the variance annotation "in"
-// Box<A> is applicable anywhere that the code expects Box<B>
 ```
-### <a name="generics-in-out"></a> Generics Variance (in/out) or variance annotation
- - out: When type parameter is to only returned (produced/out) from members of Source<T>, and never consumed.
+
+- Contravariance (Supertype relation or reverse Covariance): a generic class is called Contravariance on the type parameter when it accept the exact class or it's supertype. denotes by `in T`
+
+```kotlin
+// contravariance example `out T`
+open class Animal
+class Dog : Animal()
+
+class AcceptedAnimal<in T>
+// accept the exact class or it's supertype
+
+fun main() {
+     var animal: AcceptedAnimal<Animal> = AcceptedAnimal()
+    var dog: AcceptedAnimal<Dog> = AcceptedAnimal()
+
+	// animal = dog // assignment will not work as <in Animal> don't accept int's subclass
+    dog = animal // works, as Dog's superclass is Animal
+}
+```
+### <a name="generics-in-out"></a> Generics Variance (in/out) or variance annotation | Consumers `in` Producers `out`
+ - out: When type parameter is to only returned (produced/out) from members of Source<T>, and never consumed. `Producers Out`
 ```kotlin
  interface Source<out T> {
     fun nextT(): T
@@ -148,7 +167,7 @@ fun copy(from: Array<out Any>, to: Array<Any>) { ... }
 // For Foo<out T : TUpper>, where T is a covariant type parameter with the upper bound TUpper.
 ```
 
- - in: It makes a type parameter contravariant, meaning it can only be consumed(in) and never produced. Also Array<in String> corresponds to Java's Array<? super String>
+ - in: It makes a type parameter contravariant, meaning it can only be consumed(in) and never produced. Also Array<in String> corresponds to Java's Array<? super String>. `Consumers in`
 ```kotlin
 
 interface Comparable<in T> {
@@ -174,7 +193,7 @@ https://typealias.com/guides/star-projections-and-how-they-work/
 ### <a name="more-on-delegated-properties"> Delegated Properties (some-more)
 
 - Lazy property: 
-lazy() takes a lambda and returns an instance of Lazy<T>, which can serve as a delegate for implementing a lazy property. The first call to get() executes the lambda passed to lazy() and remembers the result. Subsequent calls to get() simply return the remembered result.
+lazy() takes a lambda and returns an instance of Lazy<T>, which can serve as a delegate for implementing a lazy property. The first call to get() executes the lambda passed to lazy() and remembers the result. Subsequent calls to get() simply return the remembered results
 ```kotlin
 fun main() {
     println(lazyValue) // first call will print "Hello" and "Again"

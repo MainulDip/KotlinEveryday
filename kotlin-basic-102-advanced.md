@@ -291,10 +291,6 @@ fun main() {
     println(greeting2("World2!")) // ok
 }
 ```
-
-## Higher Order Functions Survival Docs:
-It's a mini personalised doc for some of the kotlin's higher order functions...
-
 ### map vs flatMap:
 ```kotlin
 // map()

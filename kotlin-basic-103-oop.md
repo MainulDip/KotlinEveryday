@@ -916,8 +916,7 @@ class CustomMath(val a: Int, val b: Int) {
 // 4
 // sum = (7, 1)
 ```
-
-### indexing operator [] and get call:
+### indexing operator [] and get call
 ```kotlin
 class MyClass {
     operator fun get(key: Int) = "method 1!"

@@ -121,7 +121,7 @@ fun main() {
 }
 ```
 
-### Single-expression function:
+### Single-line-expression function:
 When the function body consists of a single expression, the curly braces can be omitted and the body specified after an `=` symbol
 ```kotlin
 fun double(x: Int): Int = x * 2
@@ -141,7 +141,7 @@ val r = 10 % 3 // modulus or reminder operator
 println("The value of r after modulus operation is $r")
 ```
 
-### <a name="check-boolean"></a> Check and Boolean
+### <a name="check-boolean"></a> Multiple evaluation and Boolean
 ```kotlin
 val amIAdult = true
 val amIProgrammer = true

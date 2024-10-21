@@ -415,23 +415,27 @@ run without extension function:
 ```
 
 ### <a name="kotlinsequence"></a> Sequences in Kotlin:
+Unlike collections, sequences don't contain elements, they produce them while iterating. Sequences offer the same functions as Iterable but implement another approach to multi-step collection processing.
+
+sequences should be better for the performance, but in real world it doesn't differ much as https://stackoverflow.com/questions/75503587/when-to-use-sequence-over-list-in-kotlin
 ```kotlin
 fun main() {
 	
     // basic sequence
+    val sequenceWithoutList = sequenceOf("four", "three", "two", "one")
     val numbers = listOf("one", "two", "three", "four")
     val numbersSequence = numbers.asSequence()
     println(numbersSequence.toList()) // [one, two, three, four]
     
     // infinite sequence
-    // if not blocked by else, sequence is infinite
+    // if not blocked by else null, sequence is infinite. take(int) mimics the else case
     val oddNumbers = generateSequence(1) { it + 2 } // `it` is the previous element
     val s5 = oddNumbers.take(5).toList()
     println(oddNumbers.take(5).toList()) // [1, 3, 5, 7, 9]
     println(s5.count()) // 5
     //println(oddNumbers.count()) // error: the sequence is infinite
     
-    //finite sequence
+    //finite sequence using `else`
     val oddNumbersLessThan10 = generateSequence(1) { if (it < 8) it + 2 else null }
     println(oddNumbersLessThan10.count()) // 5
     println(oddNumbersLessThan10) // kotlin.sequences.GeneratorSequence@.......
@@ -515,6 +519,7 @@ fun main() {
 
     // Regex().findAll("$string") will return kotlin.sequences.GeneratorSequence of all the matches starting from position 0 by default
     println(hexNumberRegex.findAll("+123 -FFFF !%*& 88 XYZ")) // kotlin.sequences.GeneratorSequence@.......
+    // returning list of matched elements from sequence
     println(hexNumberRegex.findAll("+123 -FFFF !%*& 88 XYZ").toList().map {it.value}) // [+123, -FFFF, 88, XYZ]
     println(hexNumberRegex.findAll("+123 -FFFF !%*& 88 XYZ").last().value) // XYZ
 }
@@ -708,7 +713,7 @@ If we don't declare the function inline with reified, we cannot access generic "
 </details>
 
 
-### De-Structuring:
+### De-Structuring parameter using `()`:
 ```kotlin
 // destructuring
 data class DUser(val name: String, val age: Int, val group: String)

@@ -933,4 +933,4 @@ fun main(args: Array<String>) {
 }
 ```
 
-### Dig deeper into kotlin union types (using sealed class or else)
+### Dig deeper into kotlin union types (using sealed class or else):

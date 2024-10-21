@@ -207,11 +207,11 @@ val lazyValue: String by lazy {
 }
 
 // Print These
-// Hello
-// Again
-// Again
+// Hello 1st
+// Again 1st
+// Again 2nd
 ```
-If we call setter, it will call only the remembered value (getValu()), not anythig else, "println("Hello")" in this case
+If we call setter, it will call only the remembered value (getValu()), not anything else, "println("Hello")" in this case
 Also see Scoped Functions at https://kotlinlang.org/docs/scope-functions.html
 ```kotlin
 fun main() {

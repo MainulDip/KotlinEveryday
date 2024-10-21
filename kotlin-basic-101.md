@@ -129,7 +129,7 @@ fun doubleO(x: Int) = x * 2
 ```
 
 ### <a name="arithmetic-tasks"></a> Arithmetic Operators:
-> Oparators for mathmetical operation like + | - | * | / | %
+> Operators for mathematical operation like + | - | * | / | %
 ```kotlin
 val m = 3 * 4
 println("The value of multiply (m) is $m")

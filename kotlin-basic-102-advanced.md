@@ -291,7 +291,7 @@ fun main() {
     println(greeting2("World2!")) // ok
 }
 ```
-### map vs flatMap:
+### map vs flatMap
 ```kotlin
 // map()
 fun <T, R> Iterable<T>.map(transform: (T) -> R): List<R>

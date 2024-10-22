@@ -32,7 +32,7 @@ fun init() {
     }
 ```
 
-- these methods (addLoadListener, addOnWindowClosingListener, etc) call all the necessery methods like loadContributors() which again calls all the necessery methods to make api calls and receive serialized data.
+- these methods (addLoadListener, addOnWindowClosingListener, etc) call all the necessary methods like loadContributors() which again calls all the necessary methods to make api calls and receive serialized data.
 ```kotlin
 fun loadContributors() {
     val (username, password, org, _) = getParams()
@@ -101,4 +101,4 @@ fun loadContributors() {
 }
 ```
 
-- createGitHubService method call returns all the other functionality from GithubService.kt.
+- createGitHubService method call returns all the other functionality from GithubService.kt...

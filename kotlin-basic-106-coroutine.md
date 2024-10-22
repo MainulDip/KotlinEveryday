@@ -102,15 +102,15 @@ For example, "runBlocking" establishes the corresponding scope and that is why t
 Structured concurrency ensures that they are not lost and do not leak. An outer scope cannot complete until all its children coroutines complete. Structured concurrency also ensures that any errors in the code are properly reported and are never lost.
 
 ### Scope Builder:
-Cusotom Coroutine Scope can be defined using coroutineScope, coroutineScope is an interface. Bloks (not thread) code execution until finished.
+Custom Coroutine Scope can be defined using coroutineScope interface.
 ```kotlin
 interface CoroutineScope
 ```
-Will reside inside of a suspend function. It Defines a scope for new coroutines. Every coroutine builder (like launch, async, etc.) is an extension on CoroutineScope and inherits its coroutineContext to automatically propagate all its elements and cancellation.
+Scopes will reside inside of a suspend function. It Defines a scope for new coroutines. Every coroutine builder (like launch, async, etc.) is an extension on CoroutineScope and inherits its coroutineContext to automatically propagate all its elements and cancellation.
 
 CoroutineScope will be reside inside runBlocking() builder, like runBlocking, it will block code execution until finished, but release underlying thread for other uses.
 
-This "releasing thread while not in use" behavour is call "suspend".
+This "releasing thread while not in use" behavior is call "suspend".
 NB: code inside the coroutine scope will execute concurrently if not suspended.
 ```kotlin
 // CoroutineScope

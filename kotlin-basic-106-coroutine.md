@@ -76,7 +76,7 @@ fun main() {
 
 coroutines are lightweight threads. By lightweight, it means that creating coroutines doesn’t allocate new threads. Instead, they use predefined thread pools and smart scheduling for the purpose of which task to execute next and which tasks later.
 
-- runBlocking: ( coroutine builder that bridges the non-coroutine world of a regular fun main() ). It Runs a new coroutine and blocks the current thread until its completion. This function should not be used from (inside) a coroutine. It is designed to bridge regular blocking code to libraries that are written in suspending style, to be used in main functions and in tests.
+- runBlocking: ( coroutine builder that bridges the non-coroutine world of a regular fun main() ). It Runs a new coroutine and blocks the current thread until its completion. This function should not be used from (inside) a coroutine. It is designed to bridge regular blocking code to libraries that are written in suspending style, to be used in main functions and in test
 ```kotlin
 // Signature
 expect fun <T> runBlocking(context: CoroutineContext = EmptyCoroutineContext, block: suspend CoroutineScope.() -> T): T

@@ -24,6 +24,9 @@ class DontCreateMe private constructor () { /*...*/ } // stop public contructor 
 ```
 
 ### open class and method/s, abstract inheritance, primary/secondary constructor, init block: 
+inheritable class needs to be `open`. `abstract` classes can also inherit from a `open` class.
+* all inherited class needs to be instantiated except `interface`.
+* constructor needs to be mapped when instantiating.
 ```kotlin
 open class Polygon {
     open fun draw() { // overriding is optional, not required
@@ -90,7 +93,7 @@ fun main() {
 // Good From Secondary
 ```
 
-### Abstract Class With Non-Abstract Property (instantiation allowed):
+### Abstract Class With Non-Abstract Property (all abstract classes need to be instantiated):
 ```kotlin
 //abstract class
 abstract class Employee(val name: String,val experience: Int) {  // Non-Abstract Properties
@@ -133,9 +136,8 @@ Interfaces cannot have constructors in Kotlin. And it cannot have non-abstract m
 - abstract properties.
 - properties which provide accessor implementations.
 
-#### Note: If there is implementation of method or accessors in the interface, overriding is optional in derived/inherited class/interface. So for non-implemented properties and methods, it is required to override.
-
-#### Note: For inhering interface, we can not use parenthesis as interface han no constructor
+* Note: If there is implementation of method or accessors in the interface, overriding is optional in derived/inherited class/interface. So for non-implemented properties and methods, it is required to override.
+* Note: For inhering interface, we can not use parenthesis as interface han no constructor
 ```kotlin
 interface Named {
     val name: String

@@ -77,14 +77,17 @@ fun main() {
 }
 ```
 
-### Expression vs Statement:
+### Expression (returns) vs Statement (assignments):
 * Expression: In Kotlin, an expression may be used as a statement or used as an expression depending on the context. As all expressions are valid statements, standalone expressions may be used as single statements or inside code blocks. Expression usually returns result (at least Unit). https://kotlinlang.org/spec/statements.html
 
-* Statement: As all expressions are valid statements. In java any line ends with semicolon is a statement. Statements usually don't returns, it assigns ( val somethis = 77 | class SomeClass{} ) 
+* Statement: As all expressions are valid statements. In java any line ends with semicolon is a statement. Statements usually don't returns, it assigns, like `val somethis = 77` | `class SomeClass{}`. 
+
+So if a `when` block returns and the returned value is captured & assigned to a variable, as a whole, it's a `Statement`.
 
 ### <a name="when-block"></a> when block:
 When Signature
 ```kotlin
+// when as `expression`
 when (variable) {
     matches-value -> execute-this-code
     matches-value -> execute-this-code
@@ -99,6 +102,7 @@ fun main() {
     val rollResult = myFirstDice.roll()
     val luckyNumber = 4
 
+    // when as `expression`
     when (rollResult) {
         luckyNumber -> println("You won!")
         1 -> println("So sorry! You rolled a 1. Try again!")
@@ -108,7 +112,7 @@ fun main() {
         6 -> println("Apologies! You rolled a 6. Try again!")
     }
 
-    // when can also return a value
+    // when can also return a value, here when as `statement` as assignments is going on as a whole.
     val drawableResource = when (diceRoll) {
         1 -> R.drawable.dice_1
         2 -> R.drawable.dice_2

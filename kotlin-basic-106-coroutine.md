@@ -158,6 +158,24 @@ Conceptually, a job is a cancellable thing with a life-cycle that culminates in 
 
     * CompletableJob is created with a Job() factory function. It is completed by calling CompletableJob.complete.
 
+```kotlin
+import kotlinx.coroutines.*
+
+fun main() = runBlocking {
+    val job = launch {
+        repeat(1000) { i ->
+            println("job: I'm sleeping $i ...")
+            delay(500L) // this makes the loop suspend for 500ms, in this time the thread gets some time to cancle the computation and call the canclable call
+        }
+    }
+    delay(1300L) // delay a bit
+    println("main: I'm tired of waiting!")
+    job.cancel() // cancels the job
+    job.join() // waits for job's completion
+    println("main: Now I can quit.")
+}
+```
+
 ### Job States:
  * A job has the following states:
  *
@@ -217,7 +235,10 @@ fun main() = runBlocking {
 ```
 
 ### Concurrency:
-Suspending functions doesn't provide concurrency by default. If context parameter of the CoroutineScope.launch() or CoroutineScope.async() is not defined, the suspend function will run on main UI thread. To use different thread use the Dispatchers.Default context
+Suspending functions doesn't provide concurrency by default. If context parameter of the CoroutineScope.launch() or CoroutineScope.async() is not defined, the suspend function will run on main UI thread. To use different thread use the `Dispatchers.Default` context
+
+* `Dispatchers.Main` represents the UI thread
+
 ```kotlin
 async(context = Dispatchers.Default) { }
 launch(context = Dispatchers.Default) { }
@@ -313,9 +334,9 @@ println("main: Now I can quit.")
 ### Channels (communication between multiple coroutines):
 Channels are communication primitives that allow passing data between different coroutines.
 
-A coroutine that sends (produces) information is often called a producer, and a coroutine that receives (consumes) information is called a consumer. Several coroutines can send information to the same channel, and several coroutines can receive data from it.
+A coroutine that sends (produces) information is often called a `producer`, and a coroutine that receives (consumes) information is called a `consumer`. Several coroutines can send information to the same channel, and several coroutines can receive data from it.
 
-Channel is represented with three different interfaces: SendChannel, ReceiveChannel, and Channel that extends the first two. You usually create a channel and give it to producers as a SendChannel instance so that only they can send it to it. You give a channel to consumers as a ReceiveChannel instance so that only they can receive from it. Both send and receive methods are declared as suspend.
+Channel is represented with three different interfaces: `SendChannel`, `ReceiveChannel`, and `Channel` that extends the first two. You usually create a channel and give it to producers as a SendChannel instance so that only they can send it to it. You give a channel to consumers as a ReceiveChannel instance so that only they can receive from it. Both send and receive methods are declared as suspend.
 
 ```kotlin
 interface SendChannel<in E> {

@@ -38,7 +38,7 @@ fun main() {
 ```
 
 ### Sealed class and Interface:
-https://kotlinlang.org/docs/sealed-classes.html ...
+https://kotlinlang.org/docs/sealed-classes.html ....
 
 ### Value Based Usages:
 For kotlin, all primitive types are value based. For classes, Only data class support out-of-the box `dataClass.copy()`

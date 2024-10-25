@@ -659,7 +659,7 @@ fun main() {
 These are properties that inherit getter and setter from another class/interface (Delegated Class) instade of it's own get() and set() method. The by keyword indicates that the property is controlled by the provided delegate instead of its own field (get(),set()).
 
 Signature: val/var <property name>: <Type> by <expression>
-The get() (and set()) that correspond to the property will be delegated to its (Class) getValue() and setValue() methods. Property delegates don’t have to implement an interface, but they have to provide a getValue() function (and setValue() for vars).
+The get() (and set()) that correspond to the property will be delegated to its (Class) getValue() and setValue() methods. Property delegates don’t have to implement an interface, but they have to provide a getValue() function (and setValue() for vars)....
 
 ```kotlin
 import kotlin.reflect.KProperty
@@ -748,7 +748,7 @@ fun main() {
 ```
 
 ### <a name="coroutine-suspend-function"> Coroutine, Suspend Functions (Asynchronous Tasks): </a>
-A coroutine is an instance of suspendable computation. It is conceptually similar to a thread (virtual), in the sense that it takes a block of code to run that works concurrently with the rest of the code. However, a coroutine is not bound to any particular physical thread. It may suspend its execution in one thread and resume in another one.
+A coroutine is an instance of suspend-able computation. It is conceptually similar to a thread (virtual), in the sense that it takes a block of code to run that works concurrently with the rest of the code. However, a coroutine is not bound to any particular physical thread. It may suspend its execution in one thread and resume in another one.
 
 ```kotlin
 // import kotlinx.coroutines.delay

@@ -738,7 +738,7 @@ fun main() {
 
 ### Tasks:
 - complete delegated properties.
-- complete scope function ....
+- complete scope function ...
 - more on scope function and docs link
 - more on regex and docs link
 - inline functions and check the JVMs compiled code

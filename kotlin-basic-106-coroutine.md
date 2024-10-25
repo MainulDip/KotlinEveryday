@@ -357,10 +357,10 @@ The producer can close a channel to indicate that no more elements are coming.
 ### Channels Types:
 - Unlimited: Channels with no buffered size, the send call will never suspend
 - Buffered: When the channel is full, the next `send` call on it suspends until more free space appears.
-- Rendezvous: send call will be suspended untill recieve call.
+- rendezvous: send call will be suspended until receive call.
 - Conflated: send call will overwrite previous call and receive call will get the latest element always
 
-NB: Rendezvour means -> a meeting at an agreed time and place, typically between two people
+NB: rendezvous means -> a meeting at an agreed time and place, typically between two people
 ```kotlin
 val rendezvousChannel = Channel<String>() // By default, a "Rendezvous" channel is created.
 val bufferedChannel = Channel<String>(10)
@@ -423,10 +423,10 @@ fun log(message: Any?) {
 ```
 
 
-### Coroutine Cancelation of execution:
-To get complete control, coroutine provide cancelation of it. All the suspending functions in kotlinx.coroutines are cancellable.
+### Coroutine Cancellation of execution:
+To get complete control, coroutine provide cancellation of it. All the suspending functions in kotlinx.coroutines are cancellable.
 
-Ex: the program will only iterate few times instade of 1000 times, because it will be cancled after 1300ms.
+Ex: the program will only iterate few times instead of 1000 times, because it will be canceled after 1300ms.
 ```kotlin
 import kotlinx.coroutines.*
 
@@ -434,7 +434,7 @@ fun main() = runBlocking {
     val job = launch {
         repeat(1000) { i ->
             println("job: I'm sleeping $i ...")
-            delay(500L) // this makes the loop suspend for 500ms, in this time the thread gets some time to cancle the computation and call the canclable call
+            delay(500L) // this makes the loop suspend for 500ms, in this time the thread gets some time to cancel the computation and call the cancelable call
         }
     }
     delay(1300L) // delay a bit

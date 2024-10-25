@@ -1,5 +1,5 @@
 ### Sealed class and Constructor:
-A sealed class itself is always an abstract class, and as a result, can't be instantiated directly. It may contain or inherit constructors. These constructors aren't for creating instances of the sealed class itself but for its subclasses. 
+A sealed class itself is always an abstract class, and as a result, can't be instantiated directly. It may contain or inherit constructors. These constructors aren't for creating instances of the sealed class itself but for its subclasses.... 
 
 ```kotlin
 sealed class Error(val message: String) {

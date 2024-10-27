@@ -424,7 +424,7 @@ fun log(message: Any?) {
 
 
 ### Coroutine Cancellation of execution:
-To get complete control, coroutine provide cancellation of it. All the suspending functions in kotlinx.coroutines are cancellable.
+To get complete control, coroutine provide cancellation of it. All the suspending functions in `kotlinx.coroutines` are cancellable.
 
 Ex: the program will only iterate few times instead of 1000 times, because it will be canceled after 1300ms.
 ```kotlin
@@ -445,9 +445,9 @@ fun main() = runBlocking {
 }
 ```
 ### Computation and cancellation:
-All the suspending functions in kotlinx.coroutines are cancellable. They check for cancellation of coroutine and throw CancellationException when cancelled. However, if a coroutine is working in a computation and does not check for cancellation, then it cannot be cancelled.
+All the suspending functions in kotlinx.coroutines are cancellable. They check for cancellation of coroutine and throw `CancellationException` when cancelled. However, if a coroutine is working in a computation and does not check for cancellation, then it cannot be cancelled.
 
-Below, when a thread is busy in computation, it cannot be canelled. But if there is any suspending activity while on computation, then it can be canclled.
+Below, when a thread is busy in computation, it cannot be canCelled. But if there is any suspending activity while on computation, then it can be cancelled.
 ```kotlin
 fun main() = runBlocking {
     val startTime = System.currentTimeMillis()
@@ -486,7 +486,7 @@ job.cancelAndJoin() // cancels the job and waits for its completion
 
 * try/finally: will not throw error if cancelled while on computation
 
-* try/finallay withContext(NonCancellable): if cancellation is called, try block will cancle but withContext(NonCancellable) block inside finally cannot be cancelled.
+* try/finally withContext(NonCancellable): if cancellation is called, try block will cancel but withContext(NonCancellable) block inside finally cannot be cancelled.
 ```kotlin
 val job = launch {
     try {

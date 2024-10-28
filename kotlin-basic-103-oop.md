@@ -634,7 +634,7 @@ fun main() {
 NB: Here class Derived can implement an interface Base by delegating all of its public members to a specified object.
 
 
-Note: More specificly class Derived is implementing Base's public member print() from BaseImpl's implementation. It's not possible using just interface.
+Note: More specifically, the Derived class is implementing Base's public member print() from BaseImpl's implementation. It's not possible using just interface.
 
 ```kotlin
 interface Base {
@@ -645,7 +645,7 @@ class BaseImpl(val x: Int) : Base {
     override fun print() { print(x) }
 }
 
-class Derived(d: Base) : Base by d // all the methods of Base interface has been forworded to Derived class
+class Derived(d: Base) : Base by d // all the methods of Base interface has been forwarded to Derived class
 
 fun main() {
     val b = BaseImpl(10)
@@ -697,7 +697,7 @@ fun main(){
 See more in action inside OOPTour's delegate package
 
 
-> Concept of delegated property with DatabaseDelegate class
+* Concept of delegated property with DatabaseDelegate class
 
 ```kotlin
 class DatabaseDelegate<in R, T>(readQuery: String, writeQuery: String, id: Any) : ReadWriteDelegate<R, T> {
@@ -721,8 +721,6 @@ class DatabaseUser(userId: String) {
       userId)
 }
 ```
-
-> More on delegated property: oop-tour-kotlin-2.md
 
 ### <a name="generics-in-out"></a> Generics In Out, SAM (Single Abstract Method):
 > SAM : Function "Single Abstract Method"
@@ -770,7 +768,7 @@ fun main() {
             println("World 2")
         }
         // delay(10L)
-        println("Hello") // runs first as nothing is blockng it's way
+        println("Hello") // runs first as nothing is blocking it's way
     }
 
     // Hello
@@ -886,11 +884,11 @@ Docs : https://kotlinlang.org/docs/properties.html#checking-whether-a-lateinit-v
 lateinit var subject: TestSubject // value is computed only on first access later, not here when it is initialized
 ```
 
-Note: The lateinit keyword is a promise that the code will initialize the variable before using it. If not, app will crash for null.
+Note: The `lateinit` keyword is a promise that the code will initialize the variable before using it. If not, app will crash for null.
 
 
 ### <a name="operator-function"> Operator functions:</a>
-Operators are like +, -, /, * etc. Under the hood, expression a+b transform to a.plus(b) and same for other operators. To customize default behavour/functionality, we can override those using "operator fun <name>" signature.
+Operators are like +, -, /, * etc. Under the hood, expression a+b transform to a.plus(b) and same for other operators. To customize default behavior/functionality, we can override those using "operator fun <name>" signature.
 
 ```kotlin
 fun main(args: Array<String>) {
@@ -899,7 +897,7 @@ fun main(args: Array<String>) {
 
     var sum = cm1.plus(cm2) // same as "cm1 + cm2"
 
-    println("sum = (${sum.a}, ${sum.b})") // a and b are accessable as public modifire
+    println("sum = (${sum.a}, ${sum.b})") // a and b are accessible as public modifier
 }
 
 class CustomMath(val a: Int, val b: Int) {

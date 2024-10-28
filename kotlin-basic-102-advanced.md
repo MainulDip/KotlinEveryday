@@ -234,7 +234,7 @@ fun main() {
 ```
 
 ### Note on `invoke`:
-in kotlin invoke mimics the `()` after function/object/class 's `instance`. using it, we can call a functions's instance like a function, ex `val f = fun (){....}`, here f is an instance of the assigned function. Its same goes with other type (object/class) instances.
+in kotlin invoke mimics the `()` after function/object/class 's `instance`. using it, we can call a functions's instance like a function, ex `val f = fun (){....}`, here f is an instance of the assigned function. Its same goes with other type (object/class) instances....
 
 inside class/object definition, we declare `operator fun invoke(...){....}` to run the function using `instance(...)` signature.
 
@@ -277,6 +277,9 @@ fun main() {
 }
 ```
 ### Function Reference and Invoke:
+- Function reference `::fn` should be wrapped in and `()` before call, like `(::fn)()`. 
+- Invoke can also be used instead like `::fn.invoke()`
+
 ```kotlin
 fun main() {
     val greeting = { name: String -> "Hello, $name!" }

@@ -1,5 +1,5 @@
 ### Sealed class and Constructor:
-A sealed class itself is always an abstract class, and as a result, can't be instantiated directly. It may contain or inherit constructors. These constructors aren't for creating instances of the sealed class itself but for its subclasses.... 
+A sealed class itself is always an abstract class, and can't be instantiated directly (subclasses are instantiated). It may contain or inherit constructors. These constructors aren't for creating instances of the sealed class itself but for its subclasses....
 
 ```kotlin
 sealed class Error(val message: String) {
@@ -35,6 +35,38 @@ fun main() {
 // Network failure
 // Database cannot be reached
 // An unknown error has occurred
+```
+
+### Payment Method handling with Sealed Class:
+By representing different payment methods as subclasses of a sealed class, it establishes a clear and manageable structure for processing transactions.
+```kotlin
+sealed class Payment {
+    data class CreditCard(val number: String, val expiryDate: String) : Payment()
+    data class PayPal(val email: String) : Payment()
+    data object Cash : Payment()
+}
+
+fun processPayment(payment: Payment): String {
+    return when (payment) {
+        is Payment.CreditCard -> processCreditCardPayment(payment.number, payment.expiryDate)
+        is Payment.PayPal -> processPayPalPayment(payment.email)
+        is Payment.Cash -> processCashPayment()
+    }
+}
+
+fun processCreditCardPayment(number: String, expiryDate: String): String = "processCreditCardPayment success $number $expiryDate"
+fun processPayPalPayment(email: String): String = "processPayPalPayment success $email"
+fun processCashPayment(): String = "processCashPayment success"
+
+fun main() {
+    println(processPayment(Payment.CreditCard("ABC","1234")))
+    println(processPayment(Payment.PayPal("abc.email.com")))
+    println(processPayment(Payment.Cash))
+}
+
+// processCreditCardPayment success ABC 1234
+// processPayPalPayment success abc.email.com
+// processCashPayment success
 ```
 
 ### Sealed class and Interface:

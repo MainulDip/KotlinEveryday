@@ -1,12 +1,28 @@
 ### `is` and `!is` type checking `infix fn`:
-Used like (T is V) and returns Boolean. `!is` is the `not` version.
+Used to compare if a `Value` matches with the specified Type, like if (obj `is` V), returns Boolean. `!is` is the `not` version.
+```kotlin
+val i = 1234
+val isInt: Boolean = i is Int
+println(if (isInt) "variable `i` is an Int" else "variable `i` is not an Int")
+// variable `i` is an Int
+```
+
+* using `when` with `is` check
+
+```kotlin
+when (x) {
+    is Int -> print(x + 1)
+    is String -> print(x.length + 1)
+    is IntArray -> print(x.sum())
+}
+```
 
 ### type casting, `as`, `as?`, `as!`, `T as V?`:
 Other than `as?` all of those will throw runtime error if casting failed.
 
 <details>
 
-<summary>Example of `T as V?` vs `T as? V`</summary>
+<summary>Example of `obj as V?` vs `obj as? V`</summary>
 
 ```kotlin
 fun main() {
@@ -104,7 +120,7 @@ fun hasPrefix(x: Any) = when(x) {
 
 
 ### Sealed Class with inner and outer class inheritance:
-Sealed class provides better IDE suggestion with `when(condition)`. As it is bound to its defined package. Other Data and Plain classes can also inherit a sealed class within its scoped package and the `when` block will mark for required update implementation.
+Sealed class provides better IDE suggestion with `when(condition)`. As it is bound to its defined package. Other Data and Plain classes can also inherit a sealed class within its scoped package and the `when` block will mark for required update implementation....
 
 <details>
 

@@ -74,7 +74,7 @@ class Unrelated(o: Outer) {
 Docs: https://kotlinlang.org/docs/visibility-modifiers.html
 
 ### <a name="constructorparam"> val/var/"empty" in Constructor Parameter/s: </a>
-If val/var is specified in constructor parameter, in background it also declares property inside the class. If not it is simply a parameter passed to the primary constructor, where the parameters can be accessed within the init block or to initialize other properties
+If val/var is specified in constructor parameter, in background it also declares property inside the class. If not it is simply a parameter passed to the primary constructor, where the parameters can be accessed within the init block or to initialize other properties....
 ```kotlin
 class User(val id: Long, email: String) {
     val hasEmail = email.isNotBlank()    //email can be accessed here

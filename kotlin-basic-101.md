@@ -3,7 +3,7 @@ It's a quick language tour to re-connect with most of the Kotlin language syntax
 Link: (oop-minimap-kotlin.md)[oop-minimap.kotlin.md]
 Link: (oop-tour-kotlin.md)[oop-tour-kotlin.md].
 
-This markdow file provides mini docs for following topics:
+Topics:
 - [Variables and Types:](#variables-types)
 - [when block:](#when-block)
 - [Arithmetic Oparators:](#arithmetic-tasks)

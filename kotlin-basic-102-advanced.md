@@ -3,7 +3,7 @@ This markdow file provides mini docs for following topics:
 - [Context and Extention functions](#eontext-extension)
 - [Kotlin Builders DSLs](#dsl-builders)
 - [mockmvc DSL structure](#mockmvc-dsl)
-- [Inline Functions, Reflections/KClass // MyClass::class || Function references // ::isOdd](#inline-reflection-function-reference)
+- [Inline Functions, Reflections/KClass // MyClass::class || Function references // ::isOdd](#inline-reflection-function-reference)....
 
 
 ### Functions Receiver Type in Parameter:

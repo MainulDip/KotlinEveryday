@@ -17,6 +17,28 @@ when (x) {
 }
 ```
 
+### First Class Citizens:
+When a programming language declares bunch of things as `first-class citizen`, that means they are different types by their nature. Interestingly, they can coexist on a same level with a same name.
+
+* In this example, a function, a constant reference/container `val` and an Object are coexisting with a same name
+
+```kotlin
+fun x() {
+    println("This is a function with name x")
+}
+
+val x: String = "This is a constant with name x, it's pointing to a Sting Object"
+
+object x {
+    init {
+       println("It's an Object with name x")
+    }
+}
+```
+
+### variable as container vs pointer vs reference:
+Variables are the `containers` for storing the values. `Pointers` store the ram memory `address` of the variables. And `References` are `alias` for the variables.
+
 ### type casting, `as`, `as?`, `as!`, `T as V?`:
 Other than `as?` all of those will throw runtime error if casting failed.
 
@@ -42,7 +64,11 @@ fun asChecking(y: Any){
 ### invoke with Class/Obj/Functions instance:
 `invoke` is a operator function of a class/obj/function. In class/obj we can override it and implement custom code in it. So when it will be called on its instance, the overridden block will be run.
 
-With functions instance, it provide a syntactic sugar for calling a `Nullable` function like `fn?.invoke(param1,param2)`. Otherwise let{} should be used like `fn?.let{it(param1, param2)}`.
+With functions `reference`, it provide a syntactic sugar for calling a `Nullable` function like `fn?.invoke(param1,param2)`. Otherwise let{} should be used like `fn?.let{it(param1, param2)}`.
+
+* Function's Reference: when a `var/val` is pointing to a function, that's a reference (the variable). Or `::fn` is also a reference.
+
+* Infact any `var/val` is a reference to what they are pointing to. So a variable and function can coexist on a same level with a same name. 
 
 <details>
 
@@ -57,7 +83,7 @@ fun main() {
     println(greeting.invoke("World"))
     println(greeting("World!"))
 
-    // println((::greeting)("World!")) // error, References to variables and parameters are unsupported
+    // println((::greeting)("World!")) // error, References to variables and parameters are unsupported, functions are allowed
     // println((::greeting).invoke("World!")) // error, same
 
     println((::greetingFun)("World!")) // ok, as `greetingFun` is not a variable/var/val, its a function

@@ -336,7 +336,7 @@ println(parsedNumber)
 ```
 
 ### <a name="lambda-function"></a> Lambda Function
-The main principal is to pass value/s to the lambda parameter/s and use as callback later utilizing the passed parameter/s.
+The main principal is to pass value/s to the lambda parameter/s and use as callback later utilizing the passed parameter/s....
  
 Note: When calling there is no parentheses ()" before arrow notation "->" like defining. Also no return statement. return@funname is allowed. When calling "()" can be used as destructured syntax.
 > Lamda: Functions that are passed as parameter/args of another function

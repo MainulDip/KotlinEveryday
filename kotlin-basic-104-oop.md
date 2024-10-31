@@ -1,13 +1,4 @@
-## Kotlin OOP Part 2 Overview:
-Continued From oop-tour-kotlin.md. This markdow file provides mini docs for following topics:
-- [Companio Object | Static Method (Java)](#companion-static)
-- [Primary & secondary contructors](#primary-secondary-constructor)
-- [Invariance, Covariance, Contravariance](#generic-variances)
-- [Generics Variance (in/out) or variance annotation](#generics-in-out)
-- [Star Projection (Generics/Foo<*>):](#star-projection).
-- [Delegated Properties (some-more):](#more-on-delegated-properties)
-
-### <a name="companion-static"></a> java/kotlin Static Method || companion object:
+### java Static Method || kotlin companion object:
 ```java
 class Foo {
   public static int a() { return 1; }
@@ -24,7 +15,6 @@ class Foo {
 Foo.a();
 // Foo.Companion.a(); // access in java code
 ```
-
 
 <details>
 <summary>Static Methods Other Ways</summary>
@@ -55,7 +45,8 @@ class Foo {
 
 </details>
 
-### <a name="primary-secondary-constructor"></a> Primary & secondary contructors:
+
+### Primary & secondary constructors:
 Note: if class has primary constructor, Secondary Constructor needs to be delegated to the primary constructor. The compiler select which constructor to use depending on the (number) supplied parameters.
 ```kotlin
 class Constructors private constructor() {
@@ -108,10 +99,10 @@ class Student(var name: String="Default", height: Int) {
 // Primary Constructor => Name is Default, Height is 72
 ``` 
 
-### <a name="generic-variances"> Invariance, Covariance, Contravariance:</a>
+### Invariance, Covariance, Contravariance:</a>
 - Invariance: A generic class is called invariant on the type parameter when it is expecting the exact type. Not `in T` or Not `out R`
 
-- Covariance (subtyping relation): a generic class is called covariant on the type parameter when it accept the exact class or it's subtype. Denotes by `out T`
+- Covariance (Subtype relation): a generic class is called covariant on the type parameter when it accept the exact class or it's subtype. Denotes by `out T`. Where T will accept its subtype or exact.
 
 ```kotlin
 // Covariance example
@@ -130,7 +121,7 @@ fun main() {
 }
 ```
 
-- Contravariance (Supertype relation or reverse Covariance): a generic class is called Contravariance on the type parameter when it accept the exact class or it's supertype. denotes by `in T`
+- Contravariance (Supertype relation or reverse Covariance): a generic class is called Contravariance on the type parameter when it accept the exact class or it's supertype. denotes by `in T`. Where T will accept its supertype or exact.
 
 ```kotlin
 // contravariance example `out T`
@@ -148,7 +139,7 @@ fun main() {
     dog = animal // works, as Dog's superclass is Animal
 }
 ```
-### <a name="generics-in-out"></a> Generics Variance (in/out) or variance annotation | Consumers `in` Producers `out`
+### Consumers `in` Producers `out`
  - out: When type parameter is to only returned (produced/out) from members of Source<T>, and never consumed. `Producers Out`
 ```kotlin
  interface Source<out T> {

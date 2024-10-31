@@ -1,11 +1,3 @@
-## Kotlin Advanced Language Tour Overview
-This markdow file provides mini docs for following topics:
-- [Context and Extention functions](#eontext-extension)
-- [Kotlin Builders DSLs](#dsl-builders)
-- [mockmvc DSL structure](#mockmvc-dsl)
-- [Inline Functions, Reflections/KClass // MyClass::class || Function references // ::isOdd](#inline-reflection-function-reference)
-
-
 ### Functions Receiver Type in Parameter:
 Non-literal (not-exact/type) values of function types with and without a receiver are interchangeable, so the receiver can stand in for the first parameter, and vice versa. For instance, a value of type (A, B) -> C can be passed or assigned where a value of type A.(B) -> C is expected, and the other way around. And can be called as both extension and regular way
 ```kotlin
@@ -94,8 +86,8 @@ call { name ->
 // this is somewhat similar with Javascript's call(), apply() or bind() method
 ```
 
-### Class Implementing Function Type:
-Use instances of a custom class that implements a function type as an interface
+### Class Implementing Function Type | not SAM:
+Class can implement a functional type as interface through its invoke function.
 ```kotlin
 /**
  * A class implementing a Functional Type (Not SAM) have to do it as invoke override
@@ -197,10 +189,6 @@ fun html(init: HTML.() -> Unit): HTML {
     return html
 }
 ```
-
-
-
-
 ### <a name="mockmvc-dsl"></a>mockmvc DSL structure:
 ```kotlin
 mockMvc.put(urlTemplate = baseUrl, null, dsl = { ->
@@ -210,7 +198,7 @@ content = objectMapper.writeValueAsString(accountNumber)
 })
 ```
 
-### <a name="inline-reflection-function-reference"></a> Inline Functions, Reflections/KClass // MyClass::class || Function references // ::isOdd 
+### Inline Functions, Reflections/KClass // MyClass::class || Function references // ::isOdd 
 
 > Reflection and Function Reference
 ```kotlin

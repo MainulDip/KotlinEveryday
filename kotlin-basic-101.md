@@ -1,33 +1,5 @@
 ## Kotlin Language Tour:
-It's a quick language tour to re-connect with most of the Kotlin language syntaxes and features. When you work with multiple language everyday, it can be a good idea to have a personalized language tour. So lets start..........
-Link: (oop-minimap-kotlin.md)[oop-minimap.kotlin.md]
-Link: (oop-tour-kotlin.md)[oop-tour-kotlin.md].
-
-This markdow file provides mini docs for following topics:
-- [Variables and Types:](#variables-types)
-- [when block:](#when-block)
-- [Arithmetic Oparators:](#arithmetic-tasks)
-- [Check and Boolean](#check-boolean)
-- [String and Operations](#string)
-- [Conditionals](#conditionals)
-- [Default value and null safety](#default-value-null-safetly)
-- [List](#list)
-- [Loop](#loop)
-- [Map and Filter](#mapfilter)
-- [Defining Calling Functions](#def-callling-function)
-- [Extension Function](#extension-function)
-- [Anonymous Class](#anonymous-class)
-- [Exception Handling](#exception-handling)
-- [Lambda Function](#lambda-function)
-- [Lambda Type Declaration and Instantiation:](#lambda-type-instantiation)
-- [Generics ](#generics)
-- [Data Class](#data-class)
-- [Lambda without braces for member references:](#lambda-without-braces-member-references)
-- [with() Statement:](#with-statement)
-- [Lable return@ | Local vs Non-Local Returns](#lable-return-local-vs-nonlocal)
-
-
-> Main.kt | kotlin program starts from this (like index.js/php). Also main() function in raw kotlin.
+It's a quick language tour to re-connect with most of the Kotlin language syntaxes and features.
 
 ### Calling Java From Kotlin:
 Associated Java Code Should Inside main/java/ directory (By default). This can be changed by adding sourceSets.main { java.srcDirs("src/main/myJava", "src/main/myKotlin") } into build.gradle file
@@ -160,7 +132,7 @@ val string = "Use double quotes for string and single quote for Char (Single let
 println(string.uppercase())
 ```
 
-### <a name="conditionals"></a> Conditionals
+### Conditionals | No Ternary if/else:
 ```kotlin
 //  Conditionals
     val conditionVal = 1 + 3

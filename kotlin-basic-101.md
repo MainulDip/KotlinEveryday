@@ -1,6 +1,24 @@
 ## Kotlin Language Tour:
 It's a quick language tour to re-connect with most of the Kotlin language syntaxes and features.
 
+### Kotlin vs Swift lambda and functions return type:
+- define phase, both swift and kotlin use `()-> returnType` as defining signature
+- both use curly braces to surround lambda when applying
+- kotlin use `->` and swift use `in` to separate lambda body from arguments
+- both support trailing lambda
+- don't confuse, swift use `->`, and kotlin use `:` for functions return.
+- but when a function returning another function, kotlin use `()->T`. Swift use this for everything.
+- kotlin use `()` for lambda's parameter destructuring in applying phase
+- Swift/Java use `Void` and Kotlin use `Unit` for no return (side effect operations)
+```swift
+{ (<#parameters#>) -> <#return type#> in
+   <#statements#>
+}
+```
+```kotlin
+{ <#parameters#> -> <#statements#> }
+```
+
 ### Calling Java From Kotlin:
 Associated Java Code Should Inside main/java/ directory (By default). This can be changed by adding sourceSets.main { java.srcDirs("src/main/myJava", "src/main/myKotlin") } into build.gradle file
 Docs: https://kotlinlang.org/docs/gradle.html#kotlin-and-java-sources...
@@ -409,7 +427,8 @@ items.fold(0, {
 ```
 
 
-### <a name="generics"></a> Generics
+### Generics | `fun <T> name(x: T, y: T): T {...}`:
+Define generics extension like `fun <T> List<T>.nameFn(value: ((T) -> Boolean)): Int {...}`
 ```kotlin
 fun main() {
 
@@ -439,11 +458,10 @@ fun <T> List<T>.customLamGenericsFunction(value: (T) -> Boolean): Int {
     return counter
 }
 ```
-### <a name="data-class"></a> Data Class
-
-> data class ClassName( val somedata: String, val isChecked: Boolean: false )
-
-Next: Kotlin OOP : [OOP Kotlin](oop-tour-kotlin.md) and [Advanced Kotlin](kotlin-advanced-lanuge.md)
+### Data Class:
+Signature `ClassName( val somedata: String, val isChecked: Boolean: false )`
+Braces after the constructor can be omitted if empty (applies classes also) 
+It required to declare var/val before constructor params. 
 
 ### <a name="lambda-without-braces-member-references"></a> Lambda without braces for member references:
 "::" creates a member reference or a class reference
@@ -459,7 +477,7 @@ fun main() {
     println(stringPlus("Hello, ", "world!")) // prints "Hello World"
 ```
 
-### <a name="with-statement"></a> with() Statement:
+### with(i) Statement:
 ```kotlin
 // Signature
 with (instanceName) {
@@ -508,7 +526,7 @@ fun <T> List<DUser>.arrange(): Map<T, List<DUser>> =
 // {First User=[DUser(name=First User, age=21, group=a), DUser(name=First User, age=21, group=b)], Second User=[DUser(name=Second User, age=22, group=b)], Third User=[DUser(name=Third User, age=23, group=c)]}
 ```
 
-### Lable returns@ and | Local vs Non-Local Returns:
+### Labeling returns `label@` & `return@label` | Local vs Non-Local Returns:
 
 ```kotlin
 fun bar() {

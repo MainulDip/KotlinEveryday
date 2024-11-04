@@ -659,7 +659,7 @@ fun main() {
 These are properties that inherit getter and setter from another class/interface (Delegated Class) instade of it's own get() and set() method. The `by` keyword indicates that the property is controlled by the provided delegate instead of its own field (get(),set()).
 
 Signature: val/var <property name>: <Type> by <expression>
-The get() (and set()) that correspond to the property will be delegated to its (Class) getValue() and setValue() methods. Property delegates don’t have to implement an interface, but they have to provide a getValue() function (and setValue() for vars)....
+The get() (and set()) that correspond to the property will be delegated to its (Class) getValue() and setValue() methods. Property delegates don’t have to implement an interface, but they have to provide a getValue() function (and setValue() for vars).......
 
 ```kotlin
 import kotlin.reflect.KProperty
@@ -722,7 +722,7 @@ class DatabaseUser(userId: String) {
 }
 ```
 
-### <a name="generics-in-out"></a> Generics In Out, SAM (Single Abstract Method):
+### Generics In Out, SAM (Single Abstract Method):
 > SAM : Function "Single Abstract Method"
 
 ```kotlin
@@ -745,7 +745,7 @@ fun main() {
 }
 ```
 
-### <a name="coroutine-suspend-function"> Coroutine, Suspend Functions (Asynchronous Tasks): </a>
+### Coroutine, Suspend Functions (Asynchronous Tasks):
 A coroutine is an instance of suspend-able computation. It is conceptually similar to a thread (virtual), in the sense that it takes a block of code to run that works concurrently with the rest of the code. However, a coroutine is not bound to any particular physical thread. It may suspend its execution in one thread and resume in another one.
 
 ```kotlin
@@ -813,7 +813,7 @@ fun main() {
 
 See separate section for more: [coroutine-tour.md](./coroutine-tour.md)
 
-### <a name="dely-vs-thread"> delay() vs Thread.sleep() : </a>
+### delay() vs Thread.sleep() : 
 
 Delay is a suspend function that won't block the thread, it will only suspend that coroutine for the amount of time, but Thread is free to go service a different coroutine.
 
@@ -872,7 +872,7 @@ fun main() {
 // [My Thread] : 2nd launch: 3
 ```
 
-### <a name="late-init"></a> Late-initialized (lateinit): 
+### Late-initialized `lateinit var`: 
 Used To handle non-null properties/var that will be provided lately (through dependency injection, or in the setup method of a unit test). As if we're telling the compiler to ignore null check and we're promising to populate the field before calling. So in runtime it will be fine
 
 These are used on var properties declared inside class body as well as for top-level (outside class) properties and local variables. But not in the primary constructor, and only when the property does not have a custom getter or setter. 

@@ -75,7 +75,7 @@ fun main() {
     myObj.printMsg()
     val myObj2 = Student("Second", 72)
     myObj2.printMsgOnlyPrimaryConstructor()
-    // omiting first param
+    // omitting first param
     val myObj3 = Student(height = 72)
     myObj3.printMsgOnlyPrimaryConstructor()
 }
@@ -99,7 +99,7 @@ class Student(var name: String="Default", height: Int) {
 // Primary Constructor => Name is Default, Height is 72
 ``` 
 
-### Invariance, Covariance, Contravariance:</a>
+### Invariance, Covariance, Contravariance:
 - Invariance: A generic class is called invariant on the type parameter when it is expecting the exact type. Not `in T` or Not `out R`
 
 - Covariance (Subtype relation): a generic class is called covariant on the type parameter when it accept the exact class or it's subtype. Denotes by `out T`. Where T will accept its subtype or exact.

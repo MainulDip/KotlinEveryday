@@ -658,8 +658,9 @@ fun main() {
 ### <a name="delegated-property"> Delegated Property (val/var <property name>: <Type> by <expression>): </a>
 These are properties that inherit getter and setter from another class/interface (Delegated Class) instade of it's own get() and set() method. The `by` keyword indicates that the property is controlled by the provided delegate instead of its own field (get(),set()).
 
-Signature: val/var <property name>: <Type> by <expression>
-The get() (and set()) that correspond to the property will be delegated to its (Class) getValue() and setValue() methods. Property delegates don’t have to implement an interface, but they have to provide a getValue() function (and setValue() for vars).......
+Signature: `val/var <property name>: <Type> by <expression>`
+
+The `get()` (and `set()`) that correspond to the property will be delegated to its (Class) getValue() and setValue() methods. Property delegates don’t have to implement an interface, but they have to provide a getValue() function (and setValue() for vars).......
 
 ```kotlin
 import kotlin.reflect.KProperty

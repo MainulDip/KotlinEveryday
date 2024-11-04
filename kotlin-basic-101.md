@@ -21,7 +21,7 @@ It's a quick language tour to re-connect with most of the Kotlin language syntax
 
 ### Calling Java From Kotlin:
 Associated Java Code Should Inside main/java/ directory (By default). This can be changed by adding sourceSets.main { java.srcDirs("src/main/myJava", "src/main/myKotlin") } into build.gradle file
-Docs: https://kotlinlang.org/docs/gradle.html#kotlin-and-java-sources...
+Docs: https://kotlinlang.org/docs/gradle.html#kotlin-and-java-sources....
 
 ### <a name="variables-types"></a> Variables and Types:
 ```kotlin

@@ -99,7 +99,7 @@ class Student(var name: String="Default", height: Int) {
 // Primary Constructor => Name is Default, Height is 72
 ``` 
 
-### Invariance, Covariance, Contravariance:
+### Invariance `T`, Covariance `out T`, Contravariance `in T`:
 - Invariance: A generic class is called invariant on the type parameter when it is expecting the exact type. Not `in T` or Not `out R`
 
 - Covariance (Subtype relation): a generic class is called covariant on the type parameter when it accept the exact class or it's subtype. Denotes by `out T`. Where T will accept its subtype or exact.
@@ -175,26 +175,25 @@ fun demo(x: Comparable<Number>) {
 fun fill(dest: Array<in String>, value: String) { ... }
 ```
 
-### <a name="star-projection"> Star Projection (Generics): </a>
-- Function<*, String> means Function<in Nothing, String>.
-- Function<Int, *> means Function<Int, out Any?>.
-- Function<*, *> means Function<in Nothing, out Any?>.
+### Star Projection `*` | `<*,T>`, `<T,*>`, `<*,*>`:
+- fn<*, String> means fn<in Nothing, String>.
+- fn<Int, *> means fn<Int, out Any?>.
+- fn<*, *> means fn<in Nothing, out Any?>.
 https://typealias.com/guides/star-projections-and-how-they-work/
 
-### <a name="more-on-delegated-properties"> Delegated Properties (some-more)
-
-- Lazy property: 
-lazy() takes a lambda and returns an instance of Lazy<T>, which can serve as a delegate for implementing a lazy property. The first call to get() executes the lambda passed to lazy() and remembers the result. Subsequent calls to get() simply return the remembered results
+### Lazy property | Delegated Properties built-in:
+`lazy()` takes a lambda and returns an instance of Lazy<T>, which can serve as a delegate for implementing a lazy property. 
+The first call to get() executes the lambda passed to lazy() and remembers the result/return. Subsequent calls to get() simply return the remembered results
 ```kotlin
+// val will make it immutable. for var, custom setValue needs to be created.
+val lazyValue: String by lazy {
+    println("Hello") // will only be called on first accessed as initialized block
+    "Again" // returned value, it will be remembered.
+}
+
 fun main() {
     println(lazyValue) // first call will print "Hello" and "Again"
     println(lazyValue) // second call will print only remembered get value which is -> "Again" 
-}
-
-// val will make it immutable. for var, custom setValue needs to be created.
-val lazyValue: String by lazy {
-    println("Hello")
-    "Again"
 }
 
 // Print These
@@ -228,9 +227,14 @@ var lazyValue: String = run {
 // Something
 ```
 
-- Delegates.observable(<initial-value>) { prop, old, new -> .......}
-signature :
+
+###  `Delegates.observable` | Delegated Properties built-in:
+takes two arguments: the initial value and a handler for modifications.
+Delegates.observable(<initial-value>) { prop, old, new -> .......}
+The handler is called after every assignment/set on the delegated property. 
+
 ```kotlin
+// signature
 inline fun <T> observable(
     initialValue: T,
     crossinline onChange: (property: KProperty<*>, oldValue: T, newValue: T) -> Unit
@@ -260,7 +264,7 @@ fun main() {
 // prop : var delegation.User.name: kotlin.String || old value: second || new value : third
 ```
 
-### Scope Functions (let, run, with, apply, and also):
+### Scope Functions | `let`, `run`, `with`, `apply`, `also`:
 The purpose of Scope Functions are to execute a block of code within the context of an object. It do not introduce any new technical capabilities, but make the code more concise and readable.
 
 Docs: https://kotlinlang.org/docs/scope-functions.html
@@ -405,13 +409,14 @@ run without extension function:
 
 ```
 
-### <a name="kotlinsequence"></a> Sequences in Kotlin:
-Unlike collections, sequences don't contain elements, they produce them while iterating. Sequences offer the same functions as Iterable but implement another approach to multi-step collection processing.
+### Sequences in Kotlin | iteration-time producers:
+Unlike collections, sequences don't contain elements, they produce them while iterating. 
+Sequences offer the same functions as Iterable but implement another approach to multi-step collection processing.
 
-sequences should be better for the performance, but in real world it doesn't differ much as https://stackoverflow.com/questions/75503587/when-to-use-sequence-over-list-in-kotlin
+* sequences should be better for the performance, but in real world it doesn't differ much as https://stackoverflow.com/questions/75503587/when-to-use-sequence-over-list-in-kotlin
+
 ```kotlin
 fun main() {
-	
     // basic sequence
     val sequenceWithoutList = sequenceOf("four", "three", "two", "one")
     val numbers = listOf("one", "two", "three", "four")
@@ -430,11 +435,13 @@ fun main() {
     val oddNumbersLessThan10 = generateSequence(1) { if (it < 8) it + 2 else null }
     println(oddNumbersLessThan10.count()) // 5
     println(oddNumbersLessThan10) // kotlin.sequences.GeneratorSequence@.......
-
 }
 ```
 
-- apply: The common case for apply is the object configuration. Such calls can be read as “apply the following assignments to the object.” The context object is available as a receiver (this). The return value is the configuired object itself.
+### apply: 
+The common case for apply is the object configuration. 
+Such calls can be read as `apply the following assignments to the object` 
+The context object is available as a receiver (this). The return value is the configured object itself.
 ```kotlin
 data class Person(var name: String, var age: Int = 0, var city: String = "")
 

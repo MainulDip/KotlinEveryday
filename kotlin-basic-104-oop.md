@@ -711,7 +711,7 @@ If we don't declare the function inline with reified, we cannot access generic "
 </details>
 
 
-### De-Structuring parameter using `()`:
+### De-Structuring parameter in Lambda using `()`:
 ```kotlin
 // destructuring
 data class DUser(val name: String, val age: Int, val group: String)

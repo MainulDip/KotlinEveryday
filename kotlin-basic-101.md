@@ -23,7 +23,7 @@ It's a quick language tour to re-connect with most of the Kotlin language syntax
 Associated Java Code Should Inside main/java/ directory (By default). This can be changed by adding sourceSets.main { java.srcDirs("src/main/myJava", "src/main/myKotlin") } into build.gradle file
 Docs: https://kotlinlang.org/docs/gradle.html#kotlin-and-java-sources....
 
-### <a name="variables-types"></a> Variables and Types:
+### Variables and Types:
 ```kotlin
 fun main() {
     println("Hello World")
@@ -74,7 +74,7 @@ fun main() {
 
 So if a `when` block returns and the returned value is captured & assigned to a variable, as a whole, it's a `Statement`.
 
-### <a name="when-block"></a> when block:
+### `when` block:
 When Signature
 ```kotlin
 // when as `expression`

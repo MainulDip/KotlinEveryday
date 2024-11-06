@@ -71,7 +71,7 @@ fun main() {
 }
 ```
 
-### <a name="context-extension"></a> Context and Extension functions  
+### `Context` and Extension functions  
 ```kotlin
 fun call(greet: String.(String) -> Unit) {
 // greet("Hello", " Dolly") // "greet"'s 1st parameter is the context and the last is it's native parameter.

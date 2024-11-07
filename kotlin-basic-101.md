@@ -122,7 +122,7 @@ fun double(x: Int): Int = x * 2
 fun doubleO(x: Int) = x * 2 
 ```
 
-### <a name="arithmetic-tasks"></a> Arithmetic Operators:
+### Arithmetic Operators:
 > Operators for mathematical operation like + | - | * | / | %
 ```kotlin
 val m = 3 * 4
@@ -135,7 +135,7 @@ val r = 10 % 3 // modulus or reminder operator
 println("The value of r after modulus operation is $r")
 ```
 
-### <a name="check-boolean"></a> Multiple evaluation and Boolean
+### Multiple evaluation and Boolean
 ```kotlin
 val amIAdult = true
 val amIProgrammer = true
@@ -144,7 +144,7 @@ println("Boolean operation for amIAdultProgrammer = $anIAdultProgrammer")
 //  Also || , == , != , !( val1 != val2 )
 ```
 
-### <a name="string"></a> String and Operations
+### String and Operations
 ```kotlin
 val string = "Use double quotes for string and single quote for Char (Single letter)"
 println(string.uppercase())
@@ -178,7 +178,7 @@ println(string.uppercase())
         }
     }
 ```
-### <a name="default-value-null-safetly"></a> Default value and null safety
+### Default value and null safety
 > ?: , ? , !!
 ```kotlin
 //  kotlin is null safety language
@@ -191,7 +191,7 @@ println(string.uppercase())
     println("userInput result is $inputResult")
 ```
 
-### <a name="list"></a> List
+### List
 ```kotlin
 //  Immutable List
     val shoppingList = listOf<String>("Hello", "World")
@@ -207,7 +207,7 @@ println(string.uppercase())
     println(mutableShoppingList.toString())
 ```
 
-### <a name="loop"></a> Loop
+### Loop
 > check: https://kotlinlang.org/docs/control-flow.html#for-loops
 ```kotlin
 // while loop
@@ -229,7 +229,7 @@ println(string.uppercase())
     }
 ```
 
-### <a name="mapfilter"></a> Map and Filter (Higher Order Functions):
+### Map and Filter (Higher Order Functions):
 ```kotlin
 fun main() {
     val numbers = mutableListOf("one", "two", "three", "four", "five")
@@ -239,7 +239,7 @@ fun main() {
 }
 ```
 
-### <a name="def-callling-function"></a> Defining Calling Functions
+### Defining & Calling Functions
 ```kotlin
 fun printNumber(){
     for(i in 1..10){
@@ -258,9 +258,9 @@ val checkEven2 = checkIsEven(number = evenNum) // adds good readability
 // Setting Function's Default Args Value.
 fun defaultArgVal(number: Int = 7): Boolean { return number % 2 == 0}
 println(defaultArgVal())
-```kotlin
+```
 
-### <a name="extension-function"></a> Extension Function
+### Extension Function
 ```kotlin
 // extension function: extend an already existed type
 // call extension function like object function
@@ -271,10 +271,9 @@ val oddValue = 3
 println(oddValue.isOdds())
 ```
 
-## Object Oriented Kotlin:
-> Define Class On It's Own File
-
-> class can be class, open class, abstract class
+### Object Oriented Kotlin:
+- Define Class On It's Own File
+- class can be class, open class, abstract class
 ```kotlin
 // define as abstract to restrict direct intantiation
 // to be inherited class must be open or abstract
@@ -331,7 +330,7 @@ class Cat: Animal(name = "Cat") {
 ```
 
 
-### <a name="anonymous-class"></a> Anonymous Class
+### Anonymous Class
 ```kotlin
 //Anonymous class
     val bear = object : Animal(name = "Cow") {
@@ -342,7 +341,7 @@ class Cat: Animal(name = "Cat") {
     bear.makeSound()
 ```
 
-### <a name="exception-handling"></a> Exception Handling
+### Exception Handling
 ```kotlin
 val numberExceptionCheck = readLine() ?: "0"
 val parsedNumber = try {
@@ -353,7 +352,7 @@ val parsedNumber = try {
 println(parsedNumber)
 ```
 
-### <a name="lambda-function"></a> Lambda Function
+### Lambda Function
 The main principal is to pass value/s to the lambda parameter/s and use as callback later utilizing the passed parameter/s....
  
 Note: When calling there is no parentheses ()" before arrow notation "->" like defining. Also no return statement. return@funname is allowed. When calling "()" can be used as destructured syntax.
@@ -386,7 +385,7 @@ fun List<String>.customLamFunction(fn: (String) -> Boolean): Int {
 }
 ```
 
-### Destructuring:
+### Destructuring `()`:
 https://subscription.packtpub.com/book/application-development/9781787123687/5/ch05lvl1sec63/destructuring-in-lambda-expressions.
 ```kotlin
 data class User(val name: String, val surname: String, val phone: String) 
@@ -403,7 +402,7 @@ val (name, surname, phone) = user
 ```
 
 
-### <a name="lambda-type-instantiation"></a> Lambda Type Declaration and Instantiation:
+### Lambda Type/Signature Declaration and Instantiation:
 ```kotlin
 // Lambda Declaration. Note: IntArray.fold() is a built in function in Kotlin
 inline fun <R> IntArray.fold(
@@ -463,7 +462,7 @@ Signature `ClassName( val somedata: String, val isChecked: Boolean: false )`
 Braces after the constructor can be omitted if empty (applies classes also) 
 It required to declare var/val before constructor params. 
 
-### <a name="lambda-without-braces-member-references"></a> Lambda without braces for member references:
+### Lambda without braces for member references:
 "::" creates a member reference or a class reference
 ```kotlin
 fun main() {

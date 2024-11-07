@@ -1,31 +1,4 @@
-## Object Oriented Kotlin Tour:
-This markdow file provides mini docs for following topics:
-- [Module, Package and Visibility Modifires](#mpvm)
-- [val/var/"empty" in Constructor Parameter/s](#constructorparam)
-- [Any, Unit, Nothing](#any-unit-nothing)
-- [Kotlin Abstract Class](#kotlin-abstract-class)
-- [Object | annonymous class, declarations: Singleton Pattern](#oacdsp)
-- [Object with Interface](#object-with-interface)
-- [Companion objects (inside class): Java static method + some more](#coic)
-- [Inheritance](#inheritance)
-- [Interface](#interface)
-- [Data Class (Modeling)](#data-class)
-- [Sealed Class and Interface:](#sealed-class)
-- [Extension Function On Class/Object:](#extension-function)
-- [Enum Class:](#enum-class)
-- [Inline Class, Nested, Inners:](#inline-class-nested-inner)
-- [Delegation](#delegation)
-- [Delegated Property (val/var <property name>: <Type> by - <expression>)](#delegated-property)
-- [Generics In Out, SAM (Single Abstract Method)](#generics-in-out)
-- [Coroutine, Suspend Functions (Asynchronous Tasks)](#coroutine-suspend-function)
-- [delay() vs Thread.speep()](#dely-vs-thread)
-- [Late-initialized (lateinit)](#late-init)
-- [Operator functions](#operator-function)
-
-
-For minimap see oop-minimap.kotlin.md here ()[oop-minimap.kotlin.md]
-
-### <a name="mpvm"> Module, Package and Visibility Modifires: </a>
+### Module, Package and Visibility Modifires: </a>
 Module: It's the top-most level like App. More specifically a module is a set of Kotlin files compiled together, like an IntelliJ IDEA module or a maven project or a gradle source set. See (Docs)[https://kotlinlang.org/docs/visibility-modifiers.html#modules].
 
 Packages: These are collection of related classes, functions, and correspond roughly to directories. They allow to refer to classes (and top-level functions and fields) in the same package directly, while all other classes need to be imported or their fully-qualified names (package.package…class) used. They're set using the package directive at the top of each file

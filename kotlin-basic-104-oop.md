@@ -411,7 +411,7 @@ run without extension function:
 
 ### Sequences in Kotlin | iteration-time producers:
 Unlike collections, sequences don't contain elements, they produce them while iterating. 
-Sequences offer the same functions as Iterable but implement another approach to multi-step collection processing.
+Sequences offer the same functions as Iterable but implement another approach to multi-step collection processing....
 
 * sequences should be better for the performance, but in real world it doesn't differ much as https://stackoverflow.com/questions/75503587/when-to-use-sequence-over-list-in-kotlin
 

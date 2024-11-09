@@ -140,7 +140,7 @@ fun main() {
 }
 ```
 ### Consumers `in` Producers `out`
- - out: When type parameter is to only returned (produced/out) from members of Source<T>, and never consumed. `Producers Out`
+ - out: When type parameter is to only returned (produced/out) from members of Source<T>, and never consumed. `Producers Out`.......
 ```kotlin
  interface Source<out T> {
     fun nextT(): T

@@ -23,7 +23,7 @@ It's a quick language tour to re-connect with most of the Kotlin language syntax
 Associated Java Code Should Inside main/java/ directory (By default). This can be changed by adding sourceSets.main { java.srcDirs("src/main/myJava", "src/main/myKotlin") } into build.gradle file
 Docs: https://kotlinlang.org/docs/gradle.html#kotlin-and-java-sources....
 
-### Variables and Types:
+### Variables `var/val` and Types:
 ```kotlin
 fun main() {
     println("Hello World")
@@ -67,7 +67,7 @@ fun main() {
 }
 ```
 
-### Expression (returns) vs Statement (assignments):
+### Expression (`returns`) vs Statement (`assignments`):
 * Expression: In Kotlin, an expression may be used as a statement or used as an expression depending on the context. As all expressions are valid statements, standalone expressions may be used as single statements or inside code blocks. Expression usually returns result (at least Unit). https://kotlinlang.org/spec/statements.html
 
 * Statement: As all expressions are valid statements. In java any line ends with semicolon is a statement. Statements usually don't returns, it assigns, like `val somethis = 77` | `class SomeClass{}`. 
@@ -135,7 +135,7 @@ val r = 10 % 3 // modulus or reminder operator
 println("The value of r after modulus operation is $r")
 ```
 
-### Multiple evaluation and Boolean
+### Multiple evaluation `&&`, `||` and Boolean
 ```kotlin
 val amIAdult = true
 val amIProgrammer = true
@@ -191,7 +191,7 @@ println(string.uppercase())
     println("userInput result is $inputResult")
 ```
 
-### List
+### List | immutable `listOf`<T> | mutable `mutableListOf<T>`:
 ```kotlin
 //  Immutable List
     val shoppingList = listOf<String>("Hello", "World")
@@ -207,7 +207,7 @@ println(string.uppercase())
     println(mutableShoppingList.toString())
 ```
 
-### Loop
+### Loop | `while` | `for(.. in ..)`
 > check: https://kotlinlang.org/docs/control-flow.html#for-loops
 ```kotlin
 // while loop

@@ -1,4 +1,4 @@
-### Module, Package and Visibility Modifires: </a>
+### Module, Package and Visibility Modifiers: </a>
 Module: It's the top-most level like App. More specifically a module is a set of Kotlin files compiled together, like an IntelliJ IDEA module or a maven project or a gradle source set. See (Docs)[https://kotlinlang.org/docs/visibility-modifiers.html#modules].
 
 Packages: These are collection of related classes, functions, and correspond roughly to directories. They allow to refer to classes (and top-level functions and fields) in the same package directly, while all other classes need to be imported or their fully-qualified names (package.package…class) used. They're set using the package directive at the top of each file
@@ -10,7 +10,7 @@ package foo
 
 private fun foo() { ... } // visible inside example.kt only. For class member, private means that the member is visible inside this class only (including all its members)
 
-protected fun baz() {...} // like private modifires with subclass access. 
+protected fun baz() {...} // like private modifiers with subclass access. 
 
 public var bar: Int = 5 // property is visible everywhere
     private set         // setter is visible only in example.kt
@@ -81,7 +81,7 @@ fun nothing(x: Int, y: Int): Nothing {
 }
 ```
 
-### <a name="kotlin-abstract-class"> Kotlin Abstract Class </a>
+### Kotlin Abstract Class:
 Docs: https://kotlinlang.org/docs/classes.html#abstract-classes
 ```kotlin
 abstract class Polygon {
@@ -110,7 +110,7 @@ abstract class WildShape : Polygon() {
 ```
 
 
-### <a name="oacdsp"> Object | annonymous class, declarations: Singleton Pattern </a>
+### Object | anonymous class, declarations | Object is Singleton Pattern equivalent in kotlin:
 Object expressions create objects of anonymous classes. anonymous classes are also called anonymous objects because they are defined by an expression, not a name.
 Docs: https://kotlinlang.org/docs/object-declarations.html
 ```kotlin
@@ -133,7 +133,7 @@ object DataProviderManager {
 //To refer to the object, use its name directly, no instantiation required voila
 DataProviderManager.registerDataProvider(...)
 
-//Such objects can have supertypes
+//Such objects can have supertype
 
 object DefaultListener : MouseAdapter() {
     override fun mouseClicked(e: MouseEvent) { ... }
@@ -143,7 +143,7 @@ object DefaultListener : MouseAdapter() {
 // overriding methods
 ```
 
-### <a name="object-with-interface"> Object with Interface: </a>
+### Object with Interface:
 ```kotlin
 interface Source<out T> {
     fun nextT(): T
@@ -163,7 +163,7 @@ fun main(){
     println(d.nextT())
 }
 ```
-### <a name="coic"> Companion objects (inside class): Java static method + some more </a>
+### `Companion objects` (inside class): Java static method:
 
 > If declared inside of a class, it can access its members / internals-of-the-class (such as a factory method) using only the class name as a qualifier, without instantiation like static method (But not exactly). 
 

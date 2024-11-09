@@ -189,7 +189,7 @@ fun html(init: HTML.() -> Unit): HTML {
     return html
 }
 ```
-### <a name="mockmvc-dsl"></a>mockmvc DSL structure:
+### mockmvc DSL structure:
 ```kotlin
 mockMvc.put(urlTemplate = baseUrl, null, dsl = { ->
 // as there is a vararg parameter in the middle, the last lambda block needs to be called by named argument if not called outside the parenthesis.

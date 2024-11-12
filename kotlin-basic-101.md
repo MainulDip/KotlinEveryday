@@ -116,7 +116,7 @@ fun main() {
 ```
 
 ### Single-line-expression function:
-When the function body consists of a single expression, the curly braces can be replaced by `=`
+When the function body consists of a single expression, the curly braces can be replaced by `=`.......
 ```kotlin
 fun double(x: Int): Int = x * 2
 fun doubleO(x: Int) = x * 2 

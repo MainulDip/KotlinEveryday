@@ -143,7 +143,7 @@ object DefaultListener : MouseAdapter() {
 // overriding methods
 ```
 
-### Object with Interface:
+### SAM Interface Implementation using `object`:
 ```kotlin
 interface Source<out T> {
     fun nextT(): T
@@ -211,23 +211,21 @@ class MyClass {
 val f: Factory<MyClass> = MyClass
 ```
 
-### <a name="inheritance"> Inheritance </a>
-Hit on https://kotlinlang.org/docs/inheritance.html
+### Inheritance
+All classes inherit from `Any`, in-depth Hit on https://kotlinlang.org/docs/inheritance.html
+Classes are final by default, To make a class inheritable, mark it with the open keyword. 
 ```kotlin
-class Example // Implicitly inherits from Any, and Any has three methods: equals(), hashCode(), and toString()
-```
-> Classes are final by default, To make a class inheritable, mark it with the open keyword. 
-
-```kotlin
+// All classes Implicitly inherits from `Any`, and `Any` has three methods: equals(), hashCode(), and toString()
+class Example
 open class Base(p: Int){}
 class Derived(p: Int) : Base(p){}
 ```
 
-### <a name="interface"> Interface </a>
-Interfaces in Kotlin can contain declarations of abstract methods, as well as method implementations, but interfaces cannot store a state, They can have properties, but these need to be abstract or provide accessor implementations, can implement one or more interfaces. 
+### Interface | cannot instantiate directly | can't hold state | no-constructor | SAM for Functional Interfaces:
+Interfaces in Kotlin can contain declarations of abstract methods, as well as method implementations, but interfaces cannot store a state, 
+They can have properties, but these need to be abstract or provide accessor implementations. Interface can implement one or more other interfaces. 
 
 Interface in Kotlin doesn't have constructor (java has and when called from kotlin it is converted using Single Abstract Method). Sometimes we need to define an anonymous object implementing the interface.
-
 Docs: https://kotlinlang.org/docs/interfaces.html
 
 ```kotlin
@@ -269,14 +267,12 @@ class Child : MyInterface {
 ```
 
 
-### <a name="data-class"> Data Class (Modeling) </a>
-Data Classes' main purpose is to hold data and or data structure.
-[Docs Data Class](https://kotlinlang.org/docs/data-classes.html)
-> Signature: data class User(val name: String, val age: Int)
+### Data Class (Data Modeling | Entity) | one `val/var` is required:
+Data Classes' main purpose is to represent data or data structure.
+- Signature: `data class User(val name: String, val age: Int)`
+- Automatically derives equals()/hashCode(), toString(), componentN() and copy() functions
 
-> automatically derives equals()/hashCode(), toString(), componentN() and copy() functions
-
-Requirments
+Requirements
  - at least one parameter in primary constructor
  - All primary constructor parameters need to be marked as val or var
  - Data classes cannot be abstract, open, sealed, or inner
@@ -299,7 +295,7 @@ data class Bank (
     }
 }
 ```
-### <a name="sealed-class"> Sealed Class and Interface: </a>
+### Sealed Class and Interface:
 Its kinda like enum with more feature (IDE suggession, Error ).
 Saled class is abstract by itself, it cannot be instantiated directly and can have abstract members. It can have one of two visibilities: protected (by default) or private
 
@@ -393,9 +389,11 @@ data class Person(val name: String, val gender: Gender ) {
 
 </details>
 
-### <a name="extension-function"> Extension Function On Class/Object: </a>
+### Extension Function On Class/Object:
+Can extend a class with new functionality without having to inherit from the class. 
+There are also extension properties that let you define new properties for existing classes.
+
 [Docs](https://kotlinlang.org/docs/extensions.html)
-Can extend a class with new functionality without having to inherit from the class. There are also extension properties that let you define new properties for existing classes.
 
 ```kotlin
 val list = mutableListOf(1, 2, 3)

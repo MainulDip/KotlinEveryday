@@ -291,5 +291,4 @@ fun <T, R> Iterable<T>.map(transform: (T) -> R): List<R>
 fun <T, R> Iterable<T>.flatMap(transform: (T) -> Iterable<R>): List<R>
 ```
 https://www.baeldung.com/kotlin/map-vs-flatmap....
-
-### Iterable.flatten()
+### Iterable.flatten():

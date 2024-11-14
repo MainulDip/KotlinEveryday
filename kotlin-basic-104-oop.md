@@ -704,7 +704,7 @@ fun main() {
 }
 ```
 
-NB: Because of the inline and reified declaration, we can access/filter the supplied class in the function's body using "list.filterIsInstance<T>()"...
+NB: Because of the inline and reified declaration, we can access/filter the supplied class in the function's body using "list.filterIsInstance<T>()"....
 
 If we don't declare the function inline with reified, we cannot access generic "type" information from the function body. Because normally, all the generic "type" information is erased by erasure after compilation, so in runtime do don't have the generic types, only specific type. But Kotlin provide a tricky solution as "inline reified", which help us get the generic type information in the runtime.
 

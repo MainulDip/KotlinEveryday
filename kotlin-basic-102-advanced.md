@@ -1,5 +1,5 @@
 ### Functions Receiver Type in Parameter:
-Non-literal (not-exact/type) values of function types with and without a receiver are interchangeable, so the receiver can stand in for the first parameter, and vice versa. For instance, a value of type (A, B) -> C can be passed or assigned where a value of type A.(B) -> C is expected, and the other way around. And can be called as both extension and regular way
+Non-literal (not-exact/type) values of function types with and without a receiver are interchangeable, so the receiver can stand in for the first parameter, and vice versa. For instance, a value of type (A, B) -> C can be passed or assigned where a value of type A.(B) -> C is expected, and the other way around. And can be called as both extension and regular way.
 ```kotlin
 fun main() {
     /**

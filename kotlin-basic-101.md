@@ -460,7 +460,7 @@ fun <T> List<T>.customLamGenericsFunction(value: (T) -> Boolean): Int {
 ### Data Class:
 Signature `ClassName( val somedata: String, val isChecked: Boolean: false )`
 Braces after the constructor can be omitted if empty (applies classes also) 
-It required to declare var/val before constructor params. 
+It required to declare var/val before constructor params.......
 
 ### Lambda without braces for member references:
 "::" creates a member reference or a class reference

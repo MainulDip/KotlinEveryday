@@ -858,6 +858,33 @@ lateinit var subject: TestSubject // value is computed only on first access late
 
 Note: The `lateinit` keyword is a promise that the code will initialize the variable before using it. If not, app will crash for null.
 
+### property `get()`, `set(value)` & get's Backing `field`:
+If custom get/set is defined, it will be called every time when accessing and setting respectively. Computed property can be implemented using `get`. If initial value exists, `field` is available as the current state.
+
+`set` has access to the newly set value as parameter.
+
+```kotlin
+val initial = "Hello"
+var x: String = initial // to access `field`, initial value is required 
+	get() = field.uppercase()
+	set(v){
+      field = v.uppercase()
+    }
+
+fun main() {
+    println(x)
+    x = "World"
+    println(x)
+}
+
+// single line getter
+val fullName get() = "${this.fName} ${this.lName}" // type inferred
+
+// making setter private, so it cannot be set from outside of the class
+var sth: String = "abc"
+    private set
+```
+Docs https://kotlinlang.org/docs/properties.html
 
 ### <a name="operator-function"> Operator functions:</a>
 Operators are like +, -, /, * etc. Under the hood, expression a+b transform to a.plus(b) and same for other operators. To customize default behavior/functionality, we can override those using "operator fun <name>" signature.

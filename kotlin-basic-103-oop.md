@@ -110,7 +110,7 @@ abstract class WildShape : Polygon() {
 ```
 
 
-### Object | anonymous class, declarations | Object is Singleton Pattern equivalent in kotlin:
+### `object` | anonymous class, declarations | Object is Singleton Pattern equivalent in kotlin:
 Object expressions create objects of anonymous classes. anonymous classes are also called anonymous objects because they are defined by an expression, not a name.
 Docs: https://kotlinlang.org/docs/object-declarations.html
 ```kotlin
@@ -163,7 +163,7 @@ fun main(){
     println(d.nextT())
 }
 ```
-### `Companion objects` (inside class): Java static method:
+### `Companion object` (inside class): Java static method:
 
 > If declared inside of a class, it can access its members / internals-of-the-class (such as a factory method) using only the class name as a qualifier, without instantiation like static method (But not exactly). 
 
@@ -212,8 +212,7 @@ val f: Factory<MyClass> = MyClass
 ```
 
 ### Inheritance
-All classes inherit from `Any`, in-depth Hit on https://kotlinlang.org/docs/inheritance.html
-Classes are final by default, To make a class inheritable, mark it with the open keyword. 
+Classes are final by default, To make a class inheritable, mark it with the `open` keyword. All classes inherit from `Any`
 ```kotlin
 // All classes Implicitly inherits from `Any`, and `Any` has three methods: equals(), hashCode(), and toString()
 class Example
@@ -221,7 +220,7 @@ open class Base(p: Int){}
 class Derived(p: Int) : Base(p){}
 ```
 
-### Interface | cannot instantiate directly | can't hold state | no-constructor | SAM for Functional Interfaces:
+### `interface` | cannot instantiate directly | can't hold state | no-constructor | SAM for Functional Interfaces:
 Interfaces in Kotlin can contain declarations of abstract methods, as well as method implementations, but interfaces cannot store a state, 
 They can have properties, but these need to be abstract or provide accessor implementations. Interface can implement one or more other interfaces. 
 
@@ -267,7 +266,7 @@ class Child : MyInterface {
 ```
 
 
-### Data Class (Data Modeling | Entity) | one `val/var` is required:
+### `data class` (Data Modeling | Entity) | one `val/var` is required:
 Data Classes' main purpose is to represent data or data structure.
 - Signature: `data class User(val name: String, val age: Int)`
 - Automatically derives equals()/hashCode(), toString(), componentN() and copy() functions
@@ -295,7 +294,7 @@ data class Bank (
     }
 }
 ```
-### Sealed Class and Interface:
+### Sealed Class and Sealed Interface:
 Its kinda like enum with more feature (IDE suggession, Error ).
 Saled class is abstract by itself, it cannot be instantiated directly and can have abstract members. It can have one of two visibilities: protected (by default) or private
 
@@ -451,7 +450,7 @@ fun main(){
 
 </details>
 
-### <a name="enum-class"> Enum Class </a>
+### Enum Class | defines type-safe values:
 Each enum constant is an object (an instance of the surrounding enum class). Enum constants are separated by commas.
 [Implementation Play](./OOPTour/src/main/kotlin/dataSealedEnumClasses/emumclass.kt)
 [Offficial Docs](https://kotlinlang.org/docs/enum-classes.html#anonymous-classes).
@@ -547,7 +546,7 @@ fun main() {
 }
 ```
 
-### <a name="inline-class-nested-inner">Inline Class, Nested, Inners:</a>
+### `inline` Class, `nested`, `inners`:
 Inline classes are a subset of value-based classes. They don't have an identity and can only hold values. Provide predictable type into IDEs
 
 Inline Class Docs : https://kotlinlang.org/docs/inline-classes.html.
@@ -599,8 +598,8 @@ fun main() {
 }
 ```
 
-### <a name="delegation"> Delegation </a>
-> Deligation : alternative way of implementation inheritance. Only interfaces can be delegated
+### Delegation of `interface`: 
+Delegation : alternative way of implementation inheritance. Only interfaces can be delegated
 
 NB: Here class Derived can implement an interface Base by delegating all of its public members to a specified object.
 
@@ -626,7 +625,7 @@ fun main() {
 //The by-clause in the supertype list for "Derived" indicates that d will be stored internally in objects of "Derived" and the compiler will generate all the methods of Base that forward to d
 ```
 
-### <a name="delegated-property"> Delegated Property (val/var <property name>: <Type> by <expression>): </a>
+### Delegated Property `val/var x: <T> by <T>`: </a>
 These are properties that inherit getter and setter from another class/interface (Delegated Class) instade of it's own get() and set() method. The `by` keyword indicates that the property is controlled by the provided delegate instead of its own field (get(),set()).
 
 Signature: `val/var <property name>: <Type> by <expression>`

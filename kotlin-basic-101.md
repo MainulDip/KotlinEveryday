@@ -19,10 +19,6 @@ It's a quick language tour to re-connect with most of the Kotlin language syntax
 { <#parameters#> -> <#statements#> }
 ```
 
-### Calling Java From Kotlin:
-Associated Java Code Should Inside main/java/ directory (By default). This can be changed by adding sourceSets.main { java.srcDirs("src/main/myJava", "src/main/myKotlin") } into build.gradle file
-Docs: https://kotlinlang.org/docs/gradle.html#kotlin-and-java-sources....
-
 ### Variables `var/val` and Types:
 ```kotlin
 fun main() {
@@ -67,14 +63,14 @@ fun main() {
 }
 ```
 
-### Expression (`returns`) vs Statement (`assignments`):
+### Expression (`returns`/`SideEffect`) vs Statement (`assignments` of expression):
 * Expression: In Kotlin, an expression may be used as a statement or used as an expression depending on the context. As all expressions are valid statements, standalone expressions may be used as single statements or inside code blocks. Expression usually returns result (at least Unit). https://kotlinlang.org/spec/statements.html
 
 * Statement: As all expressions are valid statements. In java any line ends with semicolon is a statement. Statements usually don't returns, it assigns, like `val somethis = 77` | `class SomeClass{}`. 
 
 So if a `when` block returns and the returned value is captured & assigned to a variable, as a whole, it's a `Statement`.
 
-### `when` block:
+### `when` expression `SideEffects` | statement `assigns`:
 When Signature
 ```kotlin
 // when as `expression`
@@ -116,7 +112,7 @@ fun main() {
 ```
 
 ### Single-line-expression function:
-When the function body consists of a single expression, the curly braces can be replaced by `=`.......
+When the function body consists of a single expression, the curly braces can be replaced by `=`
 ```kotlin
 fun double(x: Int): Int = x * 2
 fun doubleO(x: Int) = x * 2 
@@ -178,8 +174,7 @@ println(string.uppercase())
         }
     }
 ```
-### Default value and null safety
-> ?: , ? , !!
+### Default value and null safety | Elvis `?:` , `?` , `!!`
 ```kotlin
 //  kotlin is null safety language
     val nullValue: Int? = null
@@ -239,7 +234,7 @@ fun main() {
 }
 ```
 
-### Defining & Calling Functions
+### `fun` for Function | parameter labeling is optional while calling:
 ```kotlin
 fun printNumber(){
     for(i in 1..10){
@@ -329,19 +324,7 @@ class Cat: Animal(name = "Cat") {
     dog.makeSound()
 ```
 
-
-### Anonymous Class
-```kotlin
-//Anonymous class
-    val bear = object : Animal(name = "Cow") {
-        override fun makeSound() {
-            println("Calling From Anonymous class and the nos is \"Humba\"")
-        }
-    }
-    bear.makeSound()
-```
-
-### Exception Handling
+### Exception Handling `try/catch`:
 ```kotlin
 val numberExceptionCheck = readLine() ?: "0"
 val parsedNumber = try {
@@ -352,7 +335,7 @@ val parsedNumber = try {
 println(parsedNumber)
 ```
 
-### Lambda Function
+### Lambda Function `{}`:
 The main principal is to pass value/s to the lambda parameter/s and use as callback later utilizing the passed parameter/s....
  
 Note: When calling there is no parentheses ()" before arrow notation "->" like defining. Also no return statement. return@funname is allowed. When calling "()" can be used as destructured syntax.
@@ -386,7 +369,6 @@ fun List<String>.customLamFunction(fn: (String) -> Boolean): Int {
 ```
 
 ### Destructuring `()`:
-https://subscription.packtpub.com/book/application-development/9781787123687/5/ch05lvl1sec63/destructuring-in-lambda-expressions.
 ```kotlin
 data class User(val name: String, val surname: String, val phone: String) 
  
@@ -401,8 +383,9 @@ val (name, surname, phone) = user
     // Marcin Moskala have phone number: +48 123 456 789 
 ```
 
+https://subscription.packtpub.com/book/application-development/9781787123687/5/ch05lvl1sec63/destructuring-in-lambda-expressions.
 
-### Lambda Type/Signature Declaration and Instantiation:
+### Lambda Type/Signature Declaration `()->T` and Instantiation `{}`:
 ```kotlin
 // Lambda Declaration. Note: IntArray.fold() is a built in function in Kotlin
 inline fun <R> IntArray.fold(
@@ -458,7 +441,7 @@ fun <T> List<T>.customLamGenericsFunction(value: (T) -> Boolean): Int {
 }
 ```
 ### Data Class:
-Signature `ClassName( val somedata: String, val isChecked: Boolean: false )`
+Signature `data class ClassName( val somedata: String, val isChecked: Boolean: false )`
 Braces after the constructor can be omitted if empty (applies classes also) 
 It required to declare var/val before constructor params.......
 
@@ -476,7 +459,7 @@ fun main() {
     println(stringPlus("Hello, ", "world!")) // prints "Hello World"
 ```
 
-### with(i) Statement:
+### `with(instance)` scoped function expression:
 ```kotlin
 // Signature
 with (instanceName) {
@@ -507,7 +490,7 @@ fun main(){
 }
 ```
 
-### List groupBy:
+### List `groupBy` scope fun:
 ```kotlin
 fun main() {
     println(dUserList.arrange<String>())
@@ -575,3 +558,8 @@ Returns a single list of all elements from all collections in the given collecti
 ```kotlin
 public fun <T> Iterable<Iterable<T>>.flatten(): List<T>
 ```
+
+
+### Calling Java From Kotlin:
+Associated Java Code Should Inside main/java/ directory (By default). This can be changed by adding sourceSets.main { java.srcDirs("src/main/myJava", "src/main/myKotlin") } into build.gradle file
+Docs: https://kotlinlang.org/docs/gradle.html#kotlin-and-java-sources....

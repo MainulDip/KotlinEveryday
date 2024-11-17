@@ -86,7 +86,7 @@ call { name ->
 // this is somewhat similar with Javascript's call(), apply() or bind() method
 ```
 
-### Class Implementing Function Type | not SAM:
+### Class Implementing Function Type `invoke impl` | not SAM:
 Class can implement a functional type as interface through its invoke function.
 ```kotlin
 /**
@@ -181,7 +181,7 @@ A().invokePrintLine() // Member function
 A().invokePrintLine(omitThis = true) // Top-level function
 ```
 
-### <a name="dsl-builders"></a> Kotlin Builders DSLs: 
+### Kotlin Builders DSLs: 
 ```kotlin
 fun html(init: HTML.() -> Unit): HTML {
     val html = HTML()
@@ -189,7 +189,7 @@ fun html(init: HTML.() -> Unit): HTML {
     return html
 }
 ```
-### mockmvc DSL structure:
+### `mockmvc` DSL structure:
 ```kotlin
 mockMvc.put(urlTemplate = baseUrl, null, dsl = { ->
 // as there is a vararg parameter in the middle, the last lambda block needs to be called by named argument if not called outside the parenthesis.
@@ -198,7 +198,7 @@ content = objectMapper.writeValueAsString(accountNumber)
 })
 ```
 
-### Inline Functions, Reflections/KClass // MyClass::class || Function references // ::isOdd 
+### Reflections/KClass `MyClass::class` || Function references `::fn`: 
 
 > Reflection and Function Reference
 ```kotlin
@@ -264,7 +264,7 @@ fun main() {
     }
 }
 ```
-### Function Reference and Invoke:
+### Function Reference `::fn` and Invoke:
 - Function reference `::fn` should be wrapped in and `()` before call, like `(::fn)()`. 
 - Invoke can also be used instead like `::fn.invoke()`
 

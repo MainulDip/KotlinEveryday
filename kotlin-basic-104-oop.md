@@ -1,4 +1,4 @@
-### java Static Method || kotlin companion object:
+### java Static Method || kotlin `companion object`:
 ```java
 class Foo {
   public static int a() { return 1; }
@@ -409,35 +409,6 @@ run without extension function:
 
 ```
 
-### Sequences in Kotlin | iteration-time producers:
-Unlike collections, sequences don't contain elements, they produce them while iterating. 
-Sequences offer the same functions as Iterable but implement another approach to multi-step collection processing....
-
-* sequences should be better for the performance, but in real world it doesn't differ much as https://stackoverflow.com/questions/75503587/when-to-use-sequence-over-list-in-kotlin
-
-```kotlin
-fun main() {
-    // basic sequence
-    val sequenceWithoutList = sequenceOf("four", "three", "two", "one")
-    val numbers = listOf("one", "two", "three", "four")
-    val numbersSequence = numbers.asSequence()
-    println(numbersSequence.toList()) // [one, two, three, four]
-    
-    // infinite sequence
-    // if not blocked by else null, sequence is infinite. take(int) mimics the else case
-    val oddNumbers = generateSequence(1) { it + 2 } // `it` is the previous element
-    val s5 = oddNumbers.take(5).toList()
-    println(oddNumbers.take(5).toList()) // [1, 3, 5, 7, 9]
-    println(s5.count()) // 5
-    //println(oddNumbers.count()) // error: the sequence is infinite
-    
-    //finite sequence using `else`
-    val oddNumbersLessThan10 = generateSequence(1) { if (it < 8) it + 2 else null }
-    println(oddNumbersLessThan10.count()) // 5
-    println(oddNumbersLessThan10) // kotlin.sequences.GeneratorSequence@.......
-}
-```
-
 ### apply: 
 The common case for apply is the object configuration. 
 Such calls can be read as `apply the following assignments to the object` 
@@ -496,7 +467,37 @@ fun main() {
 
 }
 ```
-### <a name="regexsequence"></a> Regex Sequence:
+
+### Sequences in Kotlin | iteration-time producers:
+Unlike collections, sequences don't contain elements, they produce them while iterating. 
+Sequences offer the same functions as Iterable but implement another approach to multi-step collection processing....
+
+* sequences should be better for the performance, but in real world it doesn't differ much as https://stackoverflow.com/questions/75503587/when-to-use-sequence-over-list-in-kotlin
+
+```kotlin
+fun main() {
+    // basic sequence
+    val sequenceWithoutList = sequenceOf("four", "three", "two", "one")
+    val numbers = listOf("one", "two", "three", "four")
+    val numbersSequence = numbers.asSequence()
+    println(numbersSequence.toList()) // [one, two, three, four]
+    
+    // infinite sequence
+    // if not blocked by else null, sequence is infinite. take(int) mimics the else case
+    val oddNumbers = generateSequence(1) { it + 2 } // `it` is the previous element
+    val s5 = oddNumbers.take(5).toList()
+    println(oddNumbers.take(5).toList()) // [1, 3, 5, 7, 9]
+    println(s5.count()) // 5
+    //println(oddNumbers.count()) // error: the sequence is infinite
+    
+    //finite sequence using `else`
+    val oddNumbersLessThan10 = generateSequence(1) { if (it < 8) it + 2 else null }
+    println(oddNumbersLessThan10.count()) // 5
+    println(oddNumbersLessThan10) // kotlin.sequences.GeneratorSequence@.......
+}
+```
+
+### Regex Sequence:
 ```kotlin
 fun main() {
 
@@ -523,8 +524,7 @@ fun main() {
 }
 ```
 
-### Inline Functions (lambda arguments):
-https://www.baeldung.com/kotlin/crossinline-vs-noinline
+### `inline` Functions (lambda in arguments):
 Inline functions in Kotlin help us to avoid extra memory allocations and unnecessary method invocations for each lambda expression.
 
 Using higher-order functions imposes certain runtime penalties: each function is an object, and it captures a closure. A closure is a scope of variables that can be accessed in the body of the function. Memory allocations (both for function objects and classes) and virtual calls introduce runtime overhead.
@@ -593,7 +593,7 @@ public final class InlineFunctionsBasicKt {
 }
 ```
 
-- crossinline, return and blocking return statement:
+- `crossinline`, return and blocking return statement:
 If function is declared inline, the parameterised lambda blocks are allowed to provide "return" statement. But if crossinline is declared before the parameter of the lambda functions, it will behave like normal lambda block where "return" is not normally allowed.
 
 with crossinline keyword, we are telling the compiler, "give me an error, if I accidentally use a non-local return inside the nested functions or local objects"
@@ -646,7 +646,7 @@ fun main() {
     simpleTestReified<String>("This is String")
 }
 ```
-
+https://www.baeldung.com/kotlin/crossinline-vs-noinline
 
 <details>
 <summary>More on reified: Practical Example</summary>

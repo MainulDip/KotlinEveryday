@@ -168,9 +168,9 @@ fun main(){
 > If declared inside of a class, it can access its members / internals-of-the-class (such as a factory method) using only the class name as a qualifier, without instantiation like static method (But not exactly). 
 
 Note:
-- Object expressions (object: {....}) are executed (and initialized) immediately, where they are used.
+- Object anonymous expressions (`companion object: {....}`) are executed (and initialized) immediately, where they are used.
 
-- Object declarations (object ObjName {...}) are initialized lazily, when accessed for the first time.
+- Object named declarations (`companion object ObjName {...}`) are initialized lazily, when accessed for the first time.
 
 - A companion object is initialized when the corresponding class is loaded (resolved) that matches the semantics of a Java static initializer.
 
@@ -335,13 +335,12 @@ sealed class Gender {
 2. Best first case could when block. Also use generic getter to receive IDE support at its best
 ```kotlin
 /**
-* using `when` as expression. In this case IDE do not auto suggest all the possibilities.
+* without sealed class IDE will not auto suggest all the possibilities.
 * adding extension `T.exhaustive` will help IDE to auto suggest
-* `expression` -> When a block of code returns value
-* `statement` does not return value, rather do side effect/s (like modifying variable/s). 
-* as a whole, most of the things are `statement`. Inside statement, there can be `expression` or can't
-* here the when block returns a value, thats why its an expression
-* But as a whole (including assignment operation), its a statement 
+* `expression` -> when returned value is captured in a variable
+* `statements` are not stored, rather do side effect/s (like modifying variable/s). 
+* as a whole, most of the things are `statement`. Inside statement, there can be more `expressions` or `statements`
+* here the when block's returned value is stored in a variable, thats why its an expression
 */
 val getGender: String = when(person.gender){
     is Person.Gender.Male -> "Male"
@@ -351,7 +350,7 @@ val getGender: String = when(person.gender){
 val <T> T.exhaustive : T
     get() = this
 ```
-3. Using inside when block as "expression" (returns) helps IDE to generate all the possible cases using "add remaining branches"
+3. sealed class with `when` block "expression" (returns) helps IDE to generate all the possible cases using "add remaining branches"
 ```kotlin
 fun main(args: Array<String>) {
 

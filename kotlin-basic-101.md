@@ -383,7 +383,7 @@ val (name, surname, phone) = user
     // Marcin Moskala have phone number: +48 123 456 789 
 ```
 
-https://subscription.packtpub.com/book/application-development/9781787123687/5/ch05lvl1sec63/destructuring-in-lambda-expressions.
+https://subscription.packtpub.com/book/application-development/9781787123687/5/ch05lvl1sec63/destructuring-in-lambda-expressions
 
 ### Lambda Type/Signature Declaration `()->T` and Instantiation `{}`:
 ```kotlin

@@ -139,7 +139,7 @@ fun main() {
     dog = animal // works, as Dog's superclass is Animal
 }
 ```
-### Consumers `in` Producers `out`
+### Consumers `in` Producers `out`:
  - out: When type parameter is to only returned (produced/out) from members of Source<T>, and never consumed. `Producers Out`.......
 ```kotlin
  interface Source<out T> {
@@ -201,7 +201,7 @@ fun main() {
 // Again 1st
 // Again 2nd
 ```
-If we call setter, it will call only the remembered value (getValu()), not anything else, "println("Hello")" in this case
+If we call setter, it will call only the remembered value (getValue()), not anything else, "println("Hello")" in this case
 Also see Scoped Functions at https://kotlinlang.org/docs/scope-functions.html
 ```kotlin
 fun main() {
@@ -335,7 +335,7 @@ fun main() {
     println(resultList)
     println()
 
-    // with let scope funciton
+    // with let scope function
     numbers.map { it.length }.filter { it > 3 }.let {
         println(it) // [5, 4, 4]
         println(it.filter{it != 5}) // [4, 4]
@@ -594,7 +594,7 @@ public final class InlineFunctionsBasicKt {
 ```
 
 - `crossinline`, return and blocking return statement:
-If function is declared inline, the parameterised lambda blocks are allowed to provide "return" statement. But if crossinline is declared before the parameter of the lambda functions, it will behave like normal lambda block where "return" is not normally allowed.
+If function is declared inline, the parameterized lambda blocks are allowed to provide "return" statement. But if crossinline is declared before the parameter of the lambda functions, it will behave like normal lambda block where "return" is not normally allowed.
 
 with crossinline keyword, we are telling the compiler, "give me an error, if I accidentally use a non-local return inside the nested functions or local objects"
 
@@ -619,7 +619,7 @@ fun main(){
 docs: https://kotlinlang.org/docs/inline-functions.html
 
 - Reified type parameters:
-To access a type passed as a parameter, instade of using reflection to check whether a node has a certain type, simply a type to this function can be passed by declaring "<reified T>".
+To access a type passed as a parameter, instead of using reflection to check whether a node has a certain type, simply a type to this function can be passed by declaring "<reified T>".
 
 ```kotlin
 inline fun <reified T> functionName(): T? {

@@ -105,7 +105,7 @@ open class Polygon {
 abstract class WildShape : Polygon() {
     // Classes that inherit WildShape need to provide their own
     // draw method instead of using the default on Polygon
-    abstract override fun draw()
+    abstract override fun draw() {}
 }
 ```
 
@@ -241,7 +241,7 @@ interface MyInterface {
 
     val propertyWithImplementation: String
         get() = "foo"
-    // val propertyWithImplementation: String = "Some Val" // not allowed
+    // val propertyWithImplementation: String = "Some Val" // not allowed, no setter is allowed
 
     fun foo() {
         print(prop)
@@ -296,12 +296,12 @@ data class Bank (
 ```
 ### Sealed Class and Sealed Interface:
 Its kinda like enum with more feature (IDE suggession, Error ).
-Saled class is abstract by itself, it cannot be instantiated directly and can have abstract members. It can have one of two visibilities: protected (by default) or private
+Saled class is abstract by itself, it cannot be instantiated directly and can have abstract members. It can have one of two visibilities: `protected` (by default) or `private`
 
 > Sealed vs Enum
 - Sealed class can have <T> (Generic type) parameters, but not enum
-- Sealed Class With Complex Hierarchy (Multiple Nested class/objects) is recognised by IDE. But enum with abstract class is not recogniseable/predictable by IDE, as the IDE compiler cannot get the inheritance Hierarchy. Specially working with "when" block, IDE can generate all the posible options/branches of the sealed class. Its always handy
-- Sealed class can hold "Instance Specefic Data", not only singleton
+- Sealed Class With Complex Hierarchy (Multiple Nested class/objects) is recognized by IDE. But enum with abstract class is not recognizable/predictable by IDE, as the IDE compiler cannot get the inheritance Hierarchy. Specially working with "when" block, IDE can generate all the possible options/branches of the sealed class. Its always handy
+- Sealed class can hold "Instance Specific Data", not only singleton
 Docs: https://kotlinlang.org/docs/sealed-classes.html
 
 ```kotlin
@@ -332,7 +332,7 @@ sealed class Gender {
 }
 ```
 
-2. Best first case could when block. Also use generic getter to receive IDE support at its best
+2. Best first case could `when` block. Also use generic getter to receive IDE support at its best
 ```kotlin
 /**
 * without sealed class IDE will not auto suggest all the possibilities.
@@ -412,7 +412,7 @@ fun <T> MutableList<T>.swap(index1: Int, index2: Int) {
 ```
 
 <details>
-<summary>More on Extention function</summary>
+<summary>More on Extension function</summary>
 
 ```kotlin
 fun main(){

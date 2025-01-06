@@ -490,22 +490,44 @@ fun main(){
 }
 ```
 
-### List `groupBy` scope fun:
+### List `groupBy` scope fun and `Map`:
+Map is a A collection type that holds pairs of objects (keys and values), 
+signature `expect interface Map<K, out V>`
+
+Note on `expect` & `actual`: allows to access platform-specific APIs from Kotlin Multiplatform modules. `expect` for common `expected declaration` without implementation. `actual` declaration usually contain implementation for each platform-specific source set,
+
 ```kotlin
-fun main() {
-    println(dUserList.arrange<String>())
-}
+// First example
+val words = listOf("a", "abc", "ab", "def", "abcd")
+val byLength = words.groupBy { it.length }
 
+println(byLength.keys) // [1, 3, 2, 4]
+println(byLength.values) // [[a], [abc, def], [ab], [abcd]]
+
+// Second example
 data class DUser(val name: String, val age: Int, val group: String)
-
-var dUserList: List<DUser> = mutableListOf(DUser("First User", 21, "a"), DUser("Second User", 22, "b"),DUser("Third User", 23, "c"), DUser("First User", 21, "b"))
 
 fun <T> List<DUser>.arrange(): Map<T, List<DUser>> =
     groupBy {
         it.name as T
     }
 
-// {First User=[DUser(name=First User, age=21, group=a), DUser(name=First User, age=21, group=b)], Second User=[DUser(name=Second User, age=22, group=b)], Third User=[DUser(name=Third User, age=23, group=c)]}
+fun main() {
+    var dUserList: List<DUser> = mutableListOf(DUser("First User", 21, "a"), DUser("Second User", 22, "b"),DUser("Third User", 23, "c"), DUser("First User", 21, "b"))
+
+    println(dUserList.arrange<String>())
+}
+
+/** 
+{
+@First group
+User=[DUser(name=First User, age=21, group=a), DUser(name=First User, age=21, group=b)], 
+@Second group
+User=[DUser(name=Second User, age=22, group=b)], 
+@Third group
+User=[DUser(name=Third User, age=23, group=c)]
+} 
+*/
 ```
 
 ### Labeling returns `label@` & `return@label` | Local vs Non-Local Returns:
@@ -519,7 +541,7 @@ fun bar() {
         }  
         println(it)
     }
-    println("this point reachable because of labled return (local)")
+    println("this point is reachable because of labled return (local)")
 }
 
 fun foo() {
@@ -544,9 +566,9 @@ fun main() {
 // Non-Local Return:
 // 1
 // 2
-// skip the whole loop because of the non-local return underneth
+// skip the whole loop because of the non-local return underneath
 
-// Local Return using lable@ (sth@):
+// Local Return using label@ (sth@):
 // 1
 // 2
 // skip this and run rest

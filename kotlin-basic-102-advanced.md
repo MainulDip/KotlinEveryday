@@ -1,5 +1,8 @@
 ### Functions Receiver Type in Parameter:
+Take: `T.(P1)->R` allows both `fn(T,{})` and `T.fn{}` | but `fn(T,P1)` don's support other the way
+
 Non-literal (not-exact/type) values of function types with and without a receiver are interchangeable, so the receiver can stand in for the first parameter, and vice versa. For instance, a value of type (A, B) -> C can be passed or assigned where a value of type A.(B) -> C is expected, and the other way around. And can be called as both extension and regular way.
+
 ```kotlin
 fun main() {
     /**
@@ -213,7 +216,7 @@ println(numbers.filter(::isOdd))
 ```
 
 ```kotlin
-//properties as first-class objects
+//properties as first-class objects when defined in the object/class scope. Not inside functions scope
 val x = 1 // defined in the object/class scope. Not inside functions scope
 
 fun main() {
@@ -241,7 +244,7 @@ fun main() {
     // println((::greeting)("World!")) // error, References to variables and parameters are unsupported
     // println((::greeting).invoke("World!")) // error, same
 
-    println((::greetingFun)("World!")) // ok, as `greetingFun` is not a variable/var/val, its a function    
+    println((::greetingFun)("World!")) // ok, as outside `greetingFun` is not a variable/var/val, its a function    
     // println(greetingFun.invoke("World!")) // error, will not work, 'greetingFun(...)' expected    
     println(::greetingFun.invoke("World!!")) // ok
 
@@ -285,11 +288,26 @@ fun main() {
 ```
 ### map vs flatMap
 ```kotlin
-// map()
+// map(): transform iterable T into List<R>
 fun <T, R> Iterable<T>.map(transform: (T) -> R): List<R>
 
-// flatMap()
+// flatMap(): equivalent to map() and then flatten()
 fun <T, R> Iterable<T>.flatMap(transform: (T) -> Iterable<R>): List<R>
+```
+
+example
+
+```kotlin
+data class Order(val lines: List<OrderLine>)
+data class OrderLine(val name: String, val price: Int)
+
+val order = Order(
+  listOf(OrderLine("Tomato", 2), OrderLine("Garlic", 3), OrderLine("Chives", 2))
+)
+val names = order.lines.map { it.name }
+
+assertThat(names).containsExactly("Tomato", "Garlic", "Chives")
+
 ```
 https://www.baeldung.com/kotlin/map-vs-flatmap....
 ### Iterable.flatten():

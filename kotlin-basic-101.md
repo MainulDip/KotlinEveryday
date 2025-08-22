@@ -6,17 +6,44 @@ It's a quick language tour to re-connect with most of the Kotlin language syntax
 - both use curly braces to surround lambda when applying
 - kotlin use `->` and swift use `in` to separate lambda body from arguments
 - both support trailing lambda
-- don't confuse, swift use `->`, and kotlin use `:` for functions return.
-- but when a function returning another function, kotlin use `()->T`. Swift use this for everything.
+- don't confuse, swift use `->` for both regular and lambda, and kotlin use `:` for regular functions return (non lambda).
+- but when a regular function returning another function, kotlin use `()->T`. Swift use this for everything.
 - kotlin use `()` for lambda's parameter destructuring in applying phase
-- Swift/Java use `Void` and Kotlin use `Unit` for no return (side effect operations)
+- Swift/Java use `Void` (void is an empty tuple in swift) and Kotlin use `Unit` for no return (side effect operations)
 ```swift
 { (<#parameters#>) -> <#return type#> in
    <#statements#>
 }
 ```
 ```kotlin
-{ <#parameters#> -> <#statements#> }
+{ <#parameters#> -> <#statements#> } // when lambda has parameter/s. don't put parenthesis `() are dedicated for destructuring` 
+{ <#statements#> } // when the lambda has no parameter
+```
+
+### Kotlin Lambda and Anonymous Functions (Unnamed Functions):
+Both are unnamed functions. Anonymous functions use the `fun` keyword, while lambda expressions are defined with curly braces `{}`.
+
+* None of those unnamed function support default parameter. Only regular/idiomatic function support default parameter value. See https://stackoverflow.com/questions/58277468/default-parameters-in-lambda-expression-in-kotlin
+
+```kotlin
+// Lambda
+var  myVariable = {  println("Inside of the Lambda Expression")  }
+val myVariable: (Int, String) -> String = { a: Int, b: String -> "$a + $b" }
+val myVariable: (Int, String) -> Unit = { a: Int, b: String -> println("$a + $b") }
+val myVariable2: (Int, String) -> String = { a: Int, b: String -> "$a + $b" }
+val myVariable3: () -> Unit = { println("No Parameters and No Return Value") }
+val myVariable4: () -> String = { "Return String" }
+
+// A variable isn't always necessary, as lambda expressions can be evoked directly.
+println( {a: String, b: String -> "$a $b"} ("Hello", "World") )
+
+
+// Anonymous Function
+// val myVariableName: (FirstDataType,SecondDataType) -> ReturnType = fun(firstParameter,secondParameter): ReturnType { MethodBody }
+
+val myVariable: (String, String) -> String = fun(a, b): String {
+    return "$a $b"
+}
 ```
 
 ### Variables `var/val` and Types:
@@ -46,7 +73,7 @@ fun main() {
 
     // IntRange
     val diceRange: IntRange = 1..6
-    val randomNumber = diceRange.random()
+    val randomNumber = diceRange.random() // (1..6).random() is also possible
     println("Random number: ${randomNumber}") // Random number: 6
 
 // loop and check
@@ -60,6 +87,9 @@ fun main() {
     for (x in cars) {
         println(x)
     }
+
+    for (i in 1..4 step 2) print(i) // 1,3
+    for (i in 1..4 downTo 1) print(i) // will print reverse // 4321
 }
 ```
 
@@ -147,6 +177,7 @@ println(string.uppercase())
 ```
 
 ### Conditionals | No Ternary if/else:
+
 ```kotlin
 //  Conditionals
     val conditionVal = 1 + 3
@@ -162,7 +193,7 @@ println(string.uppercase())
     val conditional2 = if ( conditionVal == 2 + 1 ) 2 else "not a match"
     println("conditional2 value is $conditional2")
 
-//  when conditional, it's like switch style conditional
+//  when conditional, it's like switch style conditional, Kotlin has `when` instead of `switch`
     
     val checkWhen = 4
     when(checkWhen) {
@@ -175,6 +206,7 @@ println(string.uppercase())
     }
 ```
 ### Default value and null safety | Elvis `?:` , `?` , `!!`
+Elvis is the safer option. Other will throw Runtime error
 ```kotlin
 //  kotlin is null safety language
     val nullValue: Int? = null
@@ -191,7 +223,7 @@ println(string.uppercase())
 //  Immutable List
     val shoppingList = listOf<String>("Hello", "World")
     println(shoppingList[0])
-    println("shoppingList first value is ${shoppingList[0]}")
+    println("shoppingList first value is ${shoppingList[0]}") 
 //  Mutable List
     val mutableShoppingList = mutableListOf<String>("Mutable", "Hello World")
     mutableShoppingList.add("Good is golden")
@@ -202,7 +234,67 @@ println(string.uppercase())
     println(mutableShoppingList.toString())
 ```
 
-### Loop | `while` | `for(.. in ..)`
+### `when`  Expression/Statement & with/without subject, usages with `conditional/true/false`, `in, !in` for ranges, `is, !is` for types & `if` as guard condition:
+`when` used in an expression (assignment/return) requires to have `else` (default) clause, statement's `else` clause if optional. Also, using `enum` as a subject, else block is optional
+
+Also `when` can be used with `when(x){}` or without `when {}` a subject. 
+
+```kotlin
+// when as Expression
+val text = when (x) {
+    1 -> "x == 1"
+    2 -> "x == 2"
+    else -> "x is neither 1 nor 2"
+}
+
+// when as Statement
+when (x) {
+    1 -> print("x == 1")
+    2 -> print("x == 2")
+    // else -> print("x is neither 1 nor 2") // optional
+}
+```
+
+* Guard condition (separated by if). But cannot be used with multiple coma separated conditions
+```kotlin
+// using guard condition using if
+is Animal.Cat if !animal.mouseHunter -> feedCat()
+// guard condition will not work with multiple conditions
+0, 1 -> print("x == 0 or x == 1")
+```
+
+* Example usages
+```kotlin
+// multiple coma separated conditions in a single line
+when (ticketPriority) {
+    "Low", "Medium" -> print("Standard response time")
+    else -> print("High-priority handling")
+}
+
+// `in` with range
+when (x) {
+    in 1..10 -> print("x is in the range")
+    in validNumbers -> print("x is valid")
+    !in 10..20 -> print("x is outside the range")
+    else -> print("none of the above")
+}
+
+// `is` for type matching
+fun hasPrefix(input: Any): Boolean = when (input) {
+    is String -> input.startsWith("ID-")
+    else -> false
+}
+
+fun main() {
+    val testInput = "ID-98345"
+    println(hasPrefix(testInput))
+    // true
+}
+```
+
+### Loop | `while` | `for(.. in ..)`:
+Kotlin has `for(.. in ..)`, no traditional `for(Int i = 0; i > 4; i++)` java like
+In Kotlin, the `for` loop is used to loop through arrays, ranges, and other things that contains a countable number of values.
 > check: https://kotlinlang.org/docs/control-flow.html#for-loops
 ```kotlin
 // while loop
@@ -339,7 +431,7 @@ println(parsedNumber)
 The main principal is to pass value/s to the lambda parameter/s and use as callback later utilizing the passed parameter/s....
  
 Note: When calling there is no parentheses ()" before arrow notation "->" like defining. Also no return statement. return@funname is allowed. When calling "()" can be used as destructured syntax.
-> Lamda: Functions that are passed as parameter/args of another function
+> Lambda (derived from lambda calculus) callback function: Anonymous functions that are passed as parameter/args of another function. 
 
 ```kotlin
 fun main(){
@@ -374,18 +466,18 @@ data class User(val name: String, val surname: String, val phone: String)
  
 val (name, surname, phone) = user 
 
-    val showUser: (User) -> Unit = { (name, surname, phone) -> 
-        println("$name $surname have phone number: $phone")  
-    } 
+val showUser: (User) -> Unit = { (name, surname, phone) -> 
+    println("$name $surname have phone number: $phone")  
+} 
 
-    val user = User("Marcin", "Moskala", "+48 123 456 789") 
-    showUser(user) 
-    // Marcin Moskala have phone number: +48 123 456 789 
+val user = User("Marcin", "Moskala", "+48 123 456 789") 
+showUser(user) 
+// Marcin Moskala have phone number: +48 123 456 789 
 ```
 
 https://subscription.packtpub.com/book/application-development/9781787123687/5/ch05lvl1sec63/destructuring-in-lambda-expressions
 
-### Lambda Type/Signature Declaration `()->T` and Instantiation `{}`:
+### Lambda Type/Signature Declaration `()->T` and Instantiation `{ <param-if-any> -> <body>}`:
 ```kotlin
 // Lambda Declaration. Note: IntArray.fold() is a built in function in Kotlin
 inline fun <R> IntArray.fold(
@@ -445,7 +537,7 @@ Signature `data class ClassName( val somedata: String, val isChecked: Boolean: f
 Braces after the constructor can be omitted if empty (applies classes also) 
 It required to declare var/val before constructor params.......
 
-### Lambda without braces for member references:
+### `::fn` Function's references:
 "::" creates a member reference or a class reference
 ```kotlin
 fun main() {

@@ -6,7 +6,7 @@ Packages: These are collection of related classes, functions, and correspond rou
 Visibility Modifiers:
 ```kotlin
 // file name: example.kt
-package foo
+package com.websolverpro.foo
 
 private fun foo() { ... } // visible inside example.kt only. For class member, private means that the member is visible inside this class only (including all its members)
 
@@ -625,7 +625,7 @@ fun main() {
 ```
 
 ### Delegated Property `val/var x: <T> by <T>`: </a>
-These are properties that inherit getter and setter from another class/interface (Delegated Class) instade of it's own get() and set() method. The `by` keyword indicates that the property is controlled by the provided delegate instead of its own field (get(),set()).
+These are properties that inherit getter and setter from another class/interface (Delegated Class) instead of it's own get() and set() method. The `by` keyword indicates that the property is controlled by the provided delegate instead of its own field (get(),set()).
 
 Signature: `val/var <property name>: <Type> by <expression>`
 

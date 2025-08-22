@@ -4,7 +4,7 @@ Non-literal (not-exact/type) values of function types with and without a receive
 fun main() {
     /**
      * Here repeatFun behaves like an extension function of String and a regular function also
-     * But for towParameters, as the type is explicit there, cannot be an extension function even though it assaign `repeatFun` 
+     * But for towParameters, as the type is explicit there, cannot be an extension function even though it assign `repeatFun` 
      * Same way the `repeatFun2` behaves both extension and regular way (because of same signature/type)
      */
     val repeatFun: String.(Int) -> String = { times -> this.repeat(times) } /* supports calling by `repeatFun("String", 4)` and `"String".repeatFun(4)` both */
@@ -140,6 +140,7 @@ class A { // implicit label @A
             println("${c::class.simpleName} : $c and ${c1::class.simpleName} : $c1")  // prints `Int : 12 and Int : 12`
 
             val funLit = lambda@ fun String.() {
+                // `lambda@` is just for labeling, not doing anything here
                 val d = this // funLit's receiver
                 println(d)
             }
@@ -226,7 +227,7 @@ in kotlin invoke mimics the `()` after function/object/class 's `instance`. usin
 
 inside class/object definition, we declare `operator fun invoke(...){....}` to run the function using `instance(...)` signature.
 
-`invoke` is often very useful when calling a Nullable instance. `let` is another alternative for nullable?.invoke(....) call
+`invoke` is often very useful when calling a Nullable instance. `let` is another alternative for `nullable?.invoke(....)` call
 
 ```kotlin
 fun greetingFun(name: String) = "Hello, $name from greetingFun"
@@ -265,7 +266,7 @@ fun main() {
 }
 ```
 ### Function Reference `::fn` and Invoke:
-- Function reference `::fn` should be wrapped in and `()` before call, like `(::fn)()`. 
+- Function reference `::fn` should be wrapped in parenthesis `()` before call, like `(::fn)()`. 
 - Invoke can also be used instead like `::fn.invoke()`
 
 ```kotlin

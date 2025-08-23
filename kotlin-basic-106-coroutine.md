@@ -1,21 +1,9 @@
-## Coroutine Dedicated Mini Doc:
-This markdown is to provide jump start docs for Coroutine in kotline projects (Spring/Android). It provide the following topics:
-- [Setup and Basic](#setup-coroutine-basic)
-- [Hands-on: Intro to coroutines and channels](#)
-- [Cancellation and timeouts](#)
-- [Composing suspending functions](#)
-- [Coroutine Context With Dispatchers](#coroutine-context-dispatchers)
-- [Asynchronous Flow](#)
-- [Channels](#)
-- [Coroutine exceptions handling](#)
-- [Shared mutable state and concurrency](#)
-- [Select expression (experimental)](#)
-
 ### Setup and Basic Coroutine:
 Kotlin natively supports Asynchronous or non-blocking programming by providing Coroutine support in the standard library. Also Coroutine provide concurrency and actors.
 
 - setup: Add dependencies as applicable by build tools variations.
-https://github.com/Kotlin/kotlinx.coroutines/blob/master/README.md#using-in-your-projects
+
+Docs: https://github.com/Kotlin/kotlinx.coroutines/blob/master/README.md#using-in-your-projects
 
 ### Basic Coroutine and Suspend Function:
 
@@ -353,7 +341,6 @@ interface Channel<E> : SendChannel<E>, ReceiveChannel<E>
 
 The producer can close a channel to indicate that no more elements are coming.
 
-
 ### Channels Types:
 - Unlimited: Channels with no buffered size, the send call will never suspend
 - Buffered: When the channel is full, the next `send` call on it suspends until more free space appears.
@@ -361,6 +348,7 @@ The producer can close a channel to indicate that no more elements are coming.
 - Conflated: send call will overwrite previous call and receive call will get the latest element always
 
 NB: rendezvous means -> a meeting at an agreed time and place, typically between two people
+
 ```kotlin
 val rendezvousChannel = Channel<String>() // By default, a "Rendezvous" channel is created.
 val bufferedChannel = Channel<String>(10)
@@ -537,10 +525,10 @@ val result1 = withTimeoutOrNull(1300L) {
 ```
 
 ### suspending coroutine vs non-suspending coroutine (launch, async):
-when a suspending function is called, it blocks code execution until finished. In the below code, the 1st defined withTimeout (which is a suspend function) will finished first becaiuse of the suspending nature. After the 1st finished it will call launch (at 2nd) and withTimeout (at 3rd place), after calling the suspending withTimeout at 3rd place, it will again block the code execution further. Between the 2nd and 3rd, it will print which will complete first. Only after completing 3rd suspending the code below will start to executing. launch is a non-suspending coroutine builder, hence it doesn't block and allow to execute withTimeout. 
+when a suspending function is called, it blocks code execution until finished. In the below code, the 1st defined withTimeout (which is a suspend function) will finished first because of the suspending nature. After the 1st finished it will call launch (at 2nd) and withTimeout (at 3rd place), after calling the suspending withTimeout at 3rd place, it will again block the code execution further. Between the 2nd and 3rd, it will print which will complete first. Only after completing 3rd suspending the code below will start to executing. launch is a non-suspending coroutine builder, hence it doesn't block and allow to execute withTimeout. 
 
 
-after relesing/finishing 3rd suspending function, the 4th and 5th are executed concurrently. And as the 5th finishes first between them, it pritn first and 4th after it. 
+after releasing/finishing 3rd suspending function, the 4th and 5th are executed concurrently. And as the 5th finishes first between them, it print first and 4th after it. 
 * in action : [Suspending-vs-NonSuspending](./OOPTour/src/main/kotlin/coroutines/Suspending-vs-NonSuspending.kt)
 ```kotlin
 suspend fun testDualWithTimeoutInsideParentCoroutineScope() = coroutineScope {

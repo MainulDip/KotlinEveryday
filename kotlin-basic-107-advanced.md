@@ -86,15 +86,15 @@ fun main() {
     val r2 = r1;
     println(r2.singleProp); // Default
     
-    // testing reference based behaviour
+    // testing reference based behavior
     r2.singleProp = "Something else";
     println(r2.singleProp); // Something else
     println(r1.singleProp); // Something else
     
-    // making class behave like value base behaviour
+    // making class behave like value base behavior
     val r3 = r1.copy();
-    r3.singleProp = "Separeted value";
-    println("r3.singleProp = ${r3.singleProp}"); // r3.singleProp = Separeted value
+    r3.singleProp = "Separated value";
+    println("r3.singleProp = ${r3.singleProp}"); // r3.singleProp = Separated value
     println("r1.singleProp = ${r1.singleProp}"); // r1.singleProp = Something else
 }
 ````

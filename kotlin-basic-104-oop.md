@@ -425,7 +425,7 @@ fun main() {
 }
 ```
 
-- also: Reat it as “and also do the following with the object.” The context object is available as an argument (it). The return value is the object itself.
+- also: Read it as “and also do the following with the object.” The context object is available as an argument (it). The return value is the object itself.
 ```kotlin
 fun main(){
     val numbers = mutableListOf("one", "two", "three")
@@ -628,7 +628,7 @@ inline fun <reified T> functionName(): T? {
 }
 ```
 
-In kotlin, generics are erased in the runtime, so no "Type" is available otherthan specific single type. By using inline function with reified, the type is passed to functions body for accessing class's methods/properties.
+In kotlin, generics are erased in the runtime, so no "Type" is available other than specific single type. By using inline function with reified, the type is passed to functions body for accessing class's methods/properties.
 
 ```kotlin
 inline fun <reified T> simpleTestReified(a: Any) {

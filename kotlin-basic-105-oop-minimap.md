@@ -182,31 +182,7 @@ fun main() {
 
 ```
 
-
-```kotlin
-
-// nested
-
-// inner
-
-// inline
-
-// abstract
-
-// interface
-
-// enum
-
-// sealed
-
-// data
-
-// object
-
-// Companion
-```
-
-### Primary & secondary contructors:
+### Primary & secondary contractors:
 Note: if class has primary constructor, Secondary Constructor needs to delegate to the primary constructor. The compiler select which constructor to use depending on the (number) supplied parameters
 ```kotlin
 class Constructors private constructor() {
